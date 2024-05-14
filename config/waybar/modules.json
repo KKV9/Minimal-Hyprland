@@ -1,0 +1,91 @@
+{
+  "hyprland/workspaces": {
+    "format": "{name}"
+  },
+  "group/audio": {
+    "orientation": "horizontal",
+    "modules": [
+      "pulseaudio",
+      "pulseaudio#microphone"
+    ]
+  },
+  "clock": {
+    "format": "{:%a %d | %H:%M}",
+    "format-alt": "{:%A, %d %B, %Y (%R)}"
+  },
+  "hyprland/window": {
+    "format": "{}",
+    "separate-outputs": true,
+    "rewrite": {
+      "win11(.*)": " ",
+      "(.*) - Rnote": " ",
+      "(.*)qutebrowser": " ",
+      "nvim (.*)": "  $1",
+      "nvim": " ",
+      "System Monitor": " ",
+      "Eye of GNOME": " ",
+      "Catfish": " ",
+      "Bluetooth Devices": " ",
+      "Network Connections": " ",
+      "Volume Control": " ",
+      "ROG Control Center": "󰌢 ",
+      "Audacity": "󰋌 ",
+      "Qalculate!": "󰃬 ",
+      "Krita": " ",
+      "Lutris": " ",
+      "uGet": " ",
+      "nvtop": "󰡁 ",
+      "wdisplays": "󱎴 ",
+      "vim (.*)": "  $1",
+      "vim": "",
+      "vi (.*)": "  $1",
+      "vi": " ",
+      "cava": " ",
+      "nwg-look": " ",
+      "Kvantum Manager": " ",
+      "Customize Look and Feel": " ",
+      "Qt5 Configuration Tool": " ",
+      "Qt6 Configuration Tool": " ",
+      "Virtual Machine Manager": " ",
+      "MySQL Workbench": " ",
+      "htop": " ",
+      "btop": " ",
+      "~(.*)": " ",
+      "/(.*)": " ",
+      "yazi(.*)": "󰉋 ",
+      "(.*)Steam": "󰓓 "
+    },
+    "max-length": 200
+  },
+  "pulseaudio": {
+    "format": "{icon} {volume}% ",
+    "format-muted": "󰖁 ",
+    "format-icons": {
+      "default": [
+        " ",
+        " ",
+        "󰕾 ",
+        " "
+      ]
+    },
+    "scroll-step": 5.0,
+    "on-click": "pavucontrol",
+    "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "tooltip-format": "{icon} {desc} | {volume}% ",
+    "smooth-scrolling-threshold": 1
+  },
+  "pulseaudio#microphone": {
+    "format": "{format_source}",
+    "format-source": " {volume}%",
+    "format-source-muted": " ",
+    "on-click": "pavucontrol",
+    "on-click-right": "pamixer --default-source -t",
+    "on-scroll-up": "pamixer --default-source -i 5",
+    "on-scroll-down": "pamixer --default-source -d 5",
+    "tooltip-format": "{source_desc} | {source_volume}% "
+  },
+  "tray": {
+    "icon-size": 15,
+    "spacing": 8
+  }
+}

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Exec=kitty -e yazi %u
+Name=Yazi
+Icon=yazi
+Type=Application
+Terminal=true
+MimeType=inode/directory

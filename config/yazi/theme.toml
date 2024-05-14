@@ -1,0 +1,19 @@
+# If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
+"$schema" = "https://yazi-rs.github.io/schemas/theme.json"
+
+[icon]
+
+prepend_rules = [
+  # Dotfiles
+  { name = "*/.gtkrc-2.0", text = "", fg = "#89e051" },
+  { name = "*/*.base", text = "", fg = "#62767c"},
+  { name = "*/.bash_history", text = "", fg = "#89e051" },
+
+  # Directories
+  { name = "*/.config/", text = "", fg = "#89e051" },
+  { name = "*/Desktop/", text = "", fg = "#d0dd22" },
+  { name = "*/Documents/", text = "", fg = "#e1341e" },
+  { name = "*/Downloads/", text = "", fg = "#185abd" },
+  { name = "*/Pictures/", text = "", fg = "#a074c4" },
+  { name = "*/Wallpapers/", text = "", fg = "#a074c4" },
+]
