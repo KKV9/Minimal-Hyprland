@@ -1,0 +1,3 @@
+[general]
+# Filename to use for saving action. Omit to disable saving to file. Might contain format specifiers: https://docs.rs/chrono/latest/chrono/format/strftime/index.html
+output-filename = "Pictures/Screenshots/satty-%Y-%m-%d_%H:%M:%S.png"

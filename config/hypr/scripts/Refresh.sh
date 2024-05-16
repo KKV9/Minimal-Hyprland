@@ -27,7 +27,7 @@ reload_kitty() {
 }
 
 reload_mako() {
-  "${HOME}/.cache/wal/colors.sh"
+  . "${HOME}"/.cache/wal/colors.sh
 
   conffile="$HOME/.config/mako/config"
 

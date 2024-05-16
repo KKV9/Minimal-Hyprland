@@ -120,6 +120,8 @@ packages=(
   tree-sitter-python
   tree-sitter-query
   tree-sitter-vimdoc
+  grimblast-git
+  satty-bin
 )
 
 echo "Editing pacman.conf ..."
