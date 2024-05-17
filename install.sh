@@ -50,6 +50,7 @@ while true; do
     break
     ;;
   [nN])
+    echo "No dependencies installed"
     break
     ;;
   *)
@@ -106,7 +107,7 @@ while true; do
     sudo reboot
     ;;
   [nN])
-    echo "No config files copied"
+    echo "Done!"
     break
     ;;
   *)
