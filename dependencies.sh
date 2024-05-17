@@ -60,7 +60,7 @@ packages=(
   pavucontrol
   pipewire-alsa
   playerctl
-  polkit-kde-agent
+  lxqt-policykit
   qutebrowser
   qt6-svg
   qt5-styleplugins
