@@ -1,6 +1,7 @@
 #!/bin/bash
 ## Install dots ##
 
+USERCONFIG="$HOME/.config/hypr/user_configs/Overrides.conf"
 
 # Check if running as root. If root, script will exit
 if [[ $EUID -eq 0 ]]; then
@@ -58,23 +59,25 @@ while true; do
 done
 
 
-# Offer to change keyboard layout
-while true; do
-  read -rp "Would you like to change the default keyboard layout (us)? [y/n] " confirm
-  case $confirm in
-  [yY])
-     execute_script "keyboard_layout.sh"
-    break
-    ;;
-  [nN])
-    echo "Keyboard layout remains unchanged"
-    break
-    ;;
-  *)
-    echo "Please enter either 'y' or 'n'."
-    ;;
-  esac
-done
+if [ ! -f "$USERCONFIG" ]; then
+  # Offer to change keyboard layout
+  while true; do
+    read -rp "Would you like to change the default keyboard layout (us)? [y/n] " confirm
+    case $confirm in
+    [yY])
+       execute_script "keyboard_layout.sh"
+      break
+      ;;
+    [nN])
+      echo "Keyboard layout remains unchanged"
+      break
+      ;;
+    *)
+      echo "Please enter either 'y' or 'n'."
+      ;;
+    esac
+  done
+fi
 
 # Copy configs
 while true; do
@@ -97,7 +100,7 @@ done
 # Copy configs
 while true; do
   echo "All done!"
-  read -rp "Would you like to restart your system (recommended if you installed dependencies)? [y/n]" confirm
+  read -rp "Would you like to restart your system (recommended if you installed from scratch)? [y/n]" confirm
   case $confirm in
   [yY])
     sudo reboot

@@ -2,7 +2,7 @@
 ## Keyboard layouts ##
 
 # File path
-file_path="config/hypr/Devices.conf"
+file_path="user_configs/Overrides.conf"
 DEFAULT_LAYOUT="us"
 
 # Check if the file exists

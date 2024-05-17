@@ -1,6 +1,8 @@
 #!/bin/bash
 ## Copy configs ##
 
+USERCONFIGS="$HOME/.config/hypr/user_configs"
+
 # Create folders
 cp -f config/user-dirs.dirs "$HOME"/.config/
 xdg-user-dirs-update
@@ -40,6 +42,12 @@ if ! [ "$1" == "quick" ]; then
   # Run pywal
   echo "Creating color pallette..."
   wal -i "$HOME/.cache/current_wallpaper.png" -s -t -n -e >/dev/null
+fi
+
+
+if [ ! -f "$USERCONFIGS/Overrides.conf" ]; then
+    mkdir -p "$USERCONFIGS"
+    cp -rf "user_configs/Overrides.conf" "$USERCONFIGS/" 
 fi
 
 echo "Copying done!"
