@@ -31,8 +31,25 @@ while true; do
   read -rp "Install dependencies? [y/n] " confirm
   case $confirm in
   [yY])
-    chmod +x dependencies.sh && ./dependencies.sh
+
+    while true; do
+      read -rp "Install sddm? [y/n] " confirm
+      case $confirm in
+      [yY])
+        chmod +x dependencies.sh && ./dependencies.sh "sddm"
+        break
+        ;;
+      [nN])
+        chmod +x dependencies.sh && ./dependencies.sh
+        break
+        ;;
+      *)
+        echo "Please enter either 'y' or 'n'."
+        ;;
+      esac
+    done
     break
+
     ;;
   [nN])
     echo "No dependencies installed"

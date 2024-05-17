@@ -119,6 +119,7 @@ while true; do
     if [ "$opt" ]; then
       echo "You selected $name: $opt"
       sed -i "s/\(kb_$name = \).*/\1$opt/" "$file_path"
+      sed -i "s/\(kb_$name = \).*/\1$opt/" "sddm/hyprland.conf" # Change layout for sddm
       echo "Keyboard $name changed to $opt"
     else
       echo "You selected $name: default"

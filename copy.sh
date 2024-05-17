@@ -20,7 +20,7 @@ if [ ! -f "$USERCONFIGS/Overrides.conf" ]; then
 
   # Download wallpapers
   echo "Downloading wallpapers..."
-  wget "https://raw.githubusercontent.com/antoniosarosi/Wallpapers/master/52.png" && mv "52.png" wallpapers/wallpaper.png
+  wget "https://raw.githubusercontent.com/antoniosarosi/Wallpapers/master/52.png"
 
   # Download pywal extention
   echo "Downloading themes..."
@@ -36,7 +36,8 @@ if [ ! -f "$USERCONFIGS/Overrides.conf" ]; then
   rm Bibata-Modern-Classic.tar.xz
 
   # Copy downloaded icons and wallpapers
-  cp -rf icons/* "$HOME/.local/share/icons/"
+  mv "52.png" wallpapers/wallpaper.png
+  sudo cp -rf icons/* "/usr/share/icons/"
   cp -rf wallpapers/* "$HOME/Pictures/Wallpapers/"
   cp -rf "wallpapers/wallpaper.png" "$HOME/.cache/current_wallpaper.png"
 

@@ -124,6 +124,14 @@ packages=(
   satty-bin
 )
 
+sddm=(
+  sddm-git
+  qt6-svg
+  qt6-declarative
+  layer-shell-qt
+  layer-shell-qt5
+)
+
 echo "Editing pacman.conf ..."
 pacman_conf="/etc/pacman.conf"
 
@@ -208,6 +216,18 @@ for package in "${packages[@]}"; do
     exit 1
   }
 done
+
+if [ "$1" == "sddm" ]; then
+  for package in "${sddm[@]}"; do
+    install_package "$package"
+    [ $? -ne 0 ] && {
+      echo "$package Package installation failed"
+      exit 1
+    }
+  done
+  sudo systemctl enable sddm
+  chmod +x sddm.sh && ./sddm.sh
+fi
 
 echo "Activating pipewire services..."
 systemctl --user enable pipewire.socket pipewire-pulse.socket wireplumber.service
