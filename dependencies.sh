@@ -4,14 +4,14 @@
 # Function for installing packages
 install_package_pacman() {
   # Checking if package is already installed
-  if pacman -Q "$1" &>/dev/null ; then
+  if pacman -Q "$1" &>/dev/null; then
     echo "$1 is already installed. Skipping..."
   else
     # Package not installed
     echo "Installing $1 ..."
     sudo pacman -S --noconfirm --needed "$1"
     # Making sure package is installed
-    if pacman -Q "$1" &>/dev/null ; then
+    if pacman -Q "$1" &>/dev/null; then
       echo "$1 was installed."
     else
       # Something is missing, exiting.
@@ -24,14 +24,14 @@ install_package_pacman() {
 # Function for installing packages
 install_package() {
   # Checking if package is already installed
-  if $aurHelper -Q "$1" &>> /dev/null ; then
+  if $aurHelper -Q "$1" &>>/dev/null; then
     echo "$1 is already installed. Skipping..."
   else
     # Package not installed
     echo -e "${NOTE} Installing $1 ..."
     $aurHelper -S --noconfirm --needed "$1"
     # Making sure package is installed
-    if $aurHelper -Q "$1" &>> /dev/null ; then
+    if $aurHelper -Q "$1" &>>/dev/null; then
       echo "$1 was installed."
     else
       # Something is missing, exiting to review log
@@ -42,7 +42,7 @@ install_package() {
 }
 
 # List of packages to setup aur helper
-base=( 
+base=(
   base-devel
   rustup
   git
@@ -51,14 +51,14 @@ base=(
   fzf
 )
 
-packages=( 
+packages=(
   cliphist
   hyprlock
-  imagemagick 
+  imagemagick
   kitty
-  pamixer 
+  pamixer
   pavucontrol
-  pipewire-alsa 
+  pipewire-alsa
   playerctl
   polkit-kde-agent
   qutebrowser
@@ -68,20 +68,20 @@ packages=(
   qt6-wayland
   qt5-wayland
   fuzzel
-  mako 
+  mako
   wbg
   python-pywal
   waybar
   wl-clipboard
   xdg-user-dirs
-  xdg-utils 
+  xdg-utils
   mpv
-  mpv-mpris 
+  mpv-mpris
   pacman-contrib
   neovim
   yazi-git
   noto-fonts-emoji
-  ttf-font-awesome 
+  ttf-font-awesome
   ttf-jetbrains-mono-nerd
   ttf-nerd-fonts-symbols
   ttf-nerd-fonts-symbols-common
@@ -129,28 +129,28 @@ pacman_conf="/etc/pacman.conf"
 
 # Remove comments '#' from specific lines
 lines_to_edit=(
-    "Color"
-    "CheckSpace"
-    "VerbosePkgLists"
-    "ParallelDownloads"
+  "Color"
+  "CheckSpace"
+  "VerbosePkgLists"
+  "ParallelDownloads"
 )
 
 # Uncomment specified lines if they are commented out
 for line in "${lines_to_edit[@]}"; do
-    if grep -q "^#$line" "$pacman_conf"; then
-        sudo sed -i "s/^#$line/$line/" "$pacman_conf"
-        echo "Uncommented: $line"
-    else
-        echo "$line is already uncommented."
-    fi
+  if grep -q "^#$line" "$pacman_conf"; then
+    sudo sed -i "s/^#$line/$line/" "$pacman_conf"
+    echo "Uncommented: $line"
+  else
+    echo "$line is already uncommented."
+  fi
 done
 
 # Add "ILoveCandy" below ParallelDownloads if it doesn't exist
 if grep -q "^ParallelDownloads" "$pacman_conf" && ! grep -q "^ILoveCandy" "$pacman_conf"; then
-    sudo sed -i "/^ParallelDownloads/a ILoveCandy" "$pacman_conf"
-    echo "Added ILoveCandy below ParallelDownloads."
+  sudo sed -i "/^ParallelDownloads/a ILoveCandy" "$pacman_conf"
+  echo "Added ILoveCandy below ParallelDownloads."
 else
-    echo "ILoveCandy already exists"
+  echo "ILoveCandy already exists"
 fi
 
 echo "Pacman.conf edited"
@@ -164,7 +164,10 @@ done
 
 # Setup rustup
 echo "Setting up rust..."
-rustup default stable || { echo "Failed to install rustup toolchain"; exit 1; }
+rustup default stable || {
+  echo "Failed to install rustup toolchain"
+  exit 1
+}
 
 # Find aur helper
 aurHelper=$(command -v yay || command -v paru)
@@ -175,20 +178,35 @@ else
   # Install paru if no aur helper is found
   echo "AUR helper was NOT located"
   echo "Installing paru from AUR"
-  git clone https://aur.archlinux.org/paru-bin.git || { echo "Failed to clone paru from AUR"; exit 1; }
-  cd paru-bin || { echo "Failed to enter paru-bin directory"; exit 1; }
-  makepkg -si --noconfirm || { echo "Failed to install paru from AUR"; exit 1; }
+  git clone https://aur.archlinux.org/paru-bin.git || {
+    echo "Failed to clone paru from AUR"
+    exit 1
+  }
+  cd paru-bin || {
+    echo "Failed to enter paru-bin directory"
+    exit 1
+  }
+  makepkg -si --noconfirm || {
+    echo "Failed to install paru from AUR"
+    exit 1
+  }
   aurHelper=$(command -v yay || command -v paru)
   cd ..
 fi
 
 # Update system before proceeding
 echo "Performing a full system update to avoid issues...."
-$aurHelper -Syu --noconfirm || { echo "Failed to update system"; exit 1; }
+$aurHelper -Syu --noconfirm || {
+  echo "Failed to update system"
+  exit 1
+}
 
 for package in "${packages[@]}"; do
-   install_package "$package"
-   [ $? -ne 0 ] && { echo "$package Package installation failed"; exit 1; }
+  install_package "$package"
+  [ $? -ne 0 ] && {
+    echo "$package Package installation failed"
+    exit 1
+  }
 done
 
 echo "Activating pipewire services..."

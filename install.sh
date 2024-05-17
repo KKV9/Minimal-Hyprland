@@ -5,24 +5,9 @@ USERCONFIG="$HOME/.config/hypr/user_configs/Overrides.conf"
 
 # Check if running as root. If root, script will exit
 if [[ $EUID -eq 0 ]]; then
-    echo "This script should not be executed as root! Exiting......."
-    exit 1
+  echo "This script should not be executed as root! Exiting......."
+  exit 1
 fi
-
-# Function to execute a script if it exists and make it executable
-execute_script() {
-    local script="$1"
-    if [ -f "$script" ]; then
-        chmod +x "$script"
-        if [ -x "$script" ]; then
-            "$script"
-        else
-            echo "Failed to make script '$script' executable."
-        fi
-    else
-        echo "Script '$script' not found."
-    fi
-}
 
 echo "Welcome to the installer"
 echo "ATTENTION: Please backup your configuration files before proceeding!"
@@ -46,7 +31,7 @@ while true; do
   read -rp "Install dependencies? [y/n] " confirm
   case $confirm in
   [yY])
-    execute_script "dependencies.sh"
+    chmod +x dependencies.sh && ./dependencies.sh
     break
     ;;
   [nN])
@@ -59,14 +44,14 @@ while true; do
   esac
 done
 
-
 if [ ! -f "$USERCONFIG" ]; then
   # Offer to change keyboard layout
   while true; do
     read -rp "Would you like to change the default keyboard layout (us)? [y/n] " confirm
     case $confirm in
     [yY])
-       execute_script "keyboard_layout.sh"
+      chmod +x keyboard_layout.sh && ./keyboard_layout.sh
+      execute_script "keyboard_layout.sh"
       break
       ;;
     [nN])
@@ -85,7 +70,7 @@ while true; do
   read -rp "Would you like to copy the config files? [y/n]" confirm
   case $confirm in
   [yY])
-    execute_script "copy.sh"
+    chmod +x copy.sh && ./copy.sh
     break
     ;;
   [nN])

@@ -91,7 +91,7 @@ while true; do
 
   # Set options with fzf
   manual_caps() {
-     while true; do
+    while true; do
       read -rp "Swap caps and escape? [y/n] " confirm
       case "$confirm" in
       [yY])
@@ -106,7 +106,7 @@ while true; do
         echo "Please enter either 'y' or 'n'."
         ;;
       esac
-    done 
+    done
   }
 
   # Replace keyboard options in Devices.conf
@@ -148,7 +148,7 @@ while true; do
       echo "Please enter either 'y' or 'n'."
       ;;
     esac
-      break
+    break
   done
 
   # Prompt for variant
@@ -171,7 +171,7 @@ while true; do
       echo "Please enter either 'y' or 'n'."
       ;;
     esac
-      break
+    break
   done
 
   # Prompt for options
@@ -193,9 +193,8 @@ while true; do
       echo "Please enter either 'y' or 'n'."
       ;;
     esac
-      break
+    break
   done
-
 
   # Print reciept
   echo
@@ -210,25 +209,25 @@ while true; do
 
   # Prompt to restart the script
   while true; do
-  read -rp "Proceed? [y/n] " confirm
+    read -rp "Proceed? [y/n] " confirm
     case $confirm in
-      [yY])
-        proceed="yes"
-        break
-        ;;
-      [nN])
-        # Restart
-        proceed="no"
-        break
-        ;;
-      *)
-        echo "Please enter either 'y' or 'n'."
-        ;;
-      esac
-    done
-
-    if [ "$proceed" == "yes" ]; then
+    [yY])
+      proceed="yes"
       break
-    fi
+      ;;
+    [nN])
+      # Restart
+      proceed="no"
+      break
+      ;;
+    *)
+      echo "Please enter either 'y' or 'n'."
+      ;;
+    esac
+  done
+
+  if [ "$proceed" == "yes" ]; then
+    break
+  fi
 
 done

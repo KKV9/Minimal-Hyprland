@@ -1,54 +1,60 @@
 #!/bin/bash
 ## Copy configs ##
 
+# Define directory for user configuration
 USERCONFIGS="$HOME/.config/hypr/user_configs"
 
-# Create folders
+# Gnereate home folders
 cp -f config/user-dirs.dirs "$HOME"/.config/
 xdg-user-dirs-update
 
+# If user is installing from scratch
 if [ ! -f "$USERCONFIGS/Overrides.conf" ]; then
+  # Copy the overrides configuration
   mkdir -p "$USERCONFIGS"
   cp -rf "user_configs/Overrides.conf" "$USERCONFIGS/"
-else
-  if ! [ "$1" == "quick" ]; then
-    mkdir -p icons
-    mkdir -p wallpapers
-    echo "Downloading wallpapers..."
-    wget "https://raw.githubusercontent.com/antoniosarosi/Wallpapers/master/52.png" && mv "52.png" wallpapers/wallpaper.png
 
-    echo "Downloading themes..."
-    git clone https://github.com/makman12/pywalQute.git config/qutebrowser/pywalQute
+  # Make folders to store downloaded cursor theme and wallpapers
+  mkdir -p icons
+  mkdir -p wallpapers
 
-    echo "Downloading icons..."
-    wget "https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.6/Bibata-Modern-Classic.tar.xz"
+  # Download wallpapers
+  echo "Downloading wallpapers..."
+  wget "https://raw.githubusercontent.com/antoniosarosi/Wallpapers/master/52.png" && mv "52.png" wallpapers/wallpaper.png
 
-    # Extract themes
-    tar -xf Bibata-Modern-Classic.tar.xz -C icons/
-    rm Bibata-Modern-Classic.tar.xf
-  fi
-fi
+  # Download pywal extention
+  echo "Downloading themes..."
+  git clone https://github.com/makman12/pywalQute.git config/qutebrowser/pywalQute
 
-echo "Copying config..."
-cp -rf ".gtkrc-2.0" "$HOME/"
-cp -rf config/* "$HOME/.config/"
-cp -rf themes/* "$HOME/.local/share/themes/"
-cp -rf applications/* "$HOME/.local/share/applications/"
+  # Download cursor theme
+  echo "Downloading icons..."
+  wget "https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.6/Bibata-Modern-Classic.tar.xz"
 
-if ! [ "$1" == "quick" ]; then
+  # Extract cursors
+  echo "Extracting archives..."
+  tar -xf Bibata-Modern-Classic.tar.xz -C icons/
+  rm Bibata-Modern-Classic.tar.xz
+
+  # Copy downloaded icons and wallpapers
   cp -rf icons/* "$HOME/.local/share/icons/"
   cp -rf wallpapers/* "$HOME/Pictures/Wallpapers/"
   cp -rf "wallpapers/wallpaper.png" "$HOME/.cache/current_wallpaper.png"
-
-  echo "Creating symlinks..."
-  mkdir -p "$HOME/.themes"
-  ln -sf ~/.local/share/themes/wall-gtk/ ~/.themes/
 
   # Run pywal
   echo "Creating color pallette..."
   wal -i "$HOME/.cache/current_wallpaper.png" -s -t -n -e >/dev/null
 fi
 
+# Copy remaining config files
+cp -rf ".gtkrc-2.0" "$HOME/"
+cp -rf config/* "$HOME/.config/"
+cp -rf themes/* "$HOME/.local/share/themes/"
+cp -rf applications/* "$HOME/.local/share/applications/"
+# Create symlinks for qtgtk
+mkdir -p "$HOME/.themes"
+ln -sf ~/.local/share/themes/wall-gtk/ ~/.themes/
+
+# Refresh hyprland if it is running
 echo "Copying done!"
 if [ "$XDG_SESSION_DESKTOP" == "Hyprland" ]; then
   sleep 0.5
