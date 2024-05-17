@@ -1,8 +1,11 @@
 #!/bin/bash
-sed '1,/^# # DATA # #$/d' "$0" | 
-fuzzel -d | 
-cut -d ' ' -f 1 | tr -d '\n' | 
-wl-copy && notify-send -u low "$(wl-paste) Copied to clipboard!"
+result=$(sed '1,/^# # DATA # #$/d' "$0" | fuzzel -d | cut -d ' ' -f 1 | tr -d '\n')
+
+if [ -n "$result" ]; then
+    echo -n "$result" | wl-copy
+    notify-send -u low "$result Copied to clipboard!"
+fi
+
 exit
 # # DATA # #
 😀 grinning face face smile happy joy :D grin
