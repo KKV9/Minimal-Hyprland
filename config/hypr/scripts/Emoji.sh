@@ -1,7 +1,8 @@
 #!/bin/bash
 sed '1,/^# # DATA # #$/d' "$0" | 
 fuzzel -d | 
-cut -d ' ' -f 1 | tr -d '\n' | wl-copy
+cut -d ' ' -f 1 | tr -d '\n' | 
+wl-copy && notify-send -u low "$(wl-paste) Copied to clipboard!"
 exit
 # # DATA # #
 😀 grinning face face smile happy joy :D grin
