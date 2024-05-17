@@ -12,7 +12,10 @@ The provided scripts will automate the install process from a minimal archlinux 
 - Media: mpv
 
 ## How to install
+
+### Installation
 Clone this repo and run the install.sh script.
+Upgrading from a previous version is the same process, the installer will detect a previous install.
 
 ```Bash
 git clone https://github.com/KKV9/Minimal-Hyprland.git
@@ -20,10 +23,6 @@ cd Minimal-Hyprland
 chmod +x install.sh
 ./install.sh
 ```
-
-To copy the config files only, run the install script but say no to install dependencies.
-This is useful if you prefer to upgrade your existing setup.
-Make sure to reboot your system after a full install.
 
 ## What next?
 - Press `SUPER + A` to bring up a list of actions.

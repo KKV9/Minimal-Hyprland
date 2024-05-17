@@ -7,21 +7,26 @@ USERCONFIGS="$HOME/.config/hypr/user_configs"
 cp -f config/user-dirs.dirs "$HOME"/.config/
 xdg-user-dirs-update
 
-if ! [ "$1" == "quick" ]; then
-  mkdir -p icons
-  mkdir -p wallpapers
-  echo "Downloading wallpapers..."
-  wget "https://raw.githubusercontent.com/antoniosarosi/Wallpapers/master/52.png" && mv "52.png" wallpapers/wallpaper.png
+if [ ! -f "$USERCONFIGS/Overrides.conf" ]; then
+  mkdir -p "$USERCONFIGS"
+  cp -rf "user_configs/Overrides.conf" "$USERCONFIGS/"
+else
+  if ! [ "$1" == "quick" ]; then
+    mkdir -p icons
+    mkdir -p wallpapers
+    echo "Downloading wallpapers..."
+    wget "https://raw.githubusercontent.com/antoniosarosi/Wallpapers/master/52.png" && mv "52.png" wallpapers/wallpaper.png
 
-  echo "Downloading themes..."
-  git clone https://github.com/makman12/pywalQute.git config/qutebrowser/pywalQute
+    echo "Downloading themes..."
+    git clone https://github.com/makman12/pywalQute.git config/qutebrowser/pywalQute
 
-  echo "Downloading icons..."
-  wget "https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.6/Bibata-Modern-Classic.tar.xz"
+    echo "Downloading icons..."
+    wget "https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.6/Bibata-Modern-Classic.tar.xz"
 
-  # Extract themes
-  tar -xf Bibata-Modern-Classic.tar.xz -C icons/
-  rm Bibata-Modern-Classic.tar.xf
+    # Extract themes
+    tar -xf Bibata-Modern-Classic.tar.xz -C icons/
+    rm Bibata-Modern-Classic.tar.xf
+  fi
 fi
 
 echo "Copying config..."
@@ -42,12 +47,6 @@ if ! [ "$1" == "quick" ]; then
   # Run pywal
   echo "Creating color pallette..."
   wal -i "$HOME/.cache/current_wallpaper.png" -s -t -n -e >/dev/null
-fi
-
-
-if [ ! -f "$USERCONFIGS/Overrides.conf" ]; then
-    mkdir -p "$USERCONFIGS"
-    cp -rf "user_configs/Overrides.conf" "$USERCONFIGS/" 
 fi
 
 echo "Copying done!"
