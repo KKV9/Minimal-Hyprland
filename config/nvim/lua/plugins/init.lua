@@ -15,6 +15,12 @@ return {
   },
 
   {
+    "stevearc/oil.nvim",
+    lazy = false,
+    opts = {},
+  },
+
+  {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
