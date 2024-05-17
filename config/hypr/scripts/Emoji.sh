@@ -1,5 +1,5 @@
 #!/bin/bash
-result=$(sed '1,/^# # DATA # #$/d' "$0" | fuzzel -d | cut -d ' ' -f 1 | tr -d '\n')
+result=$(sed '1,/^# # DATA # #$/d' "$0" | fuzzel -d | awk '{print $1}')
 
 if [ -n "$result" ]; then
     echo -n "$result" | wl-copy
