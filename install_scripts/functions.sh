@@ -129,5 +129,6 @@ set_opts() {
   else
     printf "\nYou selected %s: default\n" "$2"
     sed -i "s/\(kb_$2 = \).*/\1$3/" "$OVERRIDES"
+    sed -i "s/\(kb_$2 = \).*/\1$3/" "sddm/hyprland.conf" # Change layout for sddm defaults
   fi
 }
