@@ -122,6 +122,8 @@ packages=(
   tree-sitter-vimdoc
   grimblast-git
   satty-bin
+  hyprkeys
+  jq
 )
 
 sddm=(

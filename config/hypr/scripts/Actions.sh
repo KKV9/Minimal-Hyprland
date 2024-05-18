@@ -13,10 +13,10 @@ SCRIPTSDIR="$HOME/.config/hypr/scripts"
 # Set menu arguments
 case $MENU in
 "rofi")
-  menuArgs=(-dmenu -l 5 -p "$PROMPT")
+  menuArgs=(-dmenu -l 6 -p "$PROMPT")
   ;;
 "fuzzel" | "wofi")
-  menuArgs=(-d -l 5 -p "$PROMPT")
+  menuArgs=(-d -l 6 -p "$PROMPT")
   ;;
 "tofi")
   menuArgs=(--prompt-text "$PROMPT")
@@ -30,7 +30,7 @@ case $MENU in
 esac
 
 # Set menu options
-opts=("1. Select a wallpaper" "2. Edit configs" "3. Lock" "4. Refresh" "5. Exit")
+opts=("1. Select a wallpaper" "2. Edit configs" "3. Show keybinds" "4. Lock" "5. Refresh" "6. Exit")
 
 # Menu prompt
 selection=$(printf '%s\n' "${opts[@]}" | $MENU "${menuArgs[@]}")
@@ -44,12 +44,15 @@ case $selection in
   kitty -e yazi "$HOME/.config/hypr"
   ;;
 "${opts[2]}")
-  hyprlock
+  fuzzel -d --width=50< "$HOME"/.cache/dots/keybinds.txt
   ;;
 "${opts[3]}")
-  "$SCRIPTSDIR"/Refresh.sh
+  hyprlock
   ;;
 "${opts[4]}")
+  "$SCRIPTSDIR"/Refresh.sh
+  ;;
+"${opts[5]}")
   hyprctl dispatch exit 0
   ;;
 *) ;;
