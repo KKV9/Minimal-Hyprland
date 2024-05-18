@@ -1,6 +1,8 @@
 #!/bin/bash
 ## Keybinds generator ##
 
+# Generate table of keybindings from hypr config files
+
 CACHE="$HOME/.cache/dots"
 CONFIGS="$HOME"/.config/hypr
 

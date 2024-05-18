@@ -1,45 +1,7 @@
 #!/bin/bash
 ## Dependency list ##
 
-# Function for installing packages
-install_package_pacman() {
-  # Checking if package is already installed
-  if pacman -Q "$1" &>/dev/null; then
-    echo "$1 is already installed. Skipping..."
-  else
-    # Package not installed
-    echo "Installing $1 ..."
-    sudo pacman -S --noconfirm --needed "$1"
-    # Making sure package is installed
-    if pacman -Q "$1" &>/dev/null; then
-      echo "$1 was installed."
-    else
-      # Something is missing, exiting.
-      echo "$1 failed to install. You may need to install manually."
-      exit 1
-    fi
-  fi
-}
-
-# Function for installing packages
-install_package() {
-  # Checking if package is already installed
-  if $aurHelper -Q "$1" &>>/dev/null; then
-    echo "$1 is already installed. Skipping..."
-  else
-    # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
-    $aurHelper -S --noconfirm --needed "$1"
-    # Making sure package is installed
-    if $aurHelper -Q "$1" &>>/dev/null; then
-      echo "$1 was installed."
-    else
-      # Something is missing, exiting to review log
-      echo "$1 failed to install, You may need to install manually!"
-      exit 1
-    fi
-  fi
-}
+source install_scripts/functions.sh || source functions.sh # Find the functions file to reference
 
 # List of packages to setup aur helper
 base=(
@@ -51,6 +13,7 @@ base=(
   fzf
 )
 
+# List of package dependencies
 packages=(
   cliphist
   hyprlock
@@ -126,6 +89,7 @@ packages=(
   jq
 )
 
+# List of sddm dependencies
 sddm=(
   sddm-git
   qt6-svg
@@ -168,6 +132,7 @@ echo "Pacman.conf edited"
 # updating pacman.conf
 sudo pacman -Sy
 
+# Install base packages
 for pkg in "${base[@]}"; do
   install_package_pacman "$pkg"
 done
@@ -211,6 +176,7 @@ $aurHelper -Syu --noconfirm || {
   exit 1
 }
 
+# Install all dependencies using aur helper
 for package in "${packages[@]}"; do
   install_package "$package"
   [ $? -ne 0 ] && {
@@ -219,16 +185,17 @@ for package in "${packages[@]}"; do
   }
 done
 
+# Install sddm using aur helper if chosen
 if [ "$1" == "sddm" ]; then
   for package in "${sddm[@]}"; do
-    install_package "$package"
+    install_package "$package" "$aurHelper"
     [ $? -ne 0 ] && {
       echo "$package Package installation failed"
       exit 1
     }
   done
   sudo systemctl enable sddm
-  chmod +x sddm.sh && ./sddm.sh
+  ./install_scripts/sddm.sh
 fi
 
 echo "Activating pipewire services..."

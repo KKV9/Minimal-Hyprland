@@ -1,4 +1,8 @@
 #!/bin/bash
+## Emoji selector ##
+
+# Fuzzel prompt for selecting emoji
+
 result=$(sed '1,/^# # DATA # #$/d' "$0" | fuzzel -d | awk '{print $1}')
 
 if [ -n "$result" ]; then

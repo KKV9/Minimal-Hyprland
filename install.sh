@@ -1,7 +1,8 @@
 #!/bin/bash
 ## Install dots ##
 
-USERCONFIG="$HOME/.config/hypr/user_configs/Overrides.conf"
+chmod +x install_scripts/*.sh
+source install_scripts/functions.sh
 
 # Check if running as root. If root, script will exit
 if [[ $EUID -eq 0 ]]; then
@@ -9,111 +10,43 @@ if [[ $EUID -eq 0 ]]; then
   exit 1
 fi
 
+# Greet
 echo "Welcome to the installer"
 echo "ATTENTION: Please backup your configuration files before proceeding!"
 
-while true; do
-  read -rp "Would you like to proceed? [y/n] " confirm
-  case $confirm in
-  [yY])
-    break
-    ;;
-  [nN])
-    exit 0
-    ;;
-  *)
-    echo "Please enter either 'y' or 'n'."
-    ;;
-  esac
-done
-
-while true; do
-  read -rp "Install dependencies? [y/n] " confirm
-  case $confirm in
-  [yY])
-
-    while true; do
-      read -rp "Install sddm? [y/n] " confirm
-      case $confirm in
-      [yY])
-        chmod +x dependencies.sh && ./dependencies.sh "sddm"
-        break
-        ;;
-      [nN])
-        chmod +x dependencies.sh && ./dependencies.sh
-        break
-        ;;
-      *)
-        echo "Please enter either 'y' or 'n'."
-        ;;
-      esac
-    done
-    break
-
-    ;;
-  [nN])
-    echo "No dependencies installed"
-    break
-    ;;
-  *)
-    echo "Please enter either 'y' or 'n'."
-    ;;
-  esac
-done
-
-if [ ! -f "$USERCONFIG" ]; then
-  # Offer to change keyboard layout
-  while true; do
-    read -rp "Would you like to change the default keyboard layout (us)? [y/n] " confirm
-    case $confirm in
-    [yY])
-      chmod +x keyboard_layout.sh && ./keyboard_layout.sh
-      execute_script "keyboard_layout.sh"
-      break
-      ;;
-    [nN])
-      echo "Keyboard layout remains unchanged"
-      break
-      ;;
-    *)
-      echo "Please enter either 'y' or 'n'."
-      ;;
-    esac
-  done
+# Give option to cancel install
+if ! ask_yn "Do you want to proceed?"; then
+  exit 0
 fi
 
-# Copy configs
-while true; do
-  read -rp "Would you like to copy the config files? [y/n]" confirm
-  case $confirm in
-  [yY])
-    chmod +x copy.sh && ./copy.sh
-    break
-    ;;
-  [nN])
-    echo "No config files copied"
-    break
-    ;;
-  *)
-    echo "Please enter either 'y' or 'n'."
-    ;;
-  esac
-done
+# Option to automatically install dependencies
+# Sddm install is optional
+if ask_yn "Install dependencies?"; then
+  if ask_yn "Install sddm?"; then
+    ./install_scripts/dependencies.sh "sddm"
+  else
+    ./install_scripts/dependencies.sh
+  fi
+else
+  echo "No dependencies installed"
+fi
 
-# Copy configs
-while true; do
-  echo "All done!"
-  read -rp "Would you like to restart your system (recommended if you installed from scratch)? [y/n]" confirm
-  case $confirm in
-  [yY])
-    sudo reboot
-    ;;
-  [nN])
-    echo "Done!"
-    break
-    ;;
-  *)
-    echo "Please enter either 'y' or 'n'."
-    ;;
-  esac
-done
+# Ask to change keyboard layout if not done already
+if [ ! -f "$USERCONFIG" ]; then
+  if ask_yn "Would you like to change the default keyboard layout (us)?"; then
+    ./install_scripts/keyboard_layout.sh
+  else
+    echo "Keyboard layout remains unchanged"
+  fi
+fi
+
+# Prompt to copy config files
+if ask_yn "Would you like to copy the config files?"; then
+  ./install_scripts/copy.sh
+else
+  echo "No config files copied"
+fi
+
+# Notify install complete
+echo "Install complete!"
+echo "Restart your system if installing for the first time!"

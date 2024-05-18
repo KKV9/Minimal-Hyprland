@@ -1,6 +1,8 @@
 #!/bin/bash
 ## Refresh ##
 
+# Reload full hyprland configuration
+
 SCRIPTSDIR="$HOME/.config/hypr/scripts"
 
 reload_gtk_theme() {

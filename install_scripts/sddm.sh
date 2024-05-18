@@ -13,11 +13,11 @@ unzip catppuccin-mocha.zip
 sed -i 's/Noto Sans/JetBrainsMono NF/g' catppuccin-mocha/theme.conf
 
 # Copy themes
+echo "Copying sddm themes..."
 sudo mkdir -p "/usr/share/sddm/themes"
 sudo mv "catppuccin-mocha/" "/usr/share/sddm/themes/"
 
 ## Copy configs
-echo "Copying sddm themes..."
 sudo mkdir -p /etc/sddm.conf.d
 sudo cp -rf sddm/* "/etc/sddm.conf.d/"
 

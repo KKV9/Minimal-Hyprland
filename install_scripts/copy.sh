@@ -1,18 +1,27 @@
 #!/bin/bash
 ## Copy configs ##
 
-# Define directory for user configuration
-USERCONFIGS="$HOME/.config/hypr/user_configs"
+# Check if the directory is correct
+if [ ! -f install.sh ]; then
+  cd ..
+  if [ ! -f install.sh ]; then
+    echo "File not found: install.sh"
+    echo "Please download the full repo!"
+    exit 1
+  fi
+fi
+
+source install_scripts/functions.sh
 
 # Gnereate home folders
 cp -f config/user-dirs.dirs "$HOME"/.config/
 xdg-user-dirs-update
 
 # If user is installing from scratch
-if [ ! -f "$USERCONFIGS/Overrides.conf" ]; then
+if [ ! -f "$USERCONFIG" ]; then
   # Copy the overrides configuration
   mkdir -p "$USERCONFIGS"
-  cp -rf "user_configs/Overrides.conf" "$USERCONFIGS/"
+  cp -f "$OVERRIDES" "$USERCONFIG"
 
   # Make folders to store downloaded cursor theme and wallpapers
   mkdir -p icons
@@ -49,6 +58,7 @@ fi
 # Copy remaining config files
 cp -rf ".gtkrc-2.0" "$HOME/"
 cp -rf config/* "$HOME/.config/"
+chmod +x "$HOME"/.config/hypr/scripts/* # Ensure scripts are executable
 cp -rf themes/* "$HOME/.local/share/themes/"
 cp -rf applications/* "$HOME/.local/share/applications/"
 # Create symlinks for qtgtk
