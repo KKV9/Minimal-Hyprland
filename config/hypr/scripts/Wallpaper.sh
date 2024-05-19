@@ -8,7 +8,7 @@ PNG=$HOME/.cache/current_wallpaper.png
 
 # Store yazi output in tempfile
 tmp=$(mktemp)
-kitty -e yazi "$HOME/Pictures/Wallpapers/" --chooser-file "$tmp"
+kitty --class "floating" --title "Wallpaper select" -- yazi "$HOME/Pictures/Wallpapers/" --chooser-file "$tmp"
 
 # Last selected file is stored in a variable
 newWallpaper="$(tail -1 "$tmp")"
