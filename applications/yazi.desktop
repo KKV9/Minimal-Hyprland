@@ -1,7 +1,7 @@
 [Desktop Entry]
 Exec=kitty -e yazi %u
 Name=Yazi
-Icon=yazi
+Icon=thunar
 Type=Application
 Terminal=true
 MimeType=inode/directory
