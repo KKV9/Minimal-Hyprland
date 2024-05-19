@@ -1,4 +1,7 @@
-#modded Numix gtkrc
+# modded Numix gtkrc
+# Adpapted for use with pywall
+# Source: https://github.com/deviantfero/wpgtk-templates/
+# LICENSE: GPL-2.0
 
 gtk-color-scheme = "bg_color:{color0}
 color0:{color0}

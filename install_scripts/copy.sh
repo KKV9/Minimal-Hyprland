@@ -23,18 +23,19 @@ if [ ! -f "$USERCONFIG" ]; then
   mkdir -p "$USERCONFIGS"
   cp -f "$OVERRIDES" "$USERCONFIG"
 
-  # Make folders to store downloaded cursor theme and wallpapers
+  # Make folders to store downloaded themes and wallpapers
   mkdir -p icons
   mkdir -p wallpapers
+  mkdir -p themes
 
   # Download wallpapers
   echo "Downloading wallpapers..."
   wget "https://raw.githubusercontent.com/antoniosarosi/Wallpapers/master/52.png"
-
-  # Download pywal extention
   echo "Downloading themes..."
+  # Download pywal extention
   git clone https://github.com/makman12/pywalQute.git config/qutebrowser/pywalQute
-
+  # Download gtk theme
+  git clone https://github.com/deviantfero/wpgtk-templates
   # Download cursor theme
   echo "Downloading icons..."
   wget "https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.6/Bibata-Modern-Classic.tar.xz"
@@ -42,11 +43,23 @@ if [ ! -f "$USERCONFIG" ]; then
   # Extract cursors
   echo "Extracting archives..."
   tar -xf Bibata-Modern-Classic.tar.xz -C icons/
+  # Cleanup
   rm Bibata-Modern-Classic.tar.xz
 
-  # Copy downloaded icons and wallpapers
+  echo "Setting up themes..."
+  # Move downloaded wallpaper to wallpaper folder
   mv "52.png" wallpapers/wallpaper.png
+  # Setup gtk theme
+  mv wpgtk-templates/linea-nord-color/ themes/wall-gtk/
+  rm themes/wall-gtk/general/dark.css themes/wall-gtk/gtk-2.0/gtkrc
+  ln -sf ../../../../../.cache/wal/gtk2.base themes/wall-gtk/gtk-2.0/gtkrc
+  ln -sf ../../../../../.cache/wal/wall-gtk.base.css themes/wall-gtk/general/dark.css
+  # Cleanup
+  rm -rf wpgtk-templates/
+
+  echo "Installing themes..."
   sudo cp -rf icons/* "/usr/share/icons/"
+  cp -rf themes/* "$HOME/.local/share/themes/"
   cp -rf wallpapers/* "$HOME/Pictures/Wallpapers/"
   cp -rf "wallpapers/wallpaper.png" "$HOME/.cache/current_wallpaper.png"
 
@@ -59,7 +72,6 @@ fi
 cp -rf ".gtkrc-2.0" "$HOME/"
 cp -rf config/* "$HOME/.config/"
 chmod +x "$HOME"/.config/hypr/scripts/* # Ensure scripts are executable
-cp -rf themes/* "$HOME/.local/share/themes/"
 cp -rf applications/* "$HOME/.local/share/applications/"
 # Create symlinks for qtgtk
 mkdir -p "$HOME/.themes"
