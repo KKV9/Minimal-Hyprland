@@ -75,14 +75,10 @@ packages=(
   gtk3
   unarchiver
   zoxide
-  tree-sitter
   tree-sitter-bash
-  tree-sitter-c
   tree-sitter-lua
   tree-sitter-markdown
   tree-sitter-python
-  tree-sitter-query
-  tree-sitter-vimdoc
   grimblast-git
   satty-bin
   hyprkeys
