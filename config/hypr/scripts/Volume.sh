@@ -4,6 +4,9 @@
 # Volume controls for audio and mic
 # Adapted from https://github.com/JaKooLit/Hyprland-Dots
 
+VOLUME_LIMIT="1.0" # Max volume increase
+MIC_LIMIT="1.0" # Max mic level increase
+
 # Get Volume
 get_volume() {
   volume=$(wpctl get-volume @DEFAULT_AUDIO_SINK@ |
@@ -38,6 +41,7 @@ notify_volume() {
       -h string:x-canonical-private-synchronous:volume_notif \
       -u low -i "$(get_icon)" "Volume: $(get_volume)"
   fi
+  pw-play /usr/share/sounds/freedesktop/stereo/audio-volume-change.oga
 }
 
 # Increase Volume
@@ -45,7 +49,7 @@ inc_volume() {
   if get_volume | grep -e "MUTED"; then
     toggle_mute
   else
-    wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ && notify_volume
+    wpctl set-volume -l "$VOLUME_LIMIT" @DEFAULT_AUDIO_SINK@ 5%+ && notify_volume
   fi
 }
 
@@ -92,7 +96,7 @@ inc_mic_volume() {
   if get_mic_volume | grep -e "MUTED"; then
     toggle_mic
   else
-    wpctl set-volume @DEFAULT_AUDIO_SOURCE@ 5%+ && notify_mic_volume
+    wpctl set-volume -l "$MIC_LIMIT" @DEFAULT_AUDIO_SOURCE@ 5%+ && notify_mic_volume
   fi
 }
 
