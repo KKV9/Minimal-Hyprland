@@ -2,7 +2,7 @@ font=JetBrainsMono NF 9
 sort=-time
 layer=overlay
 anchor=top-center
-background-color=#011C2289
+background-color=#011C22
 text-color=#cedcdd
 width=300
 height=110
@@ -14,13 +14,8 @@ default-timeout=5000
 icon-path=/usr/share/icons/Tela/
 actions=1
 ignore-timeout=1
-
-[urgency=low]
-border-color=#92ABAA
-
-[urgency=normal]
-border-color=#d08770
+progress-color=source #965D7089
+border-color=#247094
 
 [urgency=high]
-border-color=#bf616a
 default-timeout=0
