@@ -25,7 +25,6 @@ packages=(
   playerctl
   lxqt-policykit
   qutebrowser
-  qt6-svg
   qt5-styleplugins
   qt6gtk2
   qt6-wayland
@@ -174,7 +173,7 @@ $aurHelper -Syu --noconfirm || {
 
 # Install all dependencies using aur helper
 for package in "${packages[@]}"; do
-  install_package "$package"
+  install_package "$package" "$aurHelper"
   [ $? -ne 0 ] && {
     echo "$package Package installation failed"
     exit 1

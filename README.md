@@ -27,7 +27,6 @@ chmod +x install.sh
 ## What next?
 - Press `SUPER + A` to bring up a list of actions.
 - Editing the config files should be your priority.
-- The monitor must be setup manually for now.
 - You will have to run some commands after starting NvChad. `Lazy sync` and `MasonInstallAll`
 - Run the following after starting Qutebrowser. `adblock-update`
 - Then download some wallpapers and enjoy the beautiful theming.

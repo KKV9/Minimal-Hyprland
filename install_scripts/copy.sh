@@ -13,7 +13,8 @@ fi
 
 source install_scripts/functions.sh
 
-# Gnereate home folders
+# Generate home folders
+mkdir -p "$HOME"/.config
 cp -f config/user-dirs.dirs "$HOME"/.config/
 xdg-user-dirs-update
 
@@ -22,6 +23,9 @@ if [ ! -f "$USERCONFIG" ]; then
   # Copy the overrides configuration
   mkdir -p "$USERCONFIGS"
   cp -f "$OVERRIDES" "$USERCONFIG"
+  mkdir -p "$HOME"/.local/share/themes
+  mkdir -p "$HOME"/.local/share/applications
+  mkdir -p "$HOME"/.themes
 
   # Make folders to store downloaded themes and wallpapers
   mkdir -p icons
@@ -74,7 +78,6 @@ cp -rf config/* "$HOME/.config/"
 chmod +x "$HOME"/.config/hypr/scripts/* # Ensure scripts are executable
 cp -rf applications/* "$HOME/.local/share/applications/"
 # Create symlinks for qtgtk
-mkdir -p "$HOME/.themes"
 ln -sf ~/.local/share/themes/wall-gtk/ ~/.themes/
 
 # Refresh hyprland if it is running
