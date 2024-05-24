@@ -38,7 +38,7 @@ reload_mako() {
   # Associative array, color name -> color code.
   declare -A colors
   colors=(
-    ["background-color"]="${background}"
+    ["background-color"]="${background}89"
     ["text-color"]="$foreground"
     ["border-color"]="$color3"
     ["progress-color"]="source ${color2}89"
