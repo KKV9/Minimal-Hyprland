@@ -16,7 +16,6 @@ source install_scripts/functions.sh
 # Generate home folders
 mkdir -p "$HOME"/.config
 cp -f config/user-dirs.dirs "$HOME"/.config/
-xdg-user-dirs-update --force
 rm -rf "$HOME"/go/
 
 # If user is installing from scratch
