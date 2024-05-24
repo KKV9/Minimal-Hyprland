@@ -16,7 +16,8 @@ source install_scripts/functions.sh
 # Generate home folders
 mkdir -p "$HOME"/.config
 cp -f config/user-dirs.dirs "$HOME"/.config/
-xdg-user-dirs-update
+xdg-user-dirs-update --force
+rm -rf "$HOME"/go/
 
 # If user is installing from scratch
 if [ ! -f "$USERCONFIG" ]; then
@@ -26,6 +27,7 @@ if [ ! -f "$USERCONFIG" ]; then
   mkdir -p "$HOME"/.local/share/themes
   mkdir -p "$HOME"/.local/share/applications
   mkdir -p "$HOME"/.themes
+  mkdir -p "$HOME"/Pictures/Wallpapers
 
   # Make folders to store downloaded themes and wallpapers
   mkdir -p icons
@@ -70,6 +72,7 @@ if [ ! -f "$USERCONFIG" ]; then
   # Run pywal
   echo "Creating color pallette..."
   wal -i "$HOME/.cache/current_wallpaper.png" -s -t -n -e >/dev/null
+  touch "$HOME"/.config/INITIAL_BOOT
 fi
 
 # Copy remaining config files

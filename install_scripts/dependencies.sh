@@ -86,7 +86,7 @@ packages=(
 
 # List of sddm dependencies
 sddm=(
-  sddm-git
+  sddm
   qt6-svg
   qt6-declarative
   layer-shell-qt
