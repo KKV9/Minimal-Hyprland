@@ -44,6 +44,10 @@ else
     fi
   fi
 
+  if ask_yn "Would you like to use the laptop configuration?"; then
+    ln -sf configs/config_laptop.json config/waybar/config
+  fi
+
   # Prompt to copy config files
   if ask_yn "Would you like to copy the config files?"; then
     ./install_scripts/copy.sh

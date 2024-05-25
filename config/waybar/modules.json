@@ -52,40 +52,63 @@
       "btop": " ",
       "~(.*)": " ",
       "/(.*)": " ",
-      "yazi(.*)": "󰉋 ",
+      "yazi(.*)": "󰉋 $1",
       "(.*)Steam": "󰓓 "
     },
-    "max-length": 200
+    "max-length": 50
   },
   "pulseaudio": {
     "format": "{icon} {volume}% ",
-    "format-muted": "󰖁 ",
+    "format-muted": "🔇 ",
     "format-icons": {
       "default": [
-        " ",
-        " ",
-        "󰕾 ",
-        " "
+        "🔈",
+        "🔉",
+        "🔊"
       ]
     },
     "scroll-step": 5.0,
     "on-click": "pavucontrol",
-    "on-click-right": "pactl set-sink-mute @DEFAULT_SINK@ toggle",
+    "on-click-right": "$HOME/.config/hypr/scripts/Volume.sh --toggle",
+    "on-scroll-up": "$HOME/.config/hypr/scripts/Volume.sh --inc",
+    "on-scroll-down": "$HOME/.config/hypr/scripts/Volume.sh --dec",
     "tooltip-format": "{icon} {desc} | {volume}% ",
     "smooth-scrolling-threshold": 1
   },
   "pulseaudio#microphone": {
     "format": "{format_source}",
-    "format-source": " {volume}%",
+    "format-source": "🎙️ {volume}%",
     "format-source-muted": " ",
     "on-click": "pavucontrol",
-    "on-click-right": "pamixer --default-source -t",
-    "on-scroll-up": "pamixer --default-source -i 5",
-    "on-scroll-down": "pamixer --default-source -d 5",
-    "tooltip-format": "{source_desc} | {source_volume}% "
+    "on-click-right": "$HOME/.config/hypr/scripts/Volume.sh --toggle-mic",
+    "on-scroll-up": "$HOME/.config/hypr/scripts/Volume.sh --inc-mic",
+    "on-scroll-down": "$HOME/.config/hypr/scripts/Volume.sh --dec-mic",
+    "tooltip": false,
+    "smooth-scrolling-threshold": 1
   },
   "tray": {
     "icon-size": 15,
     "spacing": 8
+  },
+  "battery": {
+    "format": "{icon} {capacity}% ",
+    "format-icons": [
+      "🪫",
+      "🔋"
+    ],
+    "format-time": "{H}h{M}m",
+    "format-charging": "⚡ {capacity}% ",
+    "format-not-charging": "⚡ {capacity}% ",
+    "tooltip": "{time}",
+    "interval": 30,
+    "states": {
+      "warning": 30,
+      "critical": 10
+    }
+  },
+  "custom/separator": {
+    "format": " | ",
+    "interval": "once",
+    "tooltip": false
   }
 }

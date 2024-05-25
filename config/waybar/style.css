@@ -5,6 +5,8 @@
 #tray,
 #window,
 #workspaces,
+#battery,
+#custom-separator,
 * {
   font-family: "JetBrains Mono NF";
   font-weight: bold;
@@ -62,4 +64,12 @@ window#waybar {
 
 #window {
   color: @color3;
+}
+
+#battery {
+  color: @color6;
+}
+
+#custom-separator {
+  color: @color6;
 }
