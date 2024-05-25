@@ -3,7 +3,7 @@
 # Source: https://github.com/deviantfero/wpgtk-templates/
 # LICENSE: GPL-2.0
 
-gtk-color-scheme = "bg_color:{color0}
+gtk-color-scheme = "bg_color:{background}
 color0:{color0}
 color1:{color1}
 color2:{color2}
@@ -21,15 +21,15 @@ color13:{color13}
 color14:{color14}
 color15:{color15}
 text_color:{color15}
-selected_bg_color:{color6}
+selected_bg_color:{color2}
 selected_fg_color:{color15}
-tooltip_bg_color:{color0}
+tooltip_bg_color:{background}
 tooltip_fg_color:{color15}
 titlebar_bg_color:{color0}
-titlebar_fg_color:{color15}
-menu_bg_color:{color0}
+titlebar_fg_color:{color2}
+menu_bg_color:{background}
 menu_fg_color:{color15}
-link_color:{color6}"
+link_color:{color2}"
 gtk-auto-mnemonics	= 1
 
 # Default Style
