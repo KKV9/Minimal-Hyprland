@@ -1,5 +1,5 @@
 #!/bin/bash
-## Wallpaper Chooser ##
+## Wallpaper 🎨##
 
 # Call yazi to select a file and set it as the current wallpaper
 
@@ -28,12 +28,12 @@ wbg "$newWallpaper" &
 
 # Hyprlock only supports pngs
 if [[ $newWallpaper == *.png ]]; then
-	# Copy to cache to be read by hyprlock
-	cp -f "$newWallpaper" "$PNG"
+  # Copy to cache to be read by hyprlock
+  cp -f "$newWallpaper" "$PNG"
 else
-	# Convert to png if not correct format
-	notify-send -u "low" -i emblem-system "Converting image to png..."
-	magick "$newWallpaper" "$PNG"
+  # Convert to png if not correct format
+  notify-send -u "low" -i emblem-system "Converting image to png..."
+  magick "$newWallpaper" "$PNG"
 fi
 
 # Call refresh script

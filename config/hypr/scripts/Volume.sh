@@ -1,11 +1,11 @@
 #!/bin/bash
-## Volume ##
+## Volume 🔊##
 
 # Volume controls for audio and mic
 # Adapted from https://github.com/JaKooLit/Hyprland-Dots
 
 VOLUME_LIMIT="1.0" # Max volume increase
-MIC_LIMIT="1.0" # Max mic level increase
+MIC_LIMIT="1.0"    # Max mic level increase
 
 # Get Volume
 get_volume() {
@@ -83,7 +83,7 @@ get_mic_volume() {
 notify_mic_volume() {
   if get_mic_volume | grep -e "MUTED"; then
     notify-send -e -h "string:x-canonical-private-synchronous:volume_notif" \
-      -u low -i "mic-off" "Microphone: Muted"
+      -u low -i "audio-input-microphone-muted" "Microphone: Muted"
   else
     notify-send -e -h int:value:"$(get_mic_volume)" \
       -h "string:x-canonical-private-synchronous:volume_notif" \

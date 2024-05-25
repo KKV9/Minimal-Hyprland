@@ -82,6 +82,10 @@ packages=(
   satty-bin
   hyprkeys
   jq
+  libnotify
+  pkgfile
+  npm
+  brightnessctl
 )
 
 # List of sddm dependencies
@@ -196,3 +200,4 @@ fi
 echo "Activating pipewire services..."
 systemctl --user enable pipewire.socket pipewire-pulse.socket wireplumber.service
 systemctl --user enable pipewire.service
+sudo pkgfile --update

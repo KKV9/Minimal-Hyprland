@@ -1,5 +1,5 @@
 #!/bin/bash
-## Keybinds generator ##
+## Keybinds 🔢##
 
 # Generate table of keybindings from hypr config files
 
@@ -9,7 +9,6 @@ CONFIGS="$HOME"/.config/hypr
 # Replace cache folder
 rm -rf "$CACHE"
 mkdir -p "$CACHE"
-
 
 # Input and file
 json_file="$CACHE/keybinds.json"

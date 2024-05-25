@@ -1,12 +1,52 @@
 #!/bin/bash
-## Initial boot ##
+## Initial boot 💥##
 
 # Make sure config files install smoothly by
-# refreshing configuration on first boot.
+# refreshing configuration on first boot
+# and touchpad detection if using a laptop.
+
+CONFIGSUSR="$HOME/.config/hypr/user_configs"
+DEVICECONFIGUSR="$CONFIGSUSR/Touchpad.conf"
+OVERRIDESUSR="$CONFIGSUSR/Overrides.conf"
+SOURCESTRING="source = Touchpad.conf"
+
+detect_devices() {
+  device=$(hyprctl devices | grep -e "-touchpad" | xargs)
+
+  if [ -z "$device" ]; then
+    exit 0
+  fi
+
+  device_config="# Touchpad device detected
+device {
+      name = $device
+      enabled = true
+      sensitivity = 0.0
+  }"
+
+  if ! test -f "$DEVICECONFIGUSR"; then
+    echo "$device_config" >"$DEVICECONFIGUSR"
+
+    if ! grep -e \
+      "$SOURCESTRING" "$OVERRIDESUSR" \
+      >/dev/null; then
+
+      printf \
+        "\n\n## Devices detected by Initial_Boot.sh ##\n" \
+        >>"$OVERRIDESUSR"
+
+      echo "$SOURCESTRING" >>"$OVERRIDESUSR"
+    fi
+  fi
+}
 
 if test -f "$HOME/.config/INITIAL_BOOT"; then
   chown "$USER" "$HOME/.config/user-dirs.dirs"
   xdg-user-dirs-update --force
+  gsettings set \
+    org.gnome.desktop.interface cursor-theme \
+    Bibata-Modern-Classic
+  detect_devices
   sleep 0.5
   "$HOME"/.config/hypr/scripts/Refresh.sh
   rm "$HOME"/.config/INITIAL_BOOT

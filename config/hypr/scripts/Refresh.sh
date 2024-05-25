@@ -1,5 +1,5 @@
 #!/bin/bash
-## Refresh ##
+## Refresh 🔃##
 
 # Reload full hyprland configuration
 

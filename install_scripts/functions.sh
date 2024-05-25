@@ -48,14 +48,14 @@ install_package_pacman() {
 # Function for installing packages
 install_package() {
   # Checking if package is already installed
-  if $2 -Q "$1" &>>/dev/null; then
+  if paru -Q "$1" &>>/dev/null; then
     echo "$1 is already installed. Skipping..."
   else
     # Package not installed
     echo -e "${NOTE} Installing $1 ..."
-    $2 -S --noconfirm --needed "$1"
+    paru -S --noconfirm --needed "$1"
     # Making sure package is installed
-    if $2 -Q "$1" &>>/dev/null; then
+    if paru -Q "$1" &>>/dev/null; then
       echo "$1 was installed."
     else
       # Something is missing, exiting to review log
