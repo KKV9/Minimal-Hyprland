@@ -22,7 +22,7 @@ rm -rf "$HOME"/go/
 if [ ! -f "$USERCONFIG" ]; then
   # Copy the overrides configuration
   mkdir -p "$USERCONFIGS"
-  cp -f "$OVERRIDES" "$USERCONFIG"
+  cp -f user_configs/* "$USERCONFIGS/"
   mkdir -p "$HOME"/.local/share/themes
   mkdir -p "$HOME"/.local/share/applications
   mkdir -p "$HOME"/.themes
