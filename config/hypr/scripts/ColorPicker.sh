@@ -3,13 +3,14 @@
 
 # Hyprpicker wrapper
 
-MAKOCONFIG=$HOME/.config/mako/config
 result=$(hyprpicker -an)
-tmp=$(mktemp)
 
-# Swap second occurance of border-color
-awk '/border-color=/ && ++count == 2 {sub(/border-color=.*/, "border-color='"$result"'")} 1' \
-  "$MAKOCONFIG" >"$tmp" \
-  && mv "$tmp" "$MAKOCONFIG"
-makoctl reload
+# Reload mako with picked color
+killall mako
+mako --border-color "$result" &
+# Send notification
 notify-send -u "normal" "$result Copied to clipboard"
+# Wait 2 seconds and restart mako
+sleep 2
+killall mako
+mako &
