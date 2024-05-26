@@ -47,6 +47,9 @@ if test -f "$HOME/.config/INITIAL_BOOT"; then
     org.gnome.desktop.interface cursor-theme \
     Bibata-Modern-Classic
   detect_devices
+  if hyprctl monitors | grep "1920x1200@"; then
+    gsettings set org.gnome.desktop.interface text-scaling-factor 1.25
+  fi
   sleep 0.5
   "$HOME"/.config/hypr/scripts/Refresh.sh
   rm "$HOME"/.config/INITIAL_BOOT
