@@ -1,8 +1,8 @@
 [Desktop Entry]
 Name=Neovim
 GenericName=Text Editor
-TryExec=kitty -e nvim
-Exec=kitty -e nvim %F
+TryExec=$TERMINAL -e nvim
+Exec=$TERMINAL -e nvim %F
 Terminal=true
 Type=Application
 Icon=nvim

@@ -1,4 +1,5 @@
 import pywalQute.draw
+import os
 
 ## Appearance ##
 c.colors.webpage.preferred_color_scheme = "dark"
@@ -33,10 +34,11 @@ c.url.searchengines = {
 #######
 
 ## File selection ##
-file_select = ["kitty", "-e", "yazi", "--chooser-file={}"]
-editor_cmd = ["kitty", "-e", "nvim", "{file}"]
+file_select = [os.environ['TERMINAL'], "-e", "yazi", "--chooser-file={}"]
+folder_select = [os.environ['TERMINAL'], "-e", "yazi", "--cwd-file={}"]
+editor_cmd = [os.environ['TERMINAL'], "-e", os.environ['EDITOR'], "{file}"]
 c.editor.command = editor_cmd
-c.fileselect.folder.command = file_select
+c.fileselect.folder.command = folder_select
 c.fileselect.multiple_files.command = file_select
 c.fileselect.single_file.command = file_select
 c.fileselect.handler = "external"

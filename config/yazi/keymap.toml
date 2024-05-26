@@ -4,7 +4,7 @@
 [manager]
 
 prepend_keymap = [
-{ on  = [ "<C-s>" ], run  = 'shell fish --block --confirm', desc = "Drop to shell" },
-{ on  = [ "<C-k>" ], run = 'shell kitty --confirm --orphan' , desc = "Open terminal here" },
+{ on  = [ "<C-s>" ], run  = 'shell $SHELL --block --confirm', desc = "Drop to shell" },
+{ on  = [ "<C-k>" ], run = 'shell $TERMINAL --confirm --orphan' , desc = "Open terminal here" },
 ]
 

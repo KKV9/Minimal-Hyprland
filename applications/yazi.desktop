@@ -1,5 +1,5 @@
 [Desktop Entry]
-Exec=kitty -e yazi %u
+Exec=yazi %u
 Name=Yazi
 Icon=thunar
 Type=Application
