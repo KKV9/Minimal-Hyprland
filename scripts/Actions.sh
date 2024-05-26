@@ -15,6 +15,18 @@ if [ "$1" == "--power" ]; then
   icons=("system-lock-screen" "system-log-out"
     "system-suspend-hibernate" "system-reboot"
     "computer" "system-shutdown")
+elif [ "$1" == "--projector" ]; then
+  if hyprctl monitors all | grep -e "HDMI-A-1" && \
+    hyprctl monitors all | grep -e "eDP-1"; then
+  prompt="🖥 : "
+  opts=("Main Screen Only" "Duplicate"
+    "Extend" "Second Screen Only")
+  icons=("computer-laptop" "computer"
+    "video-display" "video-television")
+  else
+    notify-send -u low -i "computer" "Projector menu" "No external monitor found"
+    exit 0
+  fi
 else
   # Set the prompt
   prompt="❗: "
@@ -50,7 +62,7 @@ if [ "$1" == "--power" ]; then
     hyprctl dispatch exit 0
     ;;
   "${opts[2]}")
-    hyprlock && systemctl suspend
+    systemctl suspend
     ;;
   "${opts[3]}")
     systemctl reboot
@@ -63,6 +75,27 @@ if [ "$1" == "--power" ]; then
     ;;
   *) ;;
   esac
+elif [ "$1" == "--projector" ]; then
+  if [ -n "$selection" ]; then
+    hyprctl reload
+  fi
+  # Handle options for projector
+  case $selection in
+  "${opts[0]}")
+    hyprctl keyword monitor HDMI-A-1,disable
+    ;;
+  "${opts[1]}")
+    hyprctl keyword monitor HDMI-A-1,highrr,0x0,auto,mirror,eDP-1
+    ;;
+  "${opts[3]}")
+    hyprctl keyword monitor eDP-1,disable
+    ;;
+  *) ;;
+  esac
+  if [ -n "$selection" ]; then
+    killall waybar
+    waybar &
+  fi
 else
   # Handle options for actions
   case $selection in
