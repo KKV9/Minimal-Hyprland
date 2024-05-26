@@ -86,6 +86,7 @@ packages=(
   pkgfile
   npm
   brightnessctl
+  bc
 )
 
 # List of sddm dependencies

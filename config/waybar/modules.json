@@ -18,8 +18,9 @@
     "separate-outputs": true,
     "rewrite": {
       "win11(.*)": " ",
-      "(.*) - Rnote": " ",
-      "(.*)qutebrowser": " ",
+      "(.*) - Rnote$": " ",
+      "(.*) - Brave$": " $1",
+      "(.*) - qutebrowser$": " $1",
       "nvim (.*)": "  $1",
       "nvim": " ",
       "System Monitor": " ",
