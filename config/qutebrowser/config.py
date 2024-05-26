@@ -1,9 +1,11 @@
 import pywalQute.draw
 
 ## Appearance ##
-c.colors.webpage.darkmode.enabled = True
+c.colors.webpage.preferred_color_scheme = "dark"
 pywalQute.draw.color(c, {"spacing": {"vertical": 6, "horizontal": 8}})
 c.fonts.default_family = "JetBrainsMonoNerdFont"
+c.tabs.show = "switching"
+c.scrolling.bar = "never"
 #######
 
 ## Privacy & Adblock ##
@@ -17,6 +19,7 @@ c.url.default_page = "https://search.brave.com"
 c.url.start_pages = "https://search.brave.com"
 c.url.searchengines = {
     "DEFAULT": "https://search.brave.com/search?q={}",
+    "!aw": "https://wiki.archlinux.org/index.php?search={}",
     "!gh": "https://github.com/search?o=desc&q={}&s=stars",
     "!gist": "https://gist.github.com/search?q={}",
     "!gi": "https://www.google.com/search?tbm=isch&q={}&tbs=imgo:1",
