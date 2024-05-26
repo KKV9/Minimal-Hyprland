@@ -43,6 +43,13 @@ if [ ! -f "$USERCONFIG" ]; then
   # Download pywal extention
   git clone https://github.com/makman12/pywalQute.git config/qutebrowser/pywalQute
 
+  # Install greasemonkey extentions
+  mkdir config/qutebrowser/greasemonkey
+  git clone https://github.com/iamfugui/YouTubeADB.git adb
+  mv adb/index.user.js config/qutebrowser/greasemonkey/ytadb.js
+  rm -rf adb
+   wget https://update.greasyfork.org/scripts/32626/Disable%20YouTube%20Video%20Ads.user.js -O config/qutebrowser/greasemonkey/yt-skip-ads.js
+
   # Download gtk theme
   git clone https://github.com/deviantfero/wpgtk-templates
 
