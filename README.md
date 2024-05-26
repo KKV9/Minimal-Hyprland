@@ -24,12 +24,22 @@ chmod +x install.sh
 ./install.sh
 ```
 
-## What next?
+## Post install
+### Keybinds
 - Press `SUPER + A` to bring up a list of actions.
-- Editing the config files should be your priority.
-- You will have to run some commands after starting NvChad. `Lazy sync` and `MasonInstallAll`
-- Run the following after starting Qutebrowser. `adblock-update`
-- Then download some wallpapers and enjoy the beautiful theming.
+- Select keybinds from the menu for a list of searchable binds.
+
+### Apps
+- NvChad: Run `Lazy sync` followed by `MasonInstallAll` to update.
+- Qutebrowser: Run `adblock-update` to update the adblocker.
+
+### Themes
+- System themes are generated after a wallpaper change.
+- Download some wallpapers and try it out.
+
+### Asus ROG laptops
+- Go to <a href="https://asus-linux.org/">asus-linux</a> and follow the setup guide.
+- Function keys should be mostly functional.
 
 ## Contributing
 I'm happy to recieve any PRs or issues you might have.
