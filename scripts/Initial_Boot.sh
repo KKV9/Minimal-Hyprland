@@ -18,7 +18,7 @@ detect_devices() {
   fi
 
   device_config='# Touchpad device detected
-$TOUCHPAD_ENABLED = true
+$TOUCHPAD_ENABLED = true # This variable is toggled by Touchpad.sh
 device {
       name = '
   device_config+="$device"
@@ -35,10 +35,9 @@ device {
       >/dev/null; then
 
       printf \
-        "\n\n## Devices detected by Initial_Boot.sh ##\n" \
+        "\n\n## Devices detected by Initial_Boot.sh ##\n\n%s" \
+        "$SOURCESTRING" \
         >>"$OVERRIDESUSR"
-
-      echo "$SOURCESTRING" >>"$OVERRIDESUSR"
     fi
   fi
 }
