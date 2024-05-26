@@ -59,7 +59,7 @@ if [ ! -f "$USERCONFIG" ]; then
   mv wpgtk-templates/FlatColor/gtk-3.20/ themes/wall-gtk/gtk-3.20/
   rm themes/wall-gtk/general/dark.css themes/wall-gtk/gtk-2.0/gtkrc
   ln -sf ../../../../../.cache/wal/gtk2.base themes/wall-gtk/gtk-2.0/gtkrc
-  ln -sf ../../../../../.cache/wal/gtk3.base themes/wall-gtk/gtk-3.20/gtk.css
+  ln -sf ../../../../../.cache/wal/gtk3.base.css themes/wall-gtk/gtk-3.20/gtk.css
   ln -sf ../../../../../.cache/wal/gtk4.base.css themes/wall-gtk/general/dark.css
   # Cleanup
   rm -rf wpgtk-templates/
