@@ -3,24 +3,26 @@
 
 # Enable/Disable touchpad
 
-# Path to the configuration file
-CONFIG_FILE="$HOME/.config/hypr/user_configs/Touchpad.conf"
+STATUS_FILE="$XDG_RUNTIME_DIR/touchpad.status"
 
-# Read the current value of 'enabled' from the config file
-current_status=$(grep -oP '(?<=enabled = )\w+' "$CONFIG_FILE")
+enable_touchpad() {
+    printf "true" >"$STATUS_FILE"
+    notify-send -u low -i "input-touchpad" "Touchpad enabled"
+    hyprctl keyword '$TOUCHPAD_ENABLED' "true" -r
+}
 
-# Toggle the value (true -> false, false -> true)
-if [[ "$current_status" == "true" ]]; then
-  new_status="false"
-  prompt="Touchpad Diabled"
+disable_touchpad() {
+    printf "false" >"$STATUS_FILE"
+    notify-send -u low -i "input-touchpad" "Touchpad disabled"
+    hyprctl keyword '$TOUCHPAD_ENABLED' "false" -r
+}
+
+if ! [ -f "$STATUS_FILE" ]; then
+  disable_touchpad
 else
-  new_status="true"
-  prompt="Touchpad Enabled"
+  if [ "$(cat "$STATUS_FILE")" == "true" ]; then
+    disable_touchpad
+  elif [ "$(cat "$STATUS_FILE")" == "false" ]; then
+    enable_touchpad
+  fi
 fi
-
-# Update the config file with the new value
-sed -i \
-  "s/enabled = $current_status/enabled = $new_status/" \
-  "$CONFIG_FILE"
-
-notify-send -u low -i "input-touchpad" "$prompt"

@@ -17,12 +17,15 @@ detect_devices() {
     exit 0
   fi
 
-  device_config="# Touchpad device detected
+  device_config='# Touchpad device detected
+$TOUCHPAD_ENABLED = true
 device {
-      name = $device
-      enabled = true
+      name = '
+  device_config+="$device"
+  device_config+='
+      enabled = $TOUCHPAD_ENABLED
       sensitivity = 0.0
-  }"
+}'
 
   if ! test -f "$DEVICECONFIGUSR"; then
     echo "$device_config" >"$DEVICECONFIGUSR"
