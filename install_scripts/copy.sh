@@ -100,5 +100,5 @@ ln -sf ~/.local/share/themes/wall-gtk/ ~/.themes/
 echo "Copying done!"
 if [ "$XDG_SESSION_DESKTOP" == "Hyprland" ]; then
   sleep 0.5
-  "$HOME"/.config/hypr/scripts/Refresh.sh
+  "$HOME"/.local/bin/Refresh.sh
 fi
