@@ -29,6 +29,7 @@ if [ ! -f "$USERCONFIG" ]; then
   mkdir -p "$HOME"/.local/share/applications
   mkdir -p "$HOME"/.themes
   mkdir -p "$HOME"/Pictures/Wallpapers
+  mkdir -p "$HOME"/Pictures/Screenshots
 
   # Make folders to store downloaded themes and wallpapers
   mkdir -p icons
