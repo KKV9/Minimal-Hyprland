@@ -31,6 +31,7 @@
 @define-color gtk_highlight alpha(@gtk_selected_bg_color,0.6);
 @define-color gtk_titlebar_highlight alpha(@gtk_selected_bg_color,0.2);
 
+
 check,
 radio,
 treeview.view.content-view.check:not(list),
