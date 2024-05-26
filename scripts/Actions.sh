@@ -50,7 +50,7 @@ if [ "$1" == "--power" ]; then
     hyprctl dispatch exit 0
     ;;
   "${opts[2]}")
-    systemctl suspend
+    hyprlock && systemctl suspend
     ;;
   "${opts[3]}")
     systemctl reboot
