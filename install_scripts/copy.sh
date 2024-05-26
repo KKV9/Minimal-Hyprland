@@ -15,6 +15,8 @@ source install_scripts/functions.sh
 
 # Generate home folders
 mkdir -p "$HOME"/.config
+mkdir -p "$HOME"/.local/bin
+mkdir -p "$HOME"/.local/share/dots
 cp -f config/user-dirs.dirs "$HOME"/.config/
 rm -rf "$HOME"/go/
 
@@ -37,10 +39,13 @@ if [ ! -f "$USERCONFIG" ]; then
   echo "Downloading wallpapers..."
   wget "https://raw.githubusercontent.com/antoniosarosi/Wallpapers/master/52.png"
   echo "Downloading themes..."
+
   # Download pywal extention
   git clone https://github.com/makman12/pywalQute.git config/qutebrowser/pywalQute
+
   # Download gtk theme
   git clone https://github.com/deviantfero/wpgtk-templates
+
   # Download cursor theme
   echo "Downloading icons..."
   wget "https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.6/Bibata-Modern-Classic.tar.xz"
@@ -51,7 +56,7 @@ if [ ! -f "$USERCONFIG" ]; then
   # Cleanup
   rm Bibata-Modern-Classic.tar.xz
 
-  echo "Setting up themes..."
+  echo "Preparing themes..."
   # Move downloaded wallpaper to wallpaper folder
   mv "52.png" wallpapers/wallpaper.png
   # Setup gtk theme
@@ -70,17 +75,24 @@ if [ ! -f "$USERCONFIG" ]; then
   cp -rf wallpapers/* "$HOME/Pictures/Wallpapers/"
   cp -rf "wallpapers/wallpaper.png" "$HOME/.cache/current_wallpaper.png"
 
-  # Run pywal
-  echo "Creating color pallette..."
-  wal -i "$HOME/.cache/current_wallpaper.png" -s -t -n -e >/dev/null
   touch "$HOME"/.config/INITIAL_BOOT
 fi
 
 # Copy remaining config files
+echo "Copying files..."
 cp -rf ".gtkrc-2.0" "$HOME/"
 cp -rf config/* "$HOME/.config/"
-chmod +x "$HOME"/.config/hypr/scripts/* # Ensure scripts are executable
+cp -rf scripts/* "$HOME/.local/bin/"
+cp -rf data/* "$HOME/.local/share/dots/"
 cp -rf applications/* "$HOME/.local/share/applications/"
+
+# Ensure scripts are executable
+chmod +x "$HOME"/.local/bin/* 
+
+# Run pywal
+echo "Creating color pallette..."
+wal -i "$HOME/.cache/current_wallpaper.png" -s -t -n -e >/dev/null
+
 # Create symlinks for qtgtk
 ln -sf ~/.local/share/themes/wall-gtk/ ~/.themes/
 

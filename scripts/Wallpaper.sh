@@ -3,7 +3,6 @@
 
 # Call yazi to select a file and set it as the current wallpaper
 
-SCRIPTSDIR="$HOME/.config/hypr/scripts"
 PNG=$HOME/.cache/current_wallpaper.png
 
 # Store yazi output in tempfile
@@ -37,4 +36,4 @@ else
 fi
 
 # Call refresh script
-"$SCRIPTSDIR"/Refresh.sh
+Refresh.sh

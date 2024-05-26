@@ -3,11 +3,6 @@
 
 # Fuzzel prompt for performing various tasks
 
-# Set your menu command here
-MENU="fuzzel"
-# Scripts directory
-SCRIPTSDIR="$HOME/.config/hypr/scripts"
-
 # Override variables for power menu
 if [ "$1" == "--power" ]; then
   # Set the prompt
@@ -75,16 +70,16 @@ else
     kitty -e yazi "$HOME/.config/hypr/user_configs"
     ;;
   "${opts[1]}")
-    "$SCRIPTSDIR"/Wallpaper.sh
+    Wallpaper.sh
     ;;
   "${opts[2]}")
     fuzzel -d --width=50 --lines=20 <"$HOME"/.cache/dots/keybinds.txt
     ;;
   "${opts[3]}")
-    "$SCRIPTSDIR"/Refresh.sh
+    Refresh.sh
     ;;
   "${opts[4]}")
-    "$SCRIPTSDIR"/Actions.sh "--power"
+    Actions.sh "--power"
     ;;
   *) ;;
   esac

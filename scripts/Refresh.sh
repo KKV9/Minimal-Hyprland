@@ -3,8 +3,6 @@
 
 # Reload full hyprland configuration
 
-SCRIPTSDIR="$HOME/.config/hypr/scripts"
-
 reload_gtk_theme() {
   theme=$(gsettings get org.gnome.desktop.interface gtk-theme)
   gsettings set org.gnome.desktop.interface gtk-theme ''
@@ -31,7 +29,7 @@ reload_kitty() {
 }
 
 reload_mako() {
-  . "${HOME}"/.cache/wal/colors.sh
+  . "$HOME"/.cache/wal/colors.sh
 
   conffile="$HOME/.config/mako/config"
 
@@ -61,7 +59,7 @@ rm -r "$HOME/.cache/wal/schemes"
 # Refresh colors, waybar, gtk & other apps
 # Qt apps are not reloaded by this process
 wal -i "$HOME/.cache/current_wallpaper.png" -s -t -n -e >/dev/null
-"$SCRIPTSDIR"/Keybinds.sh # Generate keybinds
+Keybinds.sh # Generate keybinds
 reload_gtk_theme
 reload_qutebrowser
 reload_kitty

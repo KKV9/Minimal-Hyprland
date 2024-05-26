@@ -3,7 +3,7 @@
 
 # Fuzzel prompt for selecting emoji
 
-DATADIR="$HOME/.config/hypr/data"
+DATADIR="$HOME/.local/share/dots"
 
 result=$(fuzzel -d --width=60 <"$DATADIR"/Emoji | awk '{print $1}')
 
