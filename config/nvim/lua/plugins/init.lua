@@ -51,6 +51,7 @@ return {
         "bash",
         "toml",
         "json",
+        "fish"
       },
     },
   },
