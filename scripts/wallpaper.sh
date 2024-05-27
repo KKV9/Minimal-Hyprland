@@ -10,7 +10,7 @@ tmp=$(mktemp)
 kitty --class "floating" --title "Wallpaper select" -- yazi "$HOME/Pictures/Wallpapers/" --chooser-file "$tmp"
 
 # Last selected file is stored in a variable
-newWallpaper="$(tail -1 "$tmp")"
+new_wallpaper="$(tail -1 "$tmp")"
 
 # Check if no file is selected
 if ! [ -s "$tmp" ]; then
@@ -23,17 +23,17 @@ rm "$tmp"
 
 # Set wallpaper with waybg
 killall wbg
-wbg "$newWallpaper" &
+wbg "$new_wallpaper" &
 
 # Hyprlock only supports pngs
-if [[ $newWallpaper == *.png ]]; then
+if [[ $new_wallpaper == *.png ]]; then
   # Copy to cache to be read by hyprlock
-  cp -f "$newWallpaper" "$PNG"
+  cp -f "$new_wallpaper" "$PNG"
 else
   # Convert to png if not correct format
   notify-send -u "low" -i emblem-system "Converting image to png..."
-  magick "$newWallpaper" "$PNG"
+  magick "$new_wallpaper" "$PNG"
 fi
 
 # Call refresh script
-Refresh.sh
+refresh.sh

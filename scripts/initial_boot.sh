@@ -6,10 +6,10 @@
 # and touchpad detection if using a laptop.
 
 # Set constants
-CONFIGSUSR="$HOME/.config/hypr/user_configs"
-DEVICECONFIGUSR="$CONFIGSUSR/Touchpad.conf"
-OVERRIDESUSR="$CONFIGSUSR/Overrides.conf"
-SOURCESTRING="source = Touchpad.conf"
+CONFIGS_USR="$HOME/.config/hypr/user_configs"
+DEVICE_CONFIG_USR="$CONFIGS_USR/Touchpad.conf"
+OVERRIDES_USR="$CONFIGS_USR/Overrides.conf"
+SOURCE_STRING="source = Touchpad.conf"
 
 detect_devices() {
   # Look for touchpad
@@ -34,19 +34,19 @@ device {
       sensitivity = 0.0
 }'
 
-  if ! test -f "$DEVICECONFIGUSR"; then
+  if ! test -f "$DEVICE_CONFIG_USR"; then
     # Write device string into user config file
-    echo "$device_config" >"$DEVICECONFIGUSR"
+    echo "$device_config" >"$DEVICE_CONFIG_USR"
 
     if ! grep -e \
-      "$SOURCESTRING" "$OVERRIDESUSR" \
+      "$SOURCE_STRING" "$OVERRIDES_USR" \
       >/dev/null; then
 
       # Source touchpad configuration file from user overrides file
       printf \
         "\n\n## Devices detected by Initial_Boot.sh ##\n\n%s" \
-        "$SOURCESTRING" \
-        >>"$OVERRIDESUSR"
+        "$SOURCE_STRING" \
+        >>"$OVERRIDES_USR"
     fi
   fi
 }
@@ -54,7 +54,7 @@ device {
 apply_scaling() {
   if hyprctl monitors | grep "1920x1200@"; then
     gsettings set org.gnome.desktop.interface text-scaling-factor 1.25
-    echo "env = QT_SCALE_FACTOR,1.25" >>"$OVERRIDESUSR"
+    echo "env = QT_SCALE_FACTOR,1.25" >>"$OVERRIDES_USR"
     notify-send -u critical -i "monitor" "Initial Boot" "Hidpi monitor detected. Please log out and log back in to see scaling changes!"
   fi
 }

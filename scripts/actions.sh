@@ -110,16 +110,16 @@ case "$1" in
     kitty -e yazi "$HOME/.config/hypr/user_configs"
     ;;
   "${opts[1]}")
-    Wallpaper.sh
+    wallpaper.sh
     ;;
   "${opts[2]}")
     fuzzel -d --width=50 --lines=20 <"$HOME"/.cache/dots/keybinds.txt
     ;;
   "${opts[3]}")
-    Refresh.sh
+    refresh.sh
     ;;
   "${opts[4]}")
-    Actions.sh "--power"
+    actions.sh "--power"
     ;;
   esac
   ;;

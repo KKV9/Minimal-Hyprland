@@ -5,7 +5,7 @@
 
 DATADIR="$HOME/.local/share/dots"
 
-result=$(fuzzel -d --width=60 <"$DATADIR"/Emoji | awk '{print $1}')
+result=$(fuzzel -d --width=60 <"$DATADIR"/emoji | awk '{print $1}')
 
 if [ -n "$result" ]; then
   echo -n "$result" | wl-copy

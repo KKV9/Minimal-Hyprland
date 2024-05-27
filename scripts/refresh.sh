@@ -71,7 +71,7 @@ reload_gtk_theme
 reload_qutebrowser
 reload_kitty
 reload_mako
-Hyprcolors.sh
+hyprcolors.sh
 pkill waybar
 sleep 0.3
 waybar &
