@@ -3,7 +3,7 @@
 
 # Fuzzel prompt for mathematical expressions
 # See https://fishshell.com/docs/current/cmds/math.html
-# The ans variable stores the result of the last calulation and 
+# The ans variable stores the result of the last calculation and 
 # can be used in the prompt
 
 # Add prompt options to history file
