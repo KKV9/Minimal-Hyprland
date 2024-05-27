@@ -82,8 +82,8 @@ case "$1" in
 "--projector")
   # Handle options for projector menu
   if [ -n "$selection" ]; then
-    # Get hyprland defaults if an option is selected
-    hyprctl reload
+    # Get hyprland defaults if an option is selected and reload colors
+    hyprctl reload && Hyprcolors.sh
   fi
   case "$selection" in
   "${opts[0]}")
