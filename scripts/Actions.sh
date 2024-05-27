@@ -3,45 +3,48 @@
 
 # Fuzzel prompt for performing various tasks
 
-# Override variables for power menu
-if [ "$1" == "--power" ]; then
-  # Set the prompt
+# Set fuzzel args
+menuargs=(-d --width 45 --lines 18 -p "$prompt")
+
+# Check the first argument
+case "$1" in
+"--power")
   prompt="⚡: "
-  # Set menu options
   opts=("Lock" "Logout"
     "Suspend" "Reboot"
     "Reboot to UEFI" "Shutdown")
-  # Set icons for each menu item
   icons=("system-lock-screen" "system-log-out"
     "system-suspend-hibernate" "system-reboot"
     "computer" "system-shutdown")
-elif [ "$1" == "--projector" ]; then
-  if hyprctl monitors all | grep -e "HDMI-A-1" && \
-    hyprctl monitors all | grep -e "eDP-1"; then
-  prompt="🖥 : "
-  opts=("Main Screen Only" "Duplicate"
-    "Extend" "Second Screen Only")
-  icons=("computer-laptop" "computer"
-    "video-display" "video-television")
+  ;;
+"--projector")
+  # Check for external monitor
+  if hyprctl monitors all |
+    grep -e "HDMI-A-1" &&
+    hyprctl monitors all |
+    grep -e "eDP-1"; then
+    prompt="🖥 : "
+    opts=("Main Screen Only" "Duplicate"
+      "Extend" "Second Screen Only")
+    icons=("computer-laptop" "computer"
+      "video-display" "video-television")
   else
-    notify-send -u low -i "computer" "Projector menu" "No external monitor found"
+    # Exit when no external display found
+    notify-send -u low -i "computer" "Projector menu" \
+      "No external monitor found"
     exit 0
   fi
-else
-  # Set the prompt
+  ;;
+*)
   prompt="❗: "
-  # Set menu options
   opts=("Settings" "Wallpaper"
     "Keybinds" "Refresh"
     "Power Menu")
-  # Set icons for each menu item
   icons=("regedit" "wallpaper"
     "keyboard" "reload"
     "system-switch-user")
-fi
-
-# Set menu arguments
-menuargs=(-d --width 45 --lines 18 -p "$prompt")
+  ;;
+esac
 
 # Combine each opt with it's icon separated by a newline
 for ((i = 0; i < ${#opts[@]}; i++)); do
@@ -52,9 +55,10 @@ done
 # Menu prompt
 selection=$(echo -en "$combined_string" | $MENU "${menuargs[@]}")
 
-if [ "$1" == "--power" ]; then
-  # Handle options for power
-  case $selection in
+case "$1" in
+"--power")
+  # Handle options for power menu
+  case "$selection" in
   "${opts[0]}")
     hyprlock
     ;;
@@ -73,14 +77,15 @@ if [ "$1" == "--power" ]; then
   "${opts[5]}")
     systemctl poweroff
     ;;
-  *) ;;
   esac
-elif [ "$1" == "--projector" ]; then
+  ;;
+"--projector")
+  # Handle options for projector menu
   if [ -n "$selection" ]; then
+    # Get hyprland defaults if an option is selected
     hyprctl reload
   fi
-  # Handle options for projector
-  case $selection in
+  case "$selection" in
   "${opts[0]}")
     hyprctl keyword monitor HDMI-A-1,disable
     ;;
@@ -90,15 +95,17 @@ elif [ "$1" == "--projector" ]; then
   "${opts[3]}")
     hyprctl keyword monitor eDP-1,disable
     ;;
-  *) ;;
   esac
   if [ -n "$selection" ]; then
+    # Reload waybar if an option is selected
+    # Waybar can have problems after changing monitor settings
     killall waybar
     waybar &
   fi
-else
-  # Handle options for actions
-  case $selection in
+  ;;
+*)
+  # Handle options for actions menu
+  case "$selection" in
   "${opts[0]}")
     kitty -e yazi "$HOME/.config/hypr/user_configs"
     ;;
@@ -114,6 +121,6 @@ else
   "${opts[4]}")
     Actions.sh "--power"
     ;;
-  *) ;;
   esac
-fi
+  ;;
+esac

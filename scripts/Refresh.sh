@@ -4,9 +4,14 @@
 # Reload full hyprland configuration
 
 reload_gtk_theme() {
+  # find current theme
   theme=$(gsettings get org.gnome.desktop.interface gtk-theme)
+
+  # Apply blank theme
   gsettings set org.gnome.desktop.interface gtk-theme ''
   sleep 0.3
+
+  # Apply current theme again
   gsettings set org.gnome.desktop.interface gtk-theme "$theme"
 }
 
@@ -29,8 +34,10 @@ reload_kitty() {
 }
 
 reload_mako() {
+  # Source colors from wall cache
   . "$HOME"/.cache/wal/colors.sh
 
+  # Mako config file
   conffile="$HOME/.config/mako/config"
 
   # Associative array, color name -> color code.
