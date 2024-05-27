@@ -17,7 +17,7 @@ set ans "0"
 while true
   # Prompt the user for an expression, showing the last answer
   # and expression history
-  set expression (fuzzel -d -p "$ans : "< $HISTORY_FILE)
+  set expression (fuzzel -d -l 10 -w 60 -p "$ans : "< $HISTORY_FILE)
 
   # Exit the loop if the input is empty
   if test -z "$expression"
