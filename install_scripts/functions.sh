@@ -4,8 +4,8 @@
 # Constants
 export USER_CONFIGS="$HOME/.config/hypr/user_configs"
 export USER_CONFIG="$USER_CONFIGS/overrides.conf"
+export DEFAULT_LAYOUT="us"
 OVERRIDES="user_configs/overrides.conf"
-DEFAULT_LAYOUT="us"
 
 # Fuction for prompting yes or no questions
 ask_yn() {

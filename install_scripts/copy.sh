@@ -49,7 +49,7 @@ if [ ! -f "$USER_CONFIG" ]; then
   git clone https://github.com/iamfugui/YouTubeADB.git adb
   mv adb/index.user.js config/qutebrowser/greasemonkey/ytadb.js
   rm -rf adb
-   wget https://update.greasyfork.org/scripts/32626/Disable%20YouTube%20Video%20Ads.user.js -O config/qutebrowser/greasemonkey/yt-skip-ads.js
+  wget https://update.greasyfork.org/scripts/32626/Disable%20YouTube%20Video%20Ads.user.js -O config/qutebrowser/greasemonkey/yt-skip-ads.js
 
   # Download gtk theme
   git clone https://github.com/deviantfero/wpgtk-templates
@@ -95,7 +95,7 @@ cp -rf data/* "$HOME/.local/share/dots/"
 cp -rf applications/* "$HOME/.local/share/applications/"
 
 # Ensure scripts are executable
-chmod +x "$HOME"/.local/bin/* 
+chmod +x "$HOME"/.local/bin/*
 
 # Run pywal
 echo "Creating color pallette..."
