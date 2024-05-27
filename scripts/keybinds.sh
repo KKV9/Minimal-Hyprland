@@ -16,7 +16,7 @@ output="$HOME/.cache/dots/keybinds.txt"
 
 # Concatenate user configs with base keybindings
 tmp=$(mktemp)
-cat "$CONFIGS"/user_configs/*.conf "$CONFIGS"/KeyBinds.conf >"$tmp"
+cat "$CONFIGS"/user_configs/*.conf "$CONFIGS"/hyprbinds.conf >"$tmp"
 
 # Generate json file
 hyprkeys -bjl -c "$tmp" >"$json_file"

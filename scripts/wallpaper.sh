@@ -1,5 +1,5 @@
 #!/bin/bash
-## Wallpaper 🎨##
+## Wallpaper 🖥️##
 
 # Call yazi to select a file and set it as the current wallpaper
 

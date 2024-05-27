@@ -2,9 +2,9 @@
 ## Functions ##
 
 # Constants
-USERCONFIGS="$HOME/.config/hypr/user_configs"
-USERCONFIG="$USERCONFIGS/Overrides.conf"
-OVERRIDES="user_configs/Overrides.conf"
+export USER_CONFIGS="$HOME/.config/hypr/user_configs"
+export USER_CONFIG="$USER_CONFIGS/overrides.conf"
+OVERRIDES="user_configs/overrides.conf"
 DEFAULT_LAYOUT="us"
 
 # Fuction for prompting yes or no questions

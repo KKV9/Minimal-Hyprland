@@ -36,7 +36,7 @@ else
   fi
 
   # Ask to change keyboard layout if not done already
-  if [ ! -f "$USERCONFIG" ]; then
+  if [ ! -f "$USER_CONFIG" ]; then
     if ask_yn "Would you like to change the default keyboard layout (us)?"; then
       ./install_scripts/keyboard_layout.sh
     else

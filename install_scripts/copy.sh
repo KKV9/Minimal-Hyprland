@@ -21,10 +21,10 @@ cp -f config/user-dirs.dirs "$HOME"/.config/
 rm -rf "$HOME"/go/
 
 # If user is installing from scratch
-if [ ! -f "$USERCONFIG" ]; then
+if [ ! -f "$USER_CONFIG" ]; then
   # Copy the overrides configuration
-  mkdir -p "$USERCONFIGS"
-  cp -f user_configs/* "$USERCONFIGS/"
+  mkdir -p "$USER_CONFIGS"
+  cp -f user_configs/* "$USER_CONFIGS/"
   mkdir -p "$HOME"/.local/share/themes
   mkdir -p "$HOME"/.local/share/applications
   mkdir -p "$HOME"/.themes
@@ -108,5 +108,5 @@ ln -sf ~/.local/share/themes/wall-gtk/ ~/.themes/
 echo "Copying done!"
 if [ "$XDG_SESSION_DESKTOP" == "Hyprland" ]; then
   sleep 0.5
-  "$HOME"/.local/bin/Refresh.sh
+  "$HOME"/.local/bin/refresh.sh
 fi

@@ -7,9 +7,9 @@
 
 # Set constants
 CONFIGS_USR="$HOME/.config/hypr/user_configs"
-DEVICE_CONFIG_USR="$CONFIGS_USR/Touchpad.conf"
-OVERRIDES_USR="$CONFIGS_USR/Overrides.conf"
-SOURCE_STRING="source = Touchpad.conf"
+DEVICE_CONFIG_USR="$CONFIGS_USR/touchpad.conf"
+OVERRIDES_USR="$CONFIGS_USR/overrides.conf"
+SOURCE_STRING="source = touchpad.conf"
 
 detect_devices() {
   # Look for touchpad
@@ -44,7 +44,7 @@ device {
 
       # Source touchpad configuration file from user overrides file
       printf \
-        "\n\n## Devices detected by Initial_Boot.sh ##\n\n%s" \
+        "\n\n## Devices detected by initial_boot.sh ##\n\n%s" \
         "$SOURCE_STRING" \
         >>"$OVERRIDES_USR"
     fi
@@ -85,7 +85,7 @@ if test -f "$HOME/.config/INITIAL_BOOT"; then
   sleep 0.5
 
   # First refresh to generate cache
-  "$HOME"/.config/hypr/scripts/Refresh.sh
+  "$HOME"/.config/hypr/scripts/refresh.sh
 
   # Detect monitor and apply scaling
   # Work in progress...
