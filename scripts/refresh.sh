@@ -66,7 +66,7 @@ rm -r "$HOME/.cache/wal/schemes"
 # Refresh colors, waybar, gtk & other apps
 # Qt apps are not reloaded by this process
 wal -i "$HOME/.cache/current_wallpaper.png" -s -t -n -e >/dev/null
-Keybinds.sh # Generate keybinds
+keybinds.sh # Generate keybinds
 reload_gtk_theme
 reload_qutebrowser
 reload_kitty
