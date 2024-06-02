@@ -3,5 +3,10 @@
 
 [opener]
 edit = [
-	{ run = '$EDITOR "$@"', desc = "$EDITOR", block = true, for = "unix" },
+	{ run = '$EDITOR "$@"', desc = "Edit", block = true, for = "unix" },
+]
+reveal = [
+	{ run = 'xdg-open "$(dirname "$0")"',            desc = "Reveal", for = "linux" },
+	{ run = 'mkdir -p .temp_zip && cd .temp_zip && cp -rt . "$@" && zip -r "$1.zip" . || tar -czf "$1.tar.gz" . ; cd ../ ; rm -rf .temp_zip', block = false, desc = "Zip" },
+	{ run = '''exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "unix" },
 ]
