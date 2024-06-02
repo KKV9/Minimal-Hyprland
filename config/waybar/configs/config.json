@@ -1,5 +1,5 @@
 {
-  "include": "~/.config/waybar/modules.json",
+  "include": "$HOME/.config/waybar/modules.json",
   "layer": "top",
   "exclusive": true,
   "passthrough": false,
