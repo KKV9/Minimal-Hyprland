@@ -33,6 +33,11 @@ reload_kitty() {
   fi
 }
 
+reload_fuzzel() {
+  touch "$HOME"/.config/fuzzel/overrides.ini
+  cat "$HOME"/.cache/wal/fuzzel.base.ini "$HOME"/.config/fuzzel/overrides.ini >"$HOME"/.config/fuzzel/fuzzel.ini
+}
+
 reload_mako() {
   # Source colors from wall cache
   . "$HOME"/.cache/wal/colors.sh
@@ -71,6 +76,7 @@ reload_gtk_theme
 reload_qutebrowser
 reload_kitty
 reload_mako
+reload_fuzzel
 hyprcolors.sh
 pkill waybar
 sleep 0.3
