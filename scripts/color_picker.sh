@@ -5,6 +5,10 @@
 
 result=$(hyprpicker -an)
 
+if [ -z  "$result" ]; then
+  exit 0
+fi
+
 # Reload mako with picked color
 killall mako
 mako --border-color "$result" &
