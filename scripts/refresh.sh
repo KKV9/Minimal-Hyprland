@@ -34,6 +34,7 @@ reload_kitty() {
 }
 
 reload_fuzzel() {
+  touch "$HOME"/.config/fuzzel/overrides.ini
   cat "$HOME"/.cache/wal/fuzzel.base.ini "$HOME"/.config/fuzzel/overrides.ini >"$HOME"/.config/fuzzel/fuzzel.ini
 }
 
@@ -42,7 +43,8 @@ reload_mako() {
   . "$HOME"/.cache/wal/colors.sh
 
   # Mako config file
-  conffile="$HOME/.config/mako/config"
+  MAKO_CONFIG="$HOME/.config/mako"
+  conffile="$MAKO_CONFIG/mako.ini"
 
   # Associative array, color name -> color code.
   declare -A colors
@@ -57,6 +59,11 @@ reload_mako() {
     # replace first occurance of each color in config file
     sed -i "0,/^$color_name.*/{s//$color_name=${colors[$color_name]}/}" "$conffile"
   done
+
+  # Generate the config file by concatentation
+  cat "$MAKO_CONFIG"/mako.ini \
+    "$MAKO_CONFIG"/overrides.ini \
+    "$MAKO_CONFIG"/mako_urgency.ini >"$MAKO_CONFIG"/config
 
   makoctl reload
 }
