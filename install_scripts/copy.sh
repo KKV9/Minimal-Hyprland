@@ -89,7 +89,6 @@ fi
 
 # Copy remaining config files
 echo "Copying files..."
-cp -rf ".gtkrc-2.0" "$HOME/"
 cp -rf config/* "$HOME/.config/"
 cp -rf scripts/* "$HOME/.local/bin/"
 cp -rf data/* "$HOME/.local/share/dots/"
