@@ -16,12 +16,14 @@ reload_gtk_theme() {
 }
 
 reload_qutebrowser() {
+  touch "$HOME"/.config/qutebrowser/overrides.py
   if pgrep -x "qutebrowser" >/dev/null; then
     qutebrowser :config-source
   fi
 }
 
 reload_kitty() {
+  touch "$HOME"/.config/kitty/overrides.conf
   # Get process IDs of all running kitty instances
   pids=$(pgrep -x kitty)
 
@@ -45,6 +47,8 @@ reload_mako() {
   # Mako config file
   MAKO_CONFIG="$HOME/.config/mako"
   conffile="$MAKO_CONFIG/mako.ini"
+  touch "$MAKO_CONFIG/overrides.ini"
+  touch "$MAKO_CONFIG/overrides_urgency.ini"
 
   # Associative array, color name -> color code.
   declare -A colors

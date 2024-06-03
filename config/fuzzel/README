@@ -1,5 +1,0 @@
-Do not edit fuzzel.ini file directly.
-Create overrides.ini to change settings.
-This file will be overwritten.
-
-fuzzel.ini file will be automatically generated after a refresh.
