@@ -94,6 +94,13 @@ cp -rf scripts/* "$HOME/.local/bin/"
 cp -rf data/* "$HOME/.local/share/dots/"
 cp -rf applications/* "$HOME/.local/share/applications/"
 
+# Allow satty to save screenshots
+if [ ! -f "$HOME/.config/satty/config.toml" ]; then
+  mkdir -p "$HOME/.config/satty"
+  echo '[general]' >"$HOME/.config/satty/config.toml"
+  echo 'output-filename = "Pictures/Screenshots/satty-%Y-%m-%d_%H:%M:%S.png"' >>"$HOME"/.config/satty/config.toml
+fi
+
 # Ensure scripts are executable
 chmod +x "$HOME"/.local/bin/*
 
