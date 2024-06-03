@@ -63,7 +63,8 @@ reload_mako() {
   # Generate the config file by concatentation
   cat "$MAKO_CONFIG"/mako.ini \
     "$MAKO_CONFIG"/overrides.ini \
-    "$MAKO_CONFIG"/mako_urgency.ini >"$MAKO_CONFIG"/config
+    "$MAKO_CONFIG"/mako_urgency.ini \
+    "$MAKO_CONFIG"/overrides_urgency.ini >"$MAKO_CONFIG"/config
 
   makoctl reload
 }

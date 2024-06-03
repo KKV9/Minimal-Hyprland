@@ -98,7 +98,12 @@ cp -rf applications/* "$HOME/.local/share/applications/"
 if [ ! -f "$HOME/.config/satty/config.toml" ]; then
   mkdir -p "$HOME/.config/satty"
   echo '[general]' >"$HOME/.config/satty/config.toml"
-  echo 'output-filename = "Pictures/Screenshots/satty-%Y-%m-%d_%H:%M:%S.png"' >>"$HOME"/.config/satty/config.toml
+  echo 'output-filename = "Pictures/Screenshots/satty-%Y-%m-%d_%H:%M:%S.png"' >>"$HOME/.config/satty/config.toml"
+fi
+
+# Surpress errors by creating overrides if it doesn't exist
+if [ ! -f "$HOME/.config/qutebrowser/overrides.py" ]; then
+  touch "$HOME/.config/qutebrowser/overrides.py"
 fi
 
 # Ensure scripts are executable
