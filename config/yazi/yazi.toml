@@ -10,7 +10,6 @@ reveal = [
 ]
 [plugin]
 prepend_previewers = [
-  { name = "*/*.conf", run = "code" },
   { mime = "text/*", run = "bat" },
   { mime = "application/json", run = "bat" },
   { mime = "*/{xml,javascript,x-wine-extension-ini}", run = "bat" },
