@@ -52,7 +52,7 @@ while true
   set tmp (mktemp)
   # Prepend the expression to the history file, store in tmp
   echo "$expression" | cat - "$HISTORY_FILE" > "$tmp"
-  # Move the first 10 lines of the temp file to the history file
+  # Move the first 9 lines of the temp file to the history file
   head -n 9 "$tmp" > "$HISTORY_FILE"
   # Remove duplicates from the history file
   awk '!seen[$0]++' "$HISTORY_FILE" > "$tmp" && mv "$tmp" "$HISTORY_FILE"

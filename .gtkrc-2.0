@@ -1,4 +1,0 @@
-# This is required for qt app theming
-gtk-theme-name="wall-gtk"
-gtk-icon-theme-name="Tela-dark"
-gtk-font-name="JetBrainsMono Nerd Font"

@@ -1,4 +1,4 @@
-@import "$HOME/.cache/wal/colors-waybar.css";
+@import "../../.cache/wal/colors-waybar.css";
 
 #clock,
 #pulseaudio,
