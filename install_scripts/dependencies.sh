@@ -74,10 +74,6 @@ packages=(
   gtk3
   unarchiver
   zoxide
-  tree-sitter-bash
-  tree-sitter-lua
-  tree-sitter-markdown
-  tree-sitter-python
   grimblast-git
   satty-bin
   hyprkeys
