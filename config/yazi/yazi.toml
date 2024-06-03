@@ -2,11 +2,16 @@
 "$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
 
 [opener]
-edit = [
-	{ run = '$EDITOR "$@"', desc = "Edit", block = true, for = "unix" },
-]
+edit = [{ run = '$EDITOR "$@"', desc = "Edit", block = true, for = "unix" }]
 reveal = [
-	{ run = 'xdg-open "$(dirname "$0")"',            desc = "Reveal", for = "linux" },
-	{ run = 'mkdir -p .temp_zip && cd .temp_zip && cp -rt . "$@" && zip -r "$1.zip" . || tar -czf "$1.tar.gz" . ; cd ../ ; rm -rf .temp_zip', block = false, desc = "Zip" },
-	{ run = '''exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "unix" },
+  { run = 'xdg-open "$(dirname "$0")"', desc = "Reveal", for = "linux" },
+  { run = 'mkdir -p .temp_zip && cd .temp_zip && cp -rt . "$@" && zip -r "$1.zip" . || tar -czf "$1.tar.gz" . ; cd ../ ; rm -rf .temp_zip', block = false, desc = "Zip" },
+  { run = '''exiftool "$1"; echo "Press enter to exit"; read _''', block = true, desc = "Show EXIF", for = "unix" },
+]
+[plugin]
+prepend_previewers = [
+  { name = "*/*.conf", run = "code" },
+  { mime = "text/*", run = "bat" },
+  { mime = "application/json", run = "bat" },
+  { mime = "*/{xml,javascript,x-wine-extension-ini}", run = "bat" },
 ]
