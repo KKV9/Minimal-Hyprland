@@ -49,6 +49,7 @@ c.fileselect.handler = "external"
 #######
 
 # Load from yaml file
-# Set to false to disable any overrides
+# Set to false to disable yaml overrides
 config.load_autoconfig(True)
+# Source user overrides python configuration
 config.source('overrides.py')
