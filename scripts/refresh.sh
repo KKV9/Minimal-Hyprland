@@ -39,7 +39,10 @@ reload_kitty() {
 
 reload_fuzzel() {
   touch "$HOME"/.config/fuzzel/overrides.ini
-  cat  "$HOME"/.config/fuzzel/defaults.ini "$HOME"/.config/fuzzel/overrides.ini "$HOME"/.cache/wal/fuzzel.base.ini >"$HOME"/.config/fuzzel/fuzzel.ini
+  cat  "$HOME"/.config/fuzzel/defaults.ini \
+    "$HOME"/.config/fuzzel/overrides.ini \
+    "$HOME"/.cache/wal/fuzzel.base.ini \
+    "$HOME"/.config/fuzzel/overrides_colors.ini >"$HOME"/.config/fuzzel/fuzzel.ini
 }
 
 reload_mako() {
