@@ -1,7 +1,7 @@
 #!/bin/bash
 # shellcheck disable=all
 ## Hyprland colors 🎨##
-# Set hyprland border color
+# Set hyprland colors
 
 # Import colors from cache
 . "$HOME/.cache/wal/colors.sh"

@@ -1,49 +1,7 @@
 # If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
 "$schema" = "https://yazi-rs.github.io/schemas/theme.json"
 
-[icon]
+[flavor]
+use = "dots"
 
-prepend_rules = [
-  # Dotfiles
-  { name = "*/.gtkrc-2.0", text = "", fg = "#89e051" },
-  { name = "*/*.base", text = "", fg = "#62767c"},
-  { name = "*/.bash_history", text = "", fg = "#89e051" },
 
-  # Directories
-  { name = "*/.config/", text = "", fg = "#89e051" },
-  { name = "*/Desktop/", text = "", fg = "#cfd728" },
-  { name = "*/Documents/", text = "", fg = "#ff1300" },
-  { name = "*/Downloads/", text = "", fg = "#185abd" },
-  { name = "*/Music/", text = "", fg = "#ff008f" },
-  { name = "*/Pictures/", text = "", fg = "#a074c4" },
-  { name = "*/Pictures/Wallpapers/", text = "󰸉", fg = "#a074c4" },
-  { name = "*/Pictures/Screenshots/", text = "", fg = "#a074c4" },
-  { name = "*/Public/", text = "󱔔", fg = "#00aeff" },
-  { name = "*/Templates/", text = "", fg = "#ff7c00" },
-  { name = "*/Videos/", text = "", fg = "#9d6462" },
-
-  # Archives
-	{ name = "*.7z" , text = "", fg = "#185abd" },
-	{ name = "*.bz2", text = "", fg = "#185abd" },
-	{ name = "*.gz" , text = "", fg = "#185abd" },
-	{ name = "*.rar", text = "", fg = "#185abd" },
-	{ name = "*.tar", text = "", fg = "#185abd" },
-	{ name = "*.xz" , text = "", fg = "#185abd" },
-	{ name = "*.zip", text = "", fg = "#185abd" },
-
-	# Movies
-	{ name = "*.avi" , text = "", fg = "#9d6462" },
-	{ name = "*.mkv" , text = "", fg = "#9d6462" },
-	{ name = "*.mov" , text = "", fg = "#9d6462" },
-	{ name = "*.mp4" , text = "", fg = "#9d6462" },
-	{ name = "*.webm", text = "", fg = "#9d6462" },
-
-	# Audio
-	{ name = "*.aac" , text = "", fg = "#ff008f" },
-	{ name = "*.flac", text = "", fg = "#ff008f" },
-	{ name = "*.m4a" , text = "", fg = "#ff008f" },
-	{ name = "*.mp3" , text = "", fg = "#ff008f" },
-	{ name = "*.ogg" , text = "", fg = "#ff008f" },
-	{ name = "*.opus", text = "", fg = "#ff008f" },
-	{ name = "*.wav" , text = "", fg = "#ff008f" },
-]

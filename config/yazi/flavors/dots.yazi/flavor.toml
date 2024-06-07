@@ -1,0 +1,142 @@
+#86339c
+#3d41b9
+#6688a0
+### Do not remove above lines ###
+###       START CONFIG        ###
+[manager]
+cwd = { fg = "#86339c" }
+find_keyword  = { fg = "#3d41b9", bold = true, italic = true, underline = true }
+marker_selected = { fg = "#3d41b9", bg = "#3d41b9" }
+
+
+hovered         = { reversed = true }
+preview_hovered = { underline = true }
+
+# Marker
+marker_copied   = { fg = "#E2D61D", bg = "#E2D61D" }
+marker_cut      = { fg = "#2E8FD1", bg = "#2E8FD1" }
+marker_marked   = { fg = "#C738B2", bg = "#C738B2" }
+# Count
+count_copied   = { fg = "#1E1E2E", bg = "#E2D61D" }
+count_cut      = { fg = "#1E1E2E", bg = "#2E8FD1" }
+
+# Tab
+tab_active   = { reversed = true }
+tab_inactive = {}
+tab_width    = 1
+
+# Count
+count_selected = { fg = "#1e1e2e", bg = "#3d41b9" }
+
+# Border
+border_symbol = "│"
+border_style  = { fg = "#6688a0" }
+
+[status]
+separator_open  = ""
+separator_close = ""
+separator_style = { fg = "#6688a0", bg = "#6688a0" }
+
+# Mode
+mode_normal = { fg = "#1e1e2e", bg = "#3d41b9", bold = true }
+mode_select = { fg = "#1e1e2e", bg = "#3d41b9", bold = true }
+mode_unset  = { fg = "#1e1e2e", bg = "#3d41b9", bold = true }
+
+# Progress
+progress_label  = { fg = "#FFFFFF", bold = true }
+progress_normal = { fg = "#3d41b9", bg = "#6688a0" }
+progress_error  = { fg = "#FF1300", bg = "#6688a0" }
+
+[select]
+border   = { fg = "#3d41b9" }
+active   = { fg = "#3d41b9", bold = true }
+inactive = {}
+
+[input]
+border   = { fg = "#3d41b9" }
+title    = {}
+value    = {}
+selected = { reversed = true }
+
+[completion]
+border = { fg = "#3d41b9" }
+
+[tasks]
+border  = { fg = "#3d41b9" }
+title   = {}
+hovered = { fg = "#6688a0", underline = true }
+
+[which]
+cand            = { fg = "#3d41b9" }
+desc            = { fg = "#6688a0" }
+separator       = "  "
+
+[help]
+on      = { fg = "#3d41b9" }
+run     = { fg = "#6688a0" }
+hovered = { reversed = true, bold = true }
+footer  = { fg = "#6688a0", bg = "#6688a0" }
+
+[notify]
+title_info  = { fg = "#3d41b9" }
+title_warn  = { fg = "#E1710E" }
+title_error = { fg = "#FF1300" }
+
+[icon]
+prepend_rules = [
+  # Dotfiles
+  { name = "*/*.base", text = "", fg = "#62767C"},
+  { name = "*/*.toml", text = "", fg = "#62767C"},
+  { name = "*/config", text = "", fg = "#62767C"},
+  { name = "*/.gtkrc-2.0", text = "", fg = "#89E051" },
+  { name = "*/.bash_*", text = "", fg = "#89E051" },
+
+  # Directories
+  { name = "*/.config/", text = "", fg = "#89E051" },
+  { name = "*/Desktop/", text = "", fg = "#CFD728" },
+  { name = "*/Documents/", text = "", fg = "#FF1300" },
+  { name = "*/Downloads/", text = "", fg = "#185ABD" },
+  { name = "*/Music/", text = "", fg = "#FF008F" },
+  { name = "*/Pictures/", text = "", fg = "#A074C4" },
+  { name = "*/Pictures/Wallpapers/", text = "󰸉", fg = "#A074C4" },
+  { name = "*/Pictures/Screenshots/", text = "", fg = "#A074C4" },
+  { name = "*/Public/", text = "󱔔", fg = "#00AEFF" },
+  { name = "*/Templates/", text = "", fg = "#FF7C00" },
+  { name = "*/Videos/", text = "", fg = "#9D6462" },
+
+  # Archives
+	{ name = "*/*.7z" , text = "", fg = "#185ABD" },
+	{ name = "*/*.bz2", text = "", fg = "#185ABD" },
+	{ name = "*/*.gz" , text = "", fg = "#185ABD" },
+	{ name = "*/*.rar", text = "", fg = "#185ABD" },
+	{ name = "*/*.tar", text = "", fg = "#185ABD" },
+	{ name = "*/*.xz" , text = "", fg = "#185ABD" },
+	{ name = "*/*.zip", text = "", fg = "#185ABD" },
+
+	# Movies
+	{ name = "*/*.avi" , text = "", fg = "#9D6462" },
+	{ name = "*/*.mkv" , text = "", fg = "#9D6462" },
+	{ name = "*/*.mov" , text = "", fg = "#9D6462" },
+	{ name = "*/*.mp4" , text = "", fg = "#9D6462" },
+	{ name = "*/*.webm", text = "", fg = "#9D6462" },
+
+	# Audio
+	{ name = "*/*.aac" , text = "", fg = "#FF008F" },
+	{ name = "*/*.flac", text = "", fg = "#FF008F" },
+	{ name = "*/*.m4a" , text = "", fg = "#FF008F" },
+	{ name = "*/*.mp3" , text = "", fg = "#FF008F" },
+	{ name = "*/*.ogg" , text = "", fg = "#FF008F" },
+	{ name = "*/*.opus", text = "", fg = "#FF008F" },
+	{ name = "*/*.wav" , text = "", fg = "#FF008F" },
+]
+append_rules = [
+	# Fallback
+  { name = "*", text = "", fg = "#FFFFFF"}
+]
+
+[filetype]
+rules = [
+  { name = "*", fg = "#86339c" },
+	{ name = "*/", fg = "#3d41b9" }
+]
+###       END CONFIG        ###

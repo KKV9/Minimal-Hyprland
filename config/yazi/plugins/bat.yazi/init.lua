@@ -9,10 +9,7 @@ function M:peek()
 
 	local child = Command("bat")
 		:args({
-			"--style",
-			"plain",
-			"--color",
-			"always",
+			"-ppf",
 			tostring(file_url),
 		})
 		:stdout(Command.PIPED)

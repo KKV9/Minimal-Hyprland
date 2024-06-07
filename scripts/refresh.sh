@@ -4,6 +4,7 @@
 # Reload full hyprland configuration
 
 reload_gtk_theme() {
+  local theme
   # find current theme
   theme=$(gsettings get org.gnome.desktop.interface gtk-theme)
 
@@ -23,6 +24,7 @@ reload_qutebrowser() {
 }
 
 reload_kitty() {
+  local pids
   touch "$HOME"/.config/kitty/overrides.conf
   # Get process IDs of all running kitty instances
   pids=$(pgrep -x kitty)
@@ -37,22 +39,20 @@ reload_kitty() {
 
 reload_fuzzel() {
   touch "$HOME"/.config/fuzzel/overrides.ini
-  touch "$HOME"/.config/fuzzel/overrides_colors.ini
-  cat  "$HOME"/.config/fuzzel/defaults.ini \
-    "$HOME"/.config/fuzzel/overrides.ini \
-    "$HOME"/.cache/wal/fuzzel.base.ini \
-    "$HOME"/.config/fuzzel/overrides_colors.ini >"$HOME"/.config/fuzzel/fuzzel.ini
+  cat  "$HOME"/.config/fuzzel/defaults.ini "$HOME"/.config/fuzzel/overrides.ini "$HOME"/.cache/wal/fuzzel.base.ini >"$HOME"/.config/fuzzel/fuzzel.ini
 }
 
 reload_mako() {
+  local colors
+
   # Source colors from wall cache
   . "$HOME"/.cache/wal/colors.sh
 
   # Mako config file
-  MAKO_CONFIG="$HOME/.config/mako"
-  conffile="$MAKO_CONFIG/mako.ini"
-  touch "$MAKO_CONFIG/overrides.ini"
-  touch "$MAKO_CONFIG/overrides_urgency.ini"
+  local mako_config="$HOME/.config/mako"
+  local conf_file="$mako_config/mako.ini"
+  touch "$mako_config/overrides.ini"
+  touch "$mako_config/overrides_urgency.ini"
 
   # Associative array, color name -> color code.
   declare -A colors
@@ -65,16 +65,35 @@ reload_mako() {
 
   for color_name in "${!colors[@]}"; do
     # replace first occurance of each color in config file
-    sed -i "0,/^$color_name.*/{s//$color_name=${colors[$color_name]}/}" "$conffile"
+    sed -i "0,/^$color_name.*/{s//$color_name=${colors[$color_name]}/}" "$conf_file"
   done
 
   # Generate the config file by concatentation
-  cat "$MAKO_CONFIG"/mako.ini \
-    "$MAKO_CONFIG"/overrides.ini \
-    "$MAKO_CONFIG"/mako_urgency.ini \
-    "$MAKO_CONFIG"/overrides_urgency.ini >"$MAKO_CONFIG"/config
+  cat "$mako_config"/mako.ini \
+    "$mako_config"/overrides.ini \
+    "$mako_config"/mako_urgency.ini \
+    "$mako_config"/overrides_urgency.ini >"$mako_config"/config
 
   makoctl reload
+}
+
+reload_yazi() {
+  # Source colors from wall cache
+  . "$HOME"/.cache/wal/colors.sh
+
+  # Yazi config file
+  local yazi_config="$HOME/.config/yazi/flavors/dots.yazi/flavor.toml"
+  
+  # Define the new colors to replace
+  local new_colors=("$color4" "$color3" "$color8")
+  
+  # Read the old colors from the config file
+  mapfile -t old_colors < <(head -n 3 "$yazi_config")
+  
+  # Loop through the arrays and replace old colors with new ones
+  for i in {0..2}; do
+    sed -i "s/${old_colors[i]}/${new_colors[i]}/g" "$yazi_config"
+  done
 }
 
 # Notify user
@@ -92,6 +111,7 @@ reload_qutebrowser
 reload_kitty
 reload_mako
 reload_fuzzel
+reload_yazi
 hyprcolors.sh
 pkill waybar
 sleep 0.3
