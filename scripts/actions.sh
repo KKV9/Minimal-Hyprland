@@ -4,11 +4,11 @@
 # Fuzzel prompt for performing various tasks
 
 # Get default monitor settings for projector menu
-get_monitor_settings () {
+get_monitor_settings() {
   # Search for user prefernces in overrides directory
-  settings=$(cat ~/.config/hypr/user_configs/*.conf | \
-    grep -e "monitor*.=*.$1" | \
-    grep -v '^ *#' | awk -F '=' 'gsub (" ", "") $2; {print $2}' |\
+  settings=$(cat ~/.config/hypr/user_configs/*.conf |
+    grep -e "monitor*.=*.$1" |
+    grep -v '^ *#' | awk -F '=' 'gsub (" ", "") $2; {print $2}' |
     awk -F '#' '{print $1}' | tail -1)
 
   if [ -n "$settings" ]; then
@@ -100,19 +100,19 @@ case "$1" in
   # Handle options for projector menu
   case "$selection" in
   "${opts[0]}")
-    hyprctl keyword monitor "$(get_monitor_settings 'eDP-1')" && \
+    hyprctl keyword monitor "$(get_monitor_settings 'eDP-1')" &&
       hyprctl keyword monitor HDMI-A-1,disable
     ;;
   "${opts[1]}")
-    hyprctl keyword monitor "$(get_monitor_settings 'eDP-1')" && \
+    hyprctl keyword monitor "$(get_monitor_settings 'eDP-1')" &&
       hyprctl keyword monitor HDMI-A-1,preferred,0x0,1,mirror,eDP-1
     ;;
   "${opts[2]}")
-    hyprctl keyword monitor "$(get_monitor_settings 'eDP-1')" && \
+    hyprctl keyword monitor "$(get_monitor_settings 'eDP-1')" &&
       hyprctl keyword monitor "$(get_monitor_settings 'HDMI-A-1')"
     ;;
   "${opts[3]}")
-    hyprctl keyword monitor "$(get_monitor_settings 'HDMI-A-1')" && \
+    hyprctl keyword monitor "$(get_monitor_settings 'HDMI-A-1')" &&
       hyprctl keyword monitor eDP-1,disable
     ;;
   esac

@@ -24,15 +24,13 @@ detect_devices() {
   # Only $device variable gets expanded.
   # $TOUCHPAD_ENABLED variable allows for
   # disabling the touchpad with reloading hyprland
-  device_config='# Touchpad device detected
-$TOUCHPAD_ENABLED = true # This variable is toggled by Touchpad.sh
+  device_config="# Touchpad device detected
+\$TOUCHPAD_ENABLED = true # This variable is toggled by touchpad.sh
 device {
-      name = '
-  device_config+="$device"
-  device_config+='
-      enabled = $TOUCHPAD_ENABLED
-      sensitivity = 0.0
-}'
+  name = $device
+  enabled = \$TOUCHPAD_ENABLED
+  sensitivity = 0.0
+}"
 
   if ! test -f "$DEVICE_CONFIG_USR"; then
     # Write device string into user config file
@@ -69,6 +67,7 @@ if test -f "$HOME/.config/INITIAL_BOOT"; then
   gsettings set \
     org.gnome.desktop.interface cursor-theme \
     'Bibata-Modern-Classic'
+  hyprctl setcursor Bibata-Modern-Classic 24
 
   # Set font
   gsettings set \

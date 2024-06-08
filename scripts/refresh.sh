@@ -1,7 +1,9 @@
 #!/bin/bash
 ## Refresh 🔃##
 
-# Reload full hyprland configuration
+# Reload apps and theme configuration
+# Does not reload hyprland
+# Use 'hyprctl reload' to reload hyprland settings
 
 reload_gtk_theme() {
   local theme
