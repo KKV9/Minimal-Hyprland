@@ -1,6 +1,6 @@
 #!/bin/bash
-# shellcheck disable=all
 ## Hyprland colors 🎨##
+# shellcheck disable=all
 # Set hyprland colors
 
 # Import colors from cache

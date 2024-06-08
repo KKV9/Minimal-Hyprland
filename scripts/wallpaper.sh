@@ -1,19 +1,23 @@
 #!/bin/bash
 ## Wallpaper 🖥️##
 
-# Call yazi to select a file and set it as the current wallpaper
+# Call yazi/fzf to select a file and set it as the current wallpaper
 
 PNG=$HOME/.cache/current_wallpaper.png
 
-# Store yazi output in tempfile
+# Store yazi/fzf output in tempfile
 tmp=$(mktemp)
-kitty --class "floating" --title "Wallpaper select" -- yazi "$HOME/Pictures/Wallpapers/" --chooser-file "$tmp"
-
+if which fish; then
+  cd "$HOME/Pictures/Wallpapers/" || exit 1
+  kitty --class "floating" --title "Wallpaper select" -- fzf.fish "$tmp"
+else
+  kitty --class "floating" --title "Wallpaper select" -- yazi "$HOME/Pictures/Wallpapers/" --chooser-file "$tmp"
+fi
 # Last selected file is stored in a variable
 new_wallpaper="$(tail -1 "$tmp")"
 
 # Check if no file is selected
-if ! [ -s "$tmp" ]; then
+if ! [ -e "$new_wallpaper" ]; then
   rm "$tmp"
   exit 0
 fi

@@ -102,6 +102,7 @@ prepend_rules = [
   { name = "*/Pictures/Screenshots/", text = "", fg = "#A074C4" },
   { name = "*/Public/", text = "󱔔", fg = "#00AEFF" },
   { name = "*/Templates/", text = "", fg = "#FF7C00" },
+  { name = "*/Games/", text = "", fg = "#89E051" },
   { name = "*/Videos/", text = "", fg = "#9D6462" },
 
   # Archives

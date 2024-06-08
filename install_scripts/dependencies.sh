@@ -15,7 +15,6 @@ base=(
 
 # List of package dependencies
 packages=(
-  cliphist
   hyprlock
   imagemagick
   kitty
@@ -85,6 +84,7 @@ packages=(
   ripgrep
   fd
   bat
+  eza
 )
 
 # List of sddm dependencies

@@ -1,5 +1,7 @@
 # Minimal Hyprland
-Beautiful, minimal config for hyprland. Using pywal for theming gtk, qt and various other apps.
+Beautiful, minimal config for hyprland with all the modern amenities. 
+Theming is handled by pywal.
+Fish shell is optional, it is set as the default interactive shell in hyprland, your login shell will be untouched.
 The provided scripts will automate the install process from a minimal archlinux install.
 
 ## Default apps

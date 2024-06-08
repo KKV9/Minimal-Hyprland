@@ -39,8 +39,8 @@ while true
 
   # Replace occurrences of 'ans' and 'ANS' 
   # in the expression with the last answer
-  set expression (string replace "ans" "$ans" "$expression")
-  set expression (string replace "ANS" "$ans" "$expression")
+  set expression (string replace "ans" "($ans)" "$expression")
+  set expression (string replace "ANS" "($ans)" "$expression")
 
   # Calculate the result using the math command and store it in ans
   if ! set ans (echo "$expression" | math)
