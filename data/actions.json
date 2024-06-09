@@ -15,6 +15,6 @@
     "prompt": "❗: ",
     "opts": ["Settings", "Wallpaper", "Keybinds", "Refresh", "Power"],
     "icons": ["regedit", "wallpaper", "keyboard", "reload", "system-switch-user"],
-    "commands": ["$TERMINAL -e yazi \"$HOME/.config/hypr/user_configs/\" ", "wallpaper.sh", "fuzzel -d --width=50 --lines=20 <\"$HOME/.cache/dots/keybinds.txt\"", "refresh.sh", "actions.sh power"]
+    "commands": ["$TERMINAL -e yazi \"$HOME/.config/hypr/user_configs/\" ", "wallpaper.sh", "fuzzel -d --width=50 --lines=15 <\"$HOME/.cache/dots/keybinds.txt\"", "refresh.sh", "actions.sh power"]
   }
 }
