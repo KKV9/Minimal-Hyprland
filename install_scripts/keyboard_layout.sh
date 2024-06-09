@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 ## Keyboard layouts ##
 
 # Check if the directory is correct
@@ -11,7 +11,7 @@ if [ ! -f install.sh ]; then
   fi
 fi
 
-source install_scripts/functions.sh
+. install_scripts/functions.sh
 
 # Check if the file exists
 if [ ! -f "$OVERRIDES" ]; then

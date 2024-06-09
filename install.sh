@@ -1,11 +1,11 @@
-#!/bin/bash
+#!/bin/sh
 ## Install dots ##
 
 chmod +x install_scripts/*.sh
-source install_scripts/functions.sh
+. install_scripts/functions.sh
 
 # Check if running as root. If root, script will exit
-if [[ $EUID -eq 0 ]]; then
+if [ "$(id -u)" -eq 0 ]; then
   echo "This script should not be executed as root! Exiting......."
   exit 1
 fi
@@ -14,7 +14,7 @@ fi
 echo "Welcome to the installer"
 echo "ATTENTION: Please backup your configuration files before proceeding!"
 
-if [ "$1" == "--noconfirm" ]; then
+if [ "$1" = "--noconfirm" ]; then
   ./install_scripts/dependencies.sh "sddm"
   ./install_scripts/copy.sh
 else

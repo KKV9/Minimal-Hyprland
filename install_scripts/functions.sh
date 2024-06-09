@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 ## Functions ##
 
 # Constants
@@ -10,7 +10,8 @@ OVERRIDES="user_configs/overrides.conf"
 # Fuction for prompting yes or no questions
 ask_yn() {
   while true; do
-    read -rp "$1 [y/n]: " confirm
+    printf "%s [y/n]: " "$1"
+    read -r confirm
     case $confirm in
     [yY])
       return 0
@@ -28,14 +29,14 @@ ask_yn() {
 # Function for installing packages
 install_package_pacman() {
   # Checking if package is already installed
-  if pacman -Q "$1" &>/dev/null; then
+  if pacman -Q "$1" >/dev/null 2>&1; then
     echo "$1 is already installed. Skipping..."
   else
     # Package not installed
     echo "Installing $1 ..."
     sudo pacman -S --noconfirm --needed "$1"
     # Making sure package is installed
-    if pacman -Q "$1" &>/dev/null; then
+    if pacman -Q "$1" >/dev/null 2>&1; then
       echo "$1 was installed."
     else
       # Something is missing, exiting.
@@ -52,7 +53,7 @@ install_package() {
     echo "$1 is already installed. Skipping..."
   else
     # Package not installed
-    echo -e "${NOTE} Installing $1 ..."
+    echo "${NOTE} Installing $1 ..."
     "$2" -S --noconfirm --needed "$1"
     # Making sure package is installed
     if "$2" -Q "$1" &>>/dev/null; then
@@ -90,8 +91,9 @@ detect_layout() {
 manual_keys() {
   echo "Select an option from the following screen" >&2
   while true; do
-    read -rp "Press Enter to continue..."
-    if [ "$1" == "list-x11-keymap-variants" ]; then
+    printf "Press enter to continue..."
+    read -r confirm
+    if [ "$1" = "list-x11-keymap-variants" ]; then
       return_string=$(localectl "$1" "$3" | fzf)
     else
       return_string=$(localectl "$1" | fzf)
@@ -131,4 +133,54 @@ set_opts() {
     sed -i "s/\(kb_$2 = \).*/\1$3/" "$OVERRIDES"
     sed -i "s/\(kb_$2 = \).*/\1$3/" "sddm/hyprland.conf" # Change layout for sddm defaults
   fi
+}
+
+# Spruce up pacman configuration
+pacman_config() {
+  echo "Editing pacman.conf ..."
+  pacman_conf="/etc/pacman.conf"
+
+  # Remove comments '#' from specific lines
+  lines_to_edit="Color CheckSpace VerbosePkgLists ParallelDownloads"
+
+  # Uncomment specified lines if they are commented out
+  for line in $lines_to_edit; do
+    if grep -q "^#$line" "$pacman_conf"; then
+      sudo sed -i "s/^#$line/$line/" "$pacman_conf"
+      echo "Uncommented: $line"
+    else
+      echo "$line is already uncommented."
+    fi
+  done
+
+  # Add "ILoveCandy" below ParallelDownloads if it doesn't exist
+  if grep -q "^ParallelDownloads" "$pacman_conf" && ! grep -q "^ILoveCandy" "$pacman_conf"; then
+    sudo sed -i "/^ParallelDownloads/a ILoveCandy" "$pacman_conf"
+    echo "Added ILoveCandy below ParallelDownloads."
+  else
+    echo "ILoveCandy already exists"
+  fi
+
+  echo "Pacman.conf edited"
+
+  # updating pacman.conf
+  sudo pacman -Sy
+}
+
+install_paru() {
+  echo "AUR helper was NOT located" >&2
+  echo "Installing paru from AUR" >&2
+  git clone https://aur.archlinux.org/paru-bin.git || {
+    echo "Failed to clone paru from AUR" >&2
+    return 1
+  }
+  cd paru-bin || {
+    echo "Failed to enter paru-bin directory" >&2
+    return 1
+  }
+  makepkg -si --noconfirm || {
+    echo "Failed to install paru from AUR" >&2
+    return 1
+  }
+  cd ..
 }

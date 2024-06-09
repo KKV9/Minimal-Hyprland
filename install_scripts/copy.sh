@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 ## Copy configs ##
 
 # Check if the directory is correct
@@ -11,7 +11,7 @@ if [ ! -f install.sh ]; then
   fi
 fi
 
-source install_scripts/functions.sh
+. install_scripts/functions.sh
 
 # Generate home folders
 mkdir -p "$HOME"/.config
@@ -47,10 +47,7 @@ if [ ! -f "$USER_CONFIG" ]; then
   git clone https://github.com/makman12/pywalQute.git config/qutebrowser/pywalQute
 
   # Install greasemonkey extentions
-  mkdir config/qutebrowser/greasemonkey
-  git clone https://github.com/iamfugui/YouTubeADB.git adb
-  mv adb/index.user.js config/qutebrowser/greasemonkey/ytadb.js
-  rm -rf adb
+  mkdir -p config/qutebrowser/greasemonkey
   wget https://update.greasyfork.org/scripts/32626/Disable%20YouTube%20Video%20Ads.user.js -O config/qutebrowser/greasemonkey/yt-skip-ads.js
 
   # Download gtk theme
@@ -123,7 +120,7 @@ ln -sf ~/.local/share/themes/wall-gtk/ ~/.themes/
 
 # Refresh hyprland if it is running
 echo "Copying done!"
-if [ "$XDG_SESSION_DESKTOP" == "Hyprland" ]; then
+if [ "$XDG_SESSION_DESKTOP" = "Hyprland" ]; then
   sleep 0.5
   "$HOME"/.local/bin/refresh.sh
 fi
