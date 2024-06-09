@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 ## Keybinds 🔢##
 
 # Generate table of keybindings from hypr config files

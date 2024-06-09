@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 ## Initial boot 💥##
 
 # Make sure config files install smoothly by

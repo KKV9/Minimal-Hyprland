@@ -1,12 +1,15 @@
-#!/bin/bash
+#!/bin/sh
 ## Action menu ❗##
 
 # Fuzzel prompt for performing various tasks
 
+# Define JSON file
+config="$HOME/.local/share/dots/actions.json"
+
 # Get default monitor settings for projector menu
 get_monitor_settings() {
   # Search for user prefernces in overrides directory
-  settings=$(cat ~/.config/hypr/user_configs/*.conf |
+  settings=$(cat "$HOME"/.config/hypr/user_configs/*.conf |
     grep -e "monitor*.=*.$1" |
     grep -v '^ *#' | awk -F '=' 'gsub (" ", "") $2; {print $2}' |
     awk -F '#' '{print $1}' | tail -1)
@@ -20,127 +23,43 @@ get_monitor_settings() {
   fi
 }
 
-# Set fuzzel args
-menuargs=(-d --width 45 --lines 18 -p "$prompt")
+# Function to load values from JSON
+load_from_json() {
+  # Read values into string for corresponding menu
+  prompt=$(jq -r ".$1.prompt" <"$config")
+  opts=$(jq -r ".$1.opts[]" <"$config")
+  icons=$(jq -r ".$1.icons[]" <"$config")
+  commands=$(jq -r ".$1.commands[]" <"$config")
 
-# Check the first argument
-case "$1" in
-"--power")
-  prompt="⚡: "
-  opts=("Lock" "Logout"
-    "Suspend" "Reboot"
-    "Reboot to UEFI" "Shutdown")
-  icons=("system-lock-screen" "system-log-out"
-    "system-suspend-hibernate" "system-reboot"
-    "computer" "system-shutdown")
-  ;;
-"--projector")
-  # Check for external monitor
-  if hyprctl monitors all |
-    grep -e "HDMI-A-1" &&
-    hyprctl monitors all |
-    grep -e "eDP-1"; then
-    prompt="🖥 : "
-    opts=("Main Screen Only" "Duplicate"
-      "Extend" "Second Screen Only")
-    icons=("computer-laptop" "computer"
-      "video-display" "video-television")
-  else
-    # Exit when no external display found
-    notify-send -u low -i "computer" "Projector menu" \
-      "No external monitor found"
-    exit 0
-  fi
-  ;;
-*)
-  prompt="❗: "
-  opts=("Settings" "Wallpaper"
-    "Keybinds" "Refresh"
-    "Power Menu")
-  icons=("regedit" "wallpaper"
-    "keyboard" "reload"
-    "system-switch-user")
-  ;;
-esac
+  # Use a while loop to read each line from opts and icons
+  while IFS= read -r opt && IFS= read -r icon <&3; do
+    option="${opt}\0icon\037${icon}\n"
+    combined_string="$combined_string$option"
+  done <<EOF 3<<EOF2
+$opts
+EOF
+$icons
+EOF2
+echo "$combined_string"
+}
 
-# Combine each opt with it's icon separated by a newline
-for ((i = 0; i < ${#opts[@]}; i++)); do
-  option="${opts[i]}\0icon\x1f${icons[i]}\n"
-  combined_string+="$option"
-done
+# Check for external monitor
+if [ "$1" = "projector" ] && ! hyprctl monitors all | grep -e "HDMI-A-1" && ! hyprctl monitors all | grep -e "HDMI-A-1"; then
+  # Exit when no external display found
+  notify-send -u low -i "computer" "Projector menu" "No external monitor found"
+  exit 0
+fi
+
+# Load data from json file
+load_from_json "$1"
 
 # Menu prompt
-selection=$(echo -en "$combined_string" | $MENU "${menuargs[@]}")
+selection=$(printf "%b" "$combined_string" | $MENU -d --index --width 45 --lines 18 -p "$prompt")
 
-case "$1" in
-"--power")
-  # Handle options for power menu
-  case "$selection" in
-  "${opts[0]}")
-    hyprlock
-    ;;
-  "${opts[1]}")
-    hyprctl dispatch exit 0
-    ;;
-  "${opts[2]}")
-    systemctl suspend
-    ;;
-  "${opts[3]}")
-    systemctl reboot
-    ;;
-  "${opts[4]}")
-    systemctl reboot --firmware-setup
-    ;;
-  "${opts[5]}")
-    systemctl poweroff
-    ;;
-  esac
-  ;;
-"--projector")
-  # Handle options for projector menu
-  case "$selection" in
-  "${opts[0]}")
-    hyprctl keyword monitor "$(get_monitor_settings 'eDP-1')" &&
-      hyprctl keyword monitor HDMI-A-1,disable
-    ;;
-  "${opts[1]}")
-    hyprctl keyword monitor "$(get_monitor_settings 'eDP-1')" &&
-      hyprctl keyword monitor HDMI-A-1,preferred,0x0,1,mirror,eDP-1
-    ;;
-  "${opts[2]}")
-    hyprctl keyword monitor "$(get_monitor_settings 'eDP-1')" &&
-      hyprctl keyword monitor "$(get_monitor_settings 'HDMI-A-1')"
-    ;;
-  "${opts[3]}")
-    hyprctl keyword monitor "$(get_monitor_settings 'HDMI-A-1')" &&
-      hyprctl keyword monitor eDP-1,disable
-    ;;
-  esac
-  if [ -n "$selection" ]; then
-    # Reload waybar if an option is selected
-    # Waybar can have problems after changing monitor settings
-    killall waybar
-    waybar &
-  fi
-  ;;
-*)
-  # Handle options for actions menu
-  case "$selection" in
-  "${opts[0]}")
-    kitty -e yazi "$HOME/.config/hypr/user_configs"
-    ;;
-  "${opts[1]}")
-    wallpaper.sh
-    ;;
-  "${opts[2]}")
-    fuzzel -d --width=50 --lines=20 <"$HOME"/.cache/dots/keybinds.txt
-    ;;
-  "${opts[3]}")
-    refresh.sh
-    ;;
-  "${opts[4]}")
-    actions.sh "--power"
-    ;;
-  esac
-  ;;
-esac
+# Check if something was selected
+if [ -n "$selection" ]; then
+  # Increment index number for sed line numbers
+  selection=$((selection + 1))
+  # Execute the corresponding command
+  eval "$(echo "$commands" | sed "${selection}q;d")"
+fi

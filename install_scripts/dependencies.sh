@@ -34,6 +34,7 @@ packages=(
   python-pywal
   waybar
   wl-clipboard
+  cliphist
   xdg-user-dirs
   xdg-utils
   mpv

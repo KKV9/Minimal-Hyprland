@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 ## Refresh 🔃##
 
 # Reload apps and theme configuration
@@ -6,7 +6,6 @@
 # Use 'hyprctl reload' to reload hyprland settings
 
 reload_gtk_theme() {
-  local theme
   # find current theme
   theme=$(gsettings get org.gnome.desktop.interface gtk-theme)
 
@@ -26,7 +25,6 @@ reload_qutebrowser() {
 }
 
 reload_kitty() {
-  local pids
   touch "$HOME"/.config/kitty/overrides.conf
   # Get process IDs of all running kitty instances
   pids=$(pgrep -x kitty)
@@ -41,37 +39,37 @@ reload_kitty() {
 
 reload_fuzzel() {
   touch "$HOME"/.config/fuzzel/overrides.ini
-  cat  "$HOME"/.config/fuzzel/defaults.ini \
+  cat "$HOME"/.config/fuzzel/defaults.ini \
     "$HOME"/.config/fuzzel/overrides.ini \
     "$HOME"/.cache/wal/fuzzel.base.ini \
     "$HOME"/.config/fuzzel/overrides_colors.ini >"$HOME"/.config/fuzzel/fuzzel.ini
 }
 
 reload_mako() {
-  local colors
-
   # Source colors from wall cache
   . "$HOME"/.cache/wal/colors.sh
 
   # Mako config file
-  local mako_config="$HOME/.config/mako"
-  local conf_file="$mako_config/mako.ini"
+  mako_config="$HOME/.config/mako"
+  conf_file="$mako_config/mako.ini"
   touch "$mako_config/overrides.ini"
   touch "$mako_config/overrides_urgency.ini"
 
-  # Associative array, color name -> color code.
-  declare -A colors
-  colors=(
-    ["background-color"]="${background}89"
-    ["text-color"]="$foreground"
-    ["border-color"]="$color3"
-    ["progress-color"]="source ${color2}89"
-  )
+  # Declare options and their new values
+  bg_color="background-color"
+  bg_color_value="${background}89"
+  text_color="text-color"
+  text_color_value="$foreground"
+  border_color="border-color"
+  border_color_value="$color3"
+  progress_color="progress-color"
+  progress_color_value="source ${color2}89"
 
-  for color_name in "${!colors[@]}"; do
-    # replace first occurance of each color in config file
-    sed -i "0,/^$color_name.*/{s//$color_name=${colors[$color_name]}/}" "$conf_file"
-  done
+  # Replace each option with it's new value
+  sed -i "0,/^$bg_color.*/{s//$bg_color=$bg_color_value/}" "$conf_file"
+  sed -i "0,/^$text_color.*/{s//$text_color=$text_color_value/}" "$conf_file"
+  sed -i "0,/^$border_color.*/{s//$border_color=$border_color_value/}" "$conf_file"
+  sed -i "0,/^$progress_color.*/{s//$progress_color=$progress_color_value/}" "$conf_file"
 
   # Generate the config file by concatentation
   cat "$mako_config"/mako.ini \
@@ -87,18 +85,17 @@ reload_yazi() {
   . "$HOME"/.cache/wal/colors.sh
 
   # Yazi config file
-  local yazi_config="$HOME/.config/yazi/flavors/dots.yazi/flavor.toml"
-  
-  # Define the new colors to replace
-  local new_colors=("$color4" "$color3" "$color8")
-  
+  yazi_config="$HOME/.config/yazi/flavors/dots.yazi/flavor.toml"
+
   # Read the old colors from the config file
-  mapfile -t old_colors < <(head -n 3 "$yazi_config")
-  
-  # Loop through the arrays and replace old colors with new ones
-  for i in {0..2}; do
-    sed -i "s/${old_colors[i]}/${new_colors[i]}/g" "$yazi_config"
-  done
+  old_color4=$(sed -n '1p' "$yazi_config")
+  old_color3=$(sed -n '2p' "$yazi_config")
+  old_color8=$(sed -n '3p' "$yazi_config")
+
+  # Replace old colors with new ones
+  sed -i "s/$old_color4/$color4/g" "$yazi_config"
+  sed -i "s/$old_color3/$color3/g" "$yazi_config"
+  sed -i "s/$old_color8/$color8/g" "$yazi_config"
 }
 
 # Notify user

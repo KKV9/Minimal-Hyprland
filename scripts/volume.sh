@@ -1,8 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 ## Volume 🔊##
 
 # Volume controls for audio and mic
-# Adapted from https://github.com/JaKooLit/Hyprland-Dots
 
 VOLUME_LIMIT="1.0" # Max volume increase
 MIC_LIMIT="1.0"    # Max mic level increase
@@ -22,9 +21,9 @@ get_volume() {
 # Get icons
 get_icon() {
   volume=$(get_volume)
-  if [[ "${volume%\%}" -le 30 ]]; then
+  if [ "${volume%?}" -le 30 ]; then
     echo "audio-volume-low"
-  elif [[ "${volume%\%}" -le 60 ]]; then
+  elif [ "${volume%?}" -le 60 ]; then
     echo "audio-volume-medium"
   else
     echo "audio-volume-high"
@@ -115,17 +114,17 @@ toggle_mic() {
 }
 
 # Execute accordingly
-if [[ "$1" == "--inc" ]]; then
+if [ "$1" = "--inc" ]; then
   inc_volume
-elif [[ "$1" == "--dec" ]]; then
+elif [ "$1" = "--dec" ]; then
   dec_volume
-elif [[ "$1" == "--toggle" ]]; then
+elif [ "$1" = "--toggle" ]; then
   toggle_mute
-elif [[ "$1" == "--toggle-mic" ]]; then
+elif [ "$1" = "--toggle-mic" ]; then
   toggle_mic
-elif [[ "$1" == "--inc-mic" ]]; then
+elif [ "$1" = "--inc-mic" ]; then
   inc_mic_volume
-elif [[ "$1" == "--dec-mic" ]]; then
+elif [ "$1" = "--dec-mic" ]; then
   dec_mic_volume
 else
   get_volume

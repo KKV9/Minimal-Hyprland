@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 ## Brightness 💡##
 
 # Control backlight brightness
@@ -9,7 +9,7 @@ icon="brightnesssettings"
 prompt="Brightness : "
 
 # Set device type
-if [ "$2" == "--keys" ]; then
+if [ "$2" = "--keys" ]; then
   device="*::kbd_backlight"
   prompt="Keyboard backlight : "
 fi

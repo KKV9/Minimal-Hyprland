@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 ## Wallpaper 🖥️##
 
 # Call yazi/fzf to select a file and set it as the current wallpaper
@@ -37,14 +37,15 @@ killall wbg
 wbg "$new_wallpaper" &
 
 # Hyprlock only supports pngs
-if [[ $new_wallpaper == *.png ]]; then
-  # Copy to cache to be read by hyprlock
+case "$new_wallpaper" in
+*.png)
   cp -f "$new_wallpaper" "$PNG"
-else
-  # Convert to png if not correct format
+  ;;
+*)
   notify-send -u "low" -i emblem-system "Converting image to png..."
   magick "$new_wallpaper" "$PNG"
-fi
+  ;;
+esac
 
 # Call refresh script
 refresh.sh
