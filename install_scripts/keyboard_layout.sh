@@ -1,32 +1,32 @@
 #!/bin/sh
 ## Keyboard layouts ##
 
-# Check if the directory is correct
-if [ ! -f install.sh ]; then
-  cd ..
+while true; do
+  # Check if the directory is correct
   if [ ! -f install.sh ]; then
-    echo "File not found: install.sh"
-    echo "Please download the full repo!"
+    cd ..
+    if [ ! -f install.sh ]; then
+      echo "File not found: install.sh"
+      echo "Please download the full repo!"
+      exit 1
+    fi
+  fi
+
+  . install_scripts/functions.sh
+
+  # Check if the file exists
+  if [ ! -f "$OVERRIDES" ]; then
+    echo "File not found: $OVERRIDES"
     exit 1
   fi
-fi
 
-. install_scripts/functions.sh
-
-# Check if the file exists
-if [ ! -f "$OVERRIDES" ]; then
-  echo "File not found: $OVERRIDES"
-  exit 1
-fi
-
-while true; do
   # Detect the current keyboard layout
   layout=$(detect_layout)
 
   if ask_yn "Detected current keyboard layout as: $layout. Is this correct?"; then
     new_layout=$layout
   else
-    new_layout=$(manual_keys "list-x11-keymap-layouts" $DEFAULT_LAYOUT)
+    new_layout=$(manual_keys "list-x11-keymap-layouts" "$DEFAULT_LAYOUT")
   fi
 
   if ask_yn "Set a keyboard variant?"; then
@@ -34,7 +34,11 @@ while true; do
   fi
 
   if ask_yn "Map capslock to escape?"; then
-    new_options=$(manual_caps)
+    if ask_yn "Swap caps and escape?"; then
+      new_options="caps:swapescape"
+    else
+      new_options="caps:escape"
+    fi
   fi
 
   # Print reciept
@@ -48,7 +52,7 @@ while true; do
   echo "######################################"
   echo
 
-  if ask_yn "Proceed?"; then
+  if ask_yn "Confirm options?"; then
     break
   fi
 done

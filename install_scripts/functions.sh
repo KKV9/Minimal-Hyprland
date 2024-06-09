@@ -10,7 +10,7 @@ OVERRIDES="user_configs/overrides.conf"
 # Fuction for prompting yes or no questions
 ask_yn() {
   while true; do
-    printf "%s [y/n]: " "$1"
+    printf "%s [y/n]: " "$1" >&2
     read -r confirm
     case $confirm in
     [yY])
@@ -28,14 +28,14 @@ ask_yn() {
 
 # Detect keyboard layout using localectl or setxkbmap
 detect_layout() {
-  if command -v localectl >/dev/null 2>&1; then
+  if which localectl >/dev/null 2>&1; then
     layout=$(localectl status --no-pager | awk '/X11 Layout/ {print $3}')
     if [ -n "$layout" ]; then
       echo "$layout"
     else
       echo $DEFAULT_LAYOUT
     fi
-  elif command -v setxkbmap >/dev/null 2>&1; then
+  elif which setxkbmap >/dev/null 2>&1; then
     layout=$(setxkbmap -query | grep layout | awk '{print $2}')
     if [ -n "$layout" ]; then
       echo "$layout"
@@ -50,8 +50,7 @@ detect_layout() {
 # Set keyboard settings with fzf
 manual_keys() {
   echo "Select an option from the following screen" >&2
-  while true; do
-    printf "Press enter to continue..."
+    printf "Press enter to continue..." >&2
     read -r confirm
     if [ "$1" = "list-x11-keymap-variants" ]; then
       return_string=$(localectl "$1" "$3" | fzf)
@@ -64,22 +63,7 @@ manual_keys() {
       return_string=$2
     fi
     echo "You selected $return_string" >&2
-    if ask_yn "Is this correct?"; then
-      break
-    else
-      echo "Try again..." >&2
-    fi
-  done
   echo "$return_string"
-}
-
-# Set caps lock options with y/n prompt
-manual_caps() {
-  if ask_yn "Swap caps and escape?"; then
-    echo "caps:swapescape"
-  else
-    echo "caps:escape"
-  fi
 }
 
 # Replace keyboard options in Devices.conf
