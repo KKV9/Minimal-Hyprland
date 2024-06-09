@@ -15,7 +15,10 @@ pacman_conf
 
 # Install base packages
 for pkg in $base; do
-  install_package_pacman "$pkg"
+  if ! sudo pacman -S "$pkg" --needed --noconfirm; then
+    echo "$package Package installation failed"
+    exit 1
+  fi
 done
 
 # Setup rustup
@@ -47,7 +50,7 @@ fi
 
 # Install all dependencies using aur helper
 for package in $packages; do
-  if ! install_package "$package" "$aurHelper"; then
+  if ! "$aurHelper" -S "$package" --needed --noconfirm; then
     echo "$package Package installation failed"
     exit 1
   fi
@@ -56,7 +59,7 @@ done
 # Install sddm using aur helper if chosen
 if [ "$1" = "sddm" ]; then
   for package in $sddm; do
-    if ! install_package "$package" "$aurHelper"; then
+    if ! "$aurHelper" -S "$package" --needed --noconfirm; then
       echo "$package Package installation failed"
       exit 1
     fi

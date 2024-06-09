@@ -26,46 +26,6 @@ ask_yn() {
   done
 }
 
-# Function for installing packages
-install_package_pacman() {
-  # Checking if package is already installed
-  if pacman -Q "$1" >/dev/null 2>&1; then
-    echo "$1 is already installed. Skipping..."
-  else
-    # Package not installed
-    echo "Installing $1 ..."
-    sudo pacman -S --noconfirm --needed "$1"
-    # Making sure package is installed
-    if pacman -Q "$1" >/dev/null 2>&1; then
-      echo "$1 was installed."
-    else
-      # Something is missing, exiting.
-      echo "$1 failed to install. You may need to install manually."
-      exit 1
-    fi
-  fi
-}
-
-# Function for installing packages
-install_package() {
-  # Checking if package is already installed
-  if "$2" -Q "$1" &>>/dev/null; then
-    echo "$1 is already installed. Skipping..."
-  else
-    # Package not installed
-    echo "${NOTE} Installing $1 ..."
-    "$2" -S --noconfirm --needed "$1"
-    # Making sure package is installed
-    if "$2" -Q "$1" &>>/dev/null; then
-      echo "$1 was installed."
-    else
-      # Something is missing, exiting to review log
-      echo "$1 failed to install, You may need to install manually!"
-      exit 1
-    fi
-  fi
-}
-
 # Detect keyboard layout using localectl or setxkbmap
 detect_layout() {
   if command -v localectl >/dev/null 2>&1; then
