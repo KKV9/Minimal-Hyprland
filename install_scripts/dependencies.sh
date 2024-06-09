@@ -11,7 +11,7 @@ sddm="sddm qt6-svg qt6-declarative layer-shell-qt layer-shell-qt5"
 packages="hyprlock imagemagick kitty pavucontrol lxqt-policykit qutebrowser qt5-styleplugins qt6gtk2 qt6-wayland qt5-wayland fuzzel mako wbg python-pywal waybar wl-clipboard cliphist xdg-user-dirs xdg-utils mpv-mpris pacman-contrib neovim yazi-git noto-fonts-emoji ttf-font-awesome ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols unzip nodejs gtk-engine-murrine hyprland hyprcursor hyprpicker hyprlang wireplumber pipewire-audio pipewire-alsa pipewire-pulse ffmpegthumbnailer xdg-desktop-portal-hyprland fish tela-icon-theme-bin python-adblock kitty-shell-integration kitty-terminfo imagemagick gsettings-desktop-schemas unarchiver zoxide grimblast-git satty-bin hyprkeys jq libnotify pkgfile npm brightnessctl ripgrep fd bat"
 
 # Setup pacman
-pacman_conf
+pacman_config
 
 # Install base packages
 for pkg in $base; do
