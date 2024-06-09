@@ -44,6 +44,7 @@ else
     fi
   fi
 
+  mkdir -p "$HOME/.config/waybar"
   if ask_yn "Would you like to use the laptop configuration?"; then
     ln -sf configs/config_laptop.json "$HOME"/.config/waybar/config
   else
