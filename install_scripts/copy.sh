@@ -15,7 +15,6 @@ fi
 
 # Generate home folders
 mkdir -p "$HOME"/.config
-mkdir -p "$HOME"/.config/fuzzel
 mkdir -p "$HOME"/.config/bat
 mkdir -p "$HOME"/.local/bin
 mkdir -p "$HOME"/.local/share/dots
