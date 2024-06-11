@@ -84,7 +84,7 @@ if test -f "$HOME/.config/INITIAL_BOOT"; then
   sleep 0.5
 
   # First refresh to generate cache
-  "$HOME"/.config/hypr/scripts/refresh.sh
+  refresh.sh
 
   # Detect monitor and apply scaling
   # Work in progress...

@@ -1,0 +1,29 @@
+{
+  "power": {
+    "prompt": "⚡: ",
+    "opts": [
+      "Lock",
+      "Logout",
+      "Suspend",
+      "Reboot",
+      "UEFI_Reboot",
+      "Shutdown"
+    ],
+    "icons": [
+      "system-lock-screen",
+      "system-log-out",
+      "system-suspend-hibernate",
+      "system-reboot",
+      "computer",
+      "system-shutdown"
+    ],
+    "commands": [
+      "hyprlock",
+      "hyprctl dispatch exit 0",
+      "systemctl suspend",
+      "systemctl reboot",
+      "systemctl reboot --firmware-setup",
+      "systemctl poweroff"
+    ]
+  }
+}

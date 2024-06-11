@@ -1,0 +1,23 @@
+{
+  "projector": {
+    "prompt": "🖥 : ",
+    "opts": [
+      "Main Screen Only",
+      "Duplicate",
+      "Extend",
+      "Second Screen Only"
+    ],
+    "icons": [
+      "computer-laptop",
+      "computer",
+      "video-display",
+      "video-television"
+    ],
+    "commands": [
+      "hyprctl keyword monitor \"$(get_monitor_settings 'eDP-1')\" && hyprctl keyword monitor HDMI-A-1,disable",
+      "hyprctl keyword monitor \"$(get_monitor_settings 'eDP-1')\" && hyprctl keyword monitor HDMI-A-1,preferred,0x0,1,mirror,eDP-1",
+      "hyprctl keyword monitor \"$(get_monitor_settings 'eDP-1')\" && hyprctl keyword monitor \"$(get_monitor_settings 'HDMI-A-1')\"",
+      "hyprctl keyword monitor \"$(get_monitor_settings 'HDMI-A-1')\" && hyprctl keyword monitor eDP-1,disable"
+    ]
+  }
+}

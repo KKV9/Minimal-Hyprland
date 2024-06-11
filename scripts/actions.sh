@@ -4,7 +4,7 @@
 # Fuzzel prompt for performing various tasks
 
 # Define JSON file
-config="$HOME/.local/share/dots/actions.json"
+config="$HOME/.local/share/dots/menus/$1.json"
 
 # Get default monitor settings for projector menu
 get_monitor_settings() {
