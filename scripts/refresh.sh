@@ -24,25 +24,12 @@ reload_qutebrowser() {
   fi
 }
 
-reload_kitty() {
-  touch "$HOME"/.config/kitty/overrides.conf
-  # Get process IDs of all running kitty instances
-  pids=$(pgrep -x kitty)
-
-  if [ -n "$pids" ]; then
-    # Send SIGUSR1 signal to reload config of each kitty instance
-    for pid in $pids; do
-      kill -SIGUSR1 "$pid"
-    done
-  fi
-}
-
-reload_fuzzel() {
-  touch "$HOME"/.config/fuzzel/overrides.ini
-  cat "$HOME"/.config/fuzzel/defaults.ini \
-    "$HOME"/.config/fuzzel/overrides.ini \
-    "$HOME"/.cache/wal/fuzzel.base.ini \
-    "$HOME"/.config/fuzzel/overrides_colors.ini >"$HOME"/.config/fuzzel/fuzzel.ini
+reload_f() {
+  touch "$HOME"/.config/"$1"/overrides.ini
+  cat "$HOME"/.config/"$1"/defaults.ini \
+    "$HOME"/.config/"$1"/overrides.ini \
+    "$HOME"/.cache/wal/"$1".base.ini \
+    "$HOME"/.config/"$1"/overrides_colors.ini >"$HOME"/.config/"$1"/"$1".ini
 }
 
 reload_mako() {
@@ -112,7 +99,8 @@ reload_gtk_theme
 reload_qutebrowser
 reload_kitty
 reload_mako
-reload_fuzzel
+reload_f "foot"
+reload_f "fuzzel"
 reload_yazi
 hyprcolors.sh
 pkill waybar
