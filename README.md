@@ -7,7 +7,7 @@ The provided scripts will automate the install process from a minimal archlinux 
 ## Default apps
 - Browser: Qutebrowser
 - File manager: Yazi
-- Terminal emulator: Kitty
+- Terminal emulator: Foot
 - Text editor: NvChad
 - Launcher: Fuzzel
 - Bar: Waybar
