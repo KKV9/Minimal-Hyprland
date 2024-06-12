@@ -37,7 +37,7 @@ awk -F "," '{gsub(/^[ \t]+|[ \t]+$/, "", $2); print $2}' "$temp_binds" >"$temp_k
 paste "$temp_mod" "$temp_key" "$temp_comment" >"$temp_strip"
 
 # Find unbind commands and remove corresponding bind commands
-grep -e "^unbind" "$temp_strip" | awk '{print $2 "\t" $3}' | 
+grep -e "^unbind" "$temp_strip" | awk '{print $2 "\t" $3}' |
   while IFS= read -r line && [ -n "$line" ]; do
     sed -i "0,/^bind\t$line\t.*/{//d;}" "$temp_strip"
   done

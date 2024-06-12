@@ -40,7 +40,7 @@ $opts
 EOF
 $icons
 EOF2
-echo "$combined_string"
+  echo "$combined_string"
 }
 
 # Check for external monitor
