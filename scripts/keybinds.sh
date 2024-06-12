@@ -13,7 +13,7 @@ temp_strip=$(mktemp)
 mkdir -p "$CACHE"
 
 # Extract lines starting with 'bind' or 'unbind' and save to temp_binds
-grep -E "^bind|^unbind" "$HOME/.config/hypr/hyprbinds.conf" >"$temp_binds"
+cat "$HOME/.config/hypr/hyprbinds.conf" "$HOME"/.config/hypr/user_configs/* | grep -E "^bind|^unbind"  >"$temp_binds"
 
 # Create temporary files for each field (mod, key, comment)
 temp_mod=$(mktemp)
@@ -29,7 +29,7 @@ for d in $dispatchers; do
 done
 
 # Extract and clean up each part of the bind/unbind lines
-sed -i -e "s/^bind.*=./bind\t/" -e "s/^unbind.*=./unbind\t/" "$temp_binds"
+sed -i -e "s/^bind.*=\s*/bind\t/" -e "s/^unbind.*=\s*/unbind\t/" "$temp_binds"
 awk -F "," '{print $1}' "$temp_binds" >"$temp_mod"
 awk -F "," '{gsub(/^[ \t]+|[ \t]+$/, "", $2); print $2}' "$temp_binds" >"$temp_key"
 
