@@ -18,7 +18,7 @@
     "commands": [
       "$TERMINAL -e yazi \"$HOME/.config/hypr/user_configs/\"",
       "wallpaper.sh",
-      "fuzzel -d --width=50 --lines=15 <\"$HOME/.cache/dots/keybinds.txt\"",
+      "fuzzel -d --width=65 --lines=15 <\"$HOME/.cache/dots/keybinds.txt\"",
       "refresh.sh",
       "actions.sh power"
     ]
