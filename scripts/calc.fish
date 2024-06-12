@@ -9,7 +9,7 @@
 # Add prompt options to history file
 function append_options
   # Enter clear prompt option into history file
-  if ! grep "clear" "$HISTORY_FILE"
+  if ! grep -q "clear" "$HISTORY_FILE"
     echo "clear" >> "$HISTORY_FILE"
   end
 end
@@ -39,8 +39,8 @@ while true
 
   # Replace occurrences of 'ans' and 'ANS' 
   # in the expression with the last answer
-  set expression (string replace "ans" "($ans)" "$expression")
-  set expression (string replace "ANS" "($ans)" "$expression")
+  set expression (string replace -a "ans" "($ans)" "$expression")
+  set expression (string replace -a "ANS" "($ans)" "$expression")
 
   # Calculate the result using the math command and store it in ans
   if ! set ans (echo "$expression" | math)
