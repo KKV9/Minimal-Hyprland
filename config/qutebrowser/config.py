@@ -4,19 +4,24 @@
 # Refresh after making changes
 import pywalQute.draw
 import os.path
+from qutebrowser.config.configfiles import ConfigAPI
+from qutebrowser.config.config import ConfigContainer
 
-home = str(os.environ['HOME'])
+config: ConfigAPI = config  # noqa
+c: ConfigContainer = c  # noqa
 
-## Appearance ##
+HOME = str(os.environ["HOME"])
+
+# Appearance ##
+pywalQute.draw.color(c, {"spacing": {"vertical": 6, "horizontal": 8}})
 c.colors.webpage.preferred_color_scheme = "dark"
 c.colors.webpage.darkmode.enabled = True
-pywalQute.draw.color(c, {"spacing": {"vertical": 6, "horizontal": 8}})
 c.fonts.default_family = "JetBrainsMonoNerdFont"
 c.tabs.show = "switching"
 c.scrolling.bar = "never"
 #######
 
-## Privacy & Adblock ##
+# Privacy & Adblock ##
 c.content.cookies.accept = "never"
 c.content.blocking.method = "both"
 c.content.headers.user_agent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
@@ -25,26 +30,28 @@ c.content.webgl = False  # Disable webgl finger printing
 c.content.canvas_reading = False  # Disable canvas finger printing
 #######
 
-## Permissions ##
-with open(f'{home}/.config/qutebrowser/permissions/cookies') as f:
+# Permissions ##
+with open(f"{HOME}/.config/qutebrowser/permissions/cookies") as f:
     for site in f:
-        config.set("content.cookies.accept", "no-3rdparty",
-                   f"{site}")  # Allow cookies
+        config.set(
+            "content.cookies.accept", "no-unknown-3rdparty", f"{site}"
+        )  # Allow cookies
 
-with open(f'{home}/.config/qutebrowser/permissions/clipboard') as f:
+with open(f"{HOME}/.config/qutebrowser/permissions/clipboard") as f:
     for site in f:
-        config.set("content.javascript.clipboard", "access",
-                   f"{site}")  # Allow clipboard access
+        config.set(
+            "content.javascript.clipboard", "access", f"{site}"
+        )  # Allow clipboard access
 #######
 
-## Binds ##
-config.bind(',m', 'spawn mpv {url}')  # Open mpv
-# Translate page to english (google)
+# Binds ##
+config.bind(",m", "spawn mpv {url}")  # Open mpv
 config.bind(
-    ',t', 'open -t https://translate.google.com/translate?sl=auto&tl=en&u={url}')
+    ",t", "open -t https://translate.google.com/translate?sl=auto&tl=en&u={url}"
+)  # Translate page to english (google)
 #######
 
-## Search ##
+# Search ##
 c.url.default_page = "https://search.brave.com"
 c.url.start_pages = "https://search.brave.com"
 c.url.searchengines = {
@@ -60,10 +67,17 @@ c.url.searchengines = {
 }
 #######
 
-## File selection ##
-file_select = [os.environ['TERMINAL'], "-e", "yazi", "--chooser-file={}"]
-folder_select = [os.environ['TERMINAL'], "-e", "yazi", "--cwd-file={}"]
-editor_cmd = [os.environ['TERMINAL'], "-e", os.environ['EDITOR'], "{file}"]
+# File selection ##
+file_select = [os.environ["TERMINAL"], "-e", "yazi", "--chooser-file={}"]
+folder_select = [os.environ["TERMINAL"], "-e", "yazi", "--cwd-file={}"]
+editor_cmd = [
+    os.environ["EDITOR"],
+    "||",
+    os.environ["TERMINAL"],
+    "-e",
+    os.environ["EDITOR"],
+    "{file}",
+]
 c.editor.command = editor_cmd
 c.fileselect.folder.command = folder_select
 c.fileselect.multiple_files.command = file_select
@@ -75,4 +89,4 @@ c.fileselect.handler = "external"
 # Set to false to disable yaml overrides
 config.load_autoconfig(True)
 # Source user overrides python configuration
-config.source('overrides.py')
+config.source("overrides.py")

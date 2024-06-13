@@ -5,8 +5,8 @@
 
 result=$(hyprpicker -an)
 
-if [ -z  "$result" ]; then
-  exit 0
+if [ -z "$result" ]; then
+	exit 0
 fi
 
 # Reload mako with picked color

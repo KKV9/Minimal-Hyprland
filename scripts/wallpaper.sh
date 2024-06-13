@@ -9,11 +9,11 @@ PNG=$HOME/.cache/current_wallpaper.png
 tmp=$(mktemp)
 
 if which foot; then
-  cd "$HOME/Pictures/Wallpapers/" || exit 1
-  foot --app-id="floating" --title="Wallpaper select" -- fzf.sh "$tmp"
+	cd "$HOME/Pictures/Wallpapers/" || exit 1
+	foot --app-id="floating" --title="Wallpaper select" -- fzf.sh "$tmp"
 else
-  # Fallback
-  $TERMINAL -e yazi "$HOME/Pictures/Wallpapers/" --chooser-file "$tmp"
+	# Fallback
+	$TERMINAL -e yazi "$HOME/Pictures/Wallpapers/" --chooser-file "$tmp"
 fi
 
 # Last selected file is stored in a variable
@@ -21,8 +21,8 @@ new_wallpaper="$(tail -1 "$tmp")"
 
 # Check if no file is selected
 if ! [ -e "$new_wallpaper" ]; then
-  rm "$tmp"
-  exit 0
+	rm "$tmp"
+	exit 0
 fi
 
 # Remove temporary file
@@ -35,12 +35,12 @@ wbg "$new_wallpaper" &
 # Hyprlock only supports pngs
 case "$new_wallpaper" in
 *.png)
-  cp -f "$new_wallpaper" "$PNG"
-  ;;
+	cp -f "$new_wallpaper" "$PNG"
+	;;
 *)
-  notify-send -u "low" -i emblem-system "Converting image to png..."
-  magick "$new_wallpaper" "$PNG"
-  ;;
+	notify-send -u "low" -i emblem-system "Converting image to png..."
+	magick "$new_wallpaper" "$PNG"
+	;;
 esac
 
 # Call refresh script

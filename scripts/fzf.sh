@@ -1,7 +1,7 @@
 #!/bin/sh
 # fzf previews 🌸#
 
-# Image/text file picker with fzf 
+# Image/text file picker with fzf
 
 cmd=$(fzf --preview='
     img2sixel -q low -w 660 {}
@@ -10,7 +10,7 @@ cmd=$(fzf --preview='
     end' --preview-window "right,50%,border-left")
 
 if [ -z "$1" ]; then
-  echo "$cmd"
+	echo "$cmd"
 else
-  echo "$cmd" >"$1"
+	echo "$cmd" >"$1"
 fi

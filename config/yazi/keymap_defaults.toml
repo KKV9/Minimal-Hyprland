@@ -1,5 +1,5 @@
 [manager]
 prepend_keymap = [
-{ on  = [ "<C-s>" ], run  = 'shell $SHELL --block --confirm', desc = "Drop to shell" },
-{ on  = [ "<C-;>" ], run = 'shell $TERMINAL --confirm --orphan' , desc = "Open terminal here" },
+  { on  = [ "<C-s>" ], run  = 'shell $SHELL --block --confirm', desc = "Drop to shell" },
+  { on  = [ "<C-;>" ], run = 'shell $TERMINAL --confirm --orphan' , desc = "Open terminal here" },
 ]

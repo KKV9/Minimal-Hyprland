@@ -16,7 +16,7 @@ temp_strip=$(mktemp)
 mkdir -p "$CACHE"
 
 # Extract lines starting with 'bind' or 'unbind' and save to temp_binds
-cat "$HOME/.config/hypr/hyprbinds.conf" "$HOME"/.config/hypr/user_configs/* | grep -E "^bind|^unbind"  >"$temp_binds"
+cat "$HOME/.config/hypr/hyprbinds.conf" "$HOME"/.config/hypr/user_configs/* | grep -E "^bind|^unbind" >"$temp_binds"
 
 # Create temporary files for each field (mod, key, comment)
 temp_mod=$(mktemp)
@@ -28,7 +28,7 @@ awk -F "#" '{gsub(/^[ \t]+|[ \t]+$/, "", $2); print $2}' "$temp_binds" >"$temp_c
 
 # Strip dispatchers onwards from each line
 for d in $dispatchers; do
-  sed -ie "s/${d}.*//" "$temp_binds"
+	sed -ie "s/${d}.*//" "$temp_binds"
 done
 
 # Extract and clean up each part of the bind/unbind lines
@@ -41,9 +41,9 @@ paste "$temp_mod" "$temp_key" "$temp_comment" >"$temp_strip"
 
 # Find unbind commands and remove corresponding bind commands
 grep -e "^unbind" "$temp_strip" | awk '{print $2 "\t" $3}' |
-  while IFS= read -r line && [ -n "$line" ]; do
-    sed -i "0,/^bind\t$line\t.*/{//d;}" "$temp_strip"
-  done
+	while IFS= read -r line && [ -n "$line" ]; do
+		sed -i "0,/^bind\t$line\t.*/{//d;}" "$temp_strip"
+	done
 
 # Output the result, excluding all unbind lines and first column
 grep -ve "^unbind" "$temp_strip" | cut -c6- | column -t -s "$(printf "\t")" >"$OUTPUT_TEXT"

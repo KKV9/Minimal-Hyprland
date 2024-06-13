@@ -15,6 +15,13 @@ return {
   },
 
   {
+    "mfussenegger/nvim-lint",
+    config = function()
+      require "configs.nvim-lint"
+    end,
+  },
+
+  {
     "stevearc/oil.nvim",
     lazy = false,
     opts = {},
@@ -27,13 +34,11 @@ return {
         "lua-language-server",
         "bash-language-server",
         "stylua",
-        "html-lsp",
-        "css-lsp",
-        "prettier",
         "shfmt",
         "taplo",
         "json-lsp",
         "shellcheck",
+        "ruff",
       },
     },
   },
@@ -45,13 +50,12 @@ return {
         "vim",
         "lua",
         "vimdoc",
-        "html",
         "css",
         "hyprlang",
         "bash",
         "toml",
         "json",
-        "fish"
+        "fish",
       },
     },
   },
