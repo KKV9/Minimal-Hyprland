@@ -16,6 +16,7 @@ fi
 # Generate home folders
 mkdir -p "$HOME"/.config
 mkdir -p "$HOME"/.config/bat
+mkdir -p "$HOME"/.config/qutebrowser/permissions
 mkdir -p "$HOME"/.local/bin
 mkdir -p "$HOME"/.local/share/dots
 cp -f config/user-dirs.dirs "$HOME"/.config/
@@ -105,6 +106,8 @@ fi
 # Surpress errors by creating overrides if it doesn't exist
 if [ ! -f "$HOME/.config/qutebrowser/overrides.py" ]; then
   touch "$HOME/.config/qutebrowser/overrides.py"
+  touch "$HOME/.config/qutebrowser/permissions/cookies"
+  touch "$HOME/.config/qutebrowser/permissions/clipboard"
 fi
 
 # Ensure scripts are executable
