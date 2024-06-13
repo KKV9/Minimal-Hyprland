@@ -1,0 +1,6 @@
+[plugin]
+prepend_previewers = [
+  { mime = "text/*", run = "bat" },
+  { mime = "application/json", run = "bat" },
+  { mime = "*/{xml,javascript,x-wine-extension-ini}", run = "bat" },
+]

@@ -5,6 +5,8 @@
 # Does not reload hyprland
 # Use 'hyprctl reload' to reload hyprland settings
 
+yazi_config_dir="$HOME/.config/yazi"
+
 reload_gtk_theme() {
   # find current theme
   theme=$(gsettings get org.gnome.desktop.interface gtk-theme)
@@ -67,22 +69,48 @@ reload_mako() {
   makoctl reload
 }
 
+# Function to handle yazi file operations
+handle_yazi_overrides() {
+  section=$1
+  override_file="$2"
+  default_file="$3"
+  target_file="$4"
+
+  if grep -q "[$section]" "$override_file"; then
+    cat "$override_file" "$default_file" >"$target_file"
+  else
+    cp -f "$override_file" "$target_file"
+  fi
+}
+
 reload_yazi() {
+  ## Colors ##
   # Source colors from wall cache
   . "$HOME"/.cache/wal/colors.sh
 
-  # Yazi config file
-  yazi_config="$HOME/.config/yazi/flavors/dots.yazi/flavor.toml"
+  # Yazi flavor file
+  yazi_flavor="$HOME/.config/yazi/flavors/dots.yazi/flavor.toml"
 
   # Read the old colors from the config file
-  old_color4=$(sed -n '1p' "$yazi_config")
-  old_color3=$(sed -n '2p' "$yazi_config")
-  old_color8=$(sed -n '3p' "$yazi_config")
+  old_color4=$(sed -n '1p' "$yazi_flavor")
+  old_color3=$(sed -n '2p' "$yazi_flavor")
+  old_color8=$(sed -n '3p' "$yazi_flavor")
 
   # Replace old colors with new ones
-  sed -i "s/$old_color4/$color4/g" "$yazi_config"
-  sed -i "s/$old_color3/$color3/g" "$yazi_config"
-  sed -i "s/$old_color8/$color8/g" "$yazi_config"
+  sed -i "s/$old_color4/$color4/g" "$yazi_flavor"
+  sed -i "s/$old_color3/$color3/g" "$yazi_flavor"
+  sed -i "s/$old_color8/$color8/g" "$yazi_flavor"
+
+  ## Overrides ##
+  # Temporary file for intermediate stage
+  stage1=$(mktemp)
+  # Call the overrides function with appropriate parameters
+  handle_yazi_overrides "manager" "$yazi_config_dir/keymap_overrides.toml" "$yazi_config_dir/keymap_defaults.toml" "$yazi_config_dir/keymap.toml"
+  handle_yazi_overrides "flavor" "$yazi_config_dir/theme_overrides.toml" "$yazi_config_dir/theme_defaults.toml" "$yazi_config_dir/theme.toml"
+  handle_yazi_overrides "opener" "$yazi_config_dir/yazi_overrides.toml" "$yazi_config_dir/yazi_opener.toml" "$stage1"
+  handle_yazi_overrides "plugin" "$stage1" "$yazi_config_dir/yazi_plugin.toml" "$yazi_config_dir/yazi.toml"
+  # Clean up the temporary file
+  rm "$stage1"
 }
 
 # Notify user
@@ -94,17 +122,31 @@ rm -r "$HOME/.cache/wal/schemes"
 # Refresh colors, waybar, gtk & other apps
 # Qt apps are not reloaded by this process
 wal -i "$HOME/.cache/current_wallpaper.png" -s -t -n -e --saturate 0.5 >/dev/null
-keybinds.sh # Generate keybinds
 reload_gtk_theme
-reload_qutebrowser
-reload_kitty
-reload_mako
-reload_f "foot"
-reload_f "fuzzel"
-reload_yazi
-hyprcolors.sh
-pkill waybar
-sleep 0.3
-waybar &
+
+if [ "$XDG_SESSION_DESKTOP" = "Hyprland" ]; then
+  keybinds.sh # Generate keybinds
+  hyprcolors.sh
+fi
+if which qutebrowser; then
+  reload_qutebrowser
+fi
+if which mako; then
+  reload_mako
+fi
+if which foot; then
+  reload_f "foot"
+fi
+if which fuzzel; then
+  reload_f "fuzzel"
+fi
+if which yazi; then
+  reload_yazi
+fi
+if which waybar; then
+  pkill waybar
+  sleep 0.3
+  waybar &
+fi
 
 notify-send -u "low" -i emblem-checked "Finished!"

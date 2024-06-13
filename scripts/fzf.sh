@@ -1,6 +1,8 @@
 #!/bin/sh
 # fzf previews 🌸#
 
+# Image/text file picker with fzf 
+
 cmd=$(fzf --preview='
     img2sixel -q low -w 660 {}
     if ! file --mime-type {} | grep -qF image/

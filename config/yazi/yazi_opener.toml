@@ -1,15 +1,8 @@
-# If you encounter any issues, please make an issue at https://github.com/yazi-rs/schemas.
-"$schema" = "https://yazi-rs.github.io/schemas/yazi.json"
-
 [opener]
 edit = [{ run = '$EDITOR "$@"', desc = "Edit", block = true, for = "unix" }]
 reveal = [
   { run = 'xdg-open "$(dirname "$0")"', desc = "Reveal", for = "linux" },
   { run = 'mkdir -p .temp_zip && cd .temp_zip && cp -rt . "$@" && zip -r "$1.zip" . || tar -czf "$1.tar.gz" . ; cd ../ ; rm -rf .temp_zip', block = false, desc = "Zip" },
 ]
-[plugin]
-prepend_previewers = [
-  { mime = "text/*", run = "bat" },
-  { mime = "application/json", run = "bat" },
-  { mime = "*/{xml,javascript,x-wine-extension-ini}", run = "bat" },
-]
+
+

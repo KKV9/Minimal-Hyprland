@@ -1,4 +1,7 @@
 #!/bin/sh
+## keybinds generator ⌨️ ##
+
+# Generates keybindings table in cache
 
 CACHE="$HOME/.cache/dots"
 OUTPUT_TEXT="$CACHE/keybinds.txt"
