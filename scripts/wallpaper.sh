@@ -8,12 +8,12 @@ PNG=$HOME/.cache/current_wallpaper.png
 # Store yazi/fzf output in tempfile
 tmp=$(mktemp)
 
-if which foot; then
-	cd "$HOME/Pictures/Wallpapers/" || exit 1
-	foot --app-id="floating" --title="Wallpaper select" -- fzf.sh "$tmp"
+cd "$HOME/Pictures/Wallpapers/" || exit 1
+if [ "$TERMINAL" = "foot" ]; then
+	$TERMINAL --app-id="floating" --title="Wallpaper select" -e fzf.sh "$tmp"
 else
-	# Fallback
-	$TERMINAL -e yazi "$HOME/Pictures/Wallpapers/" --chooser-file "$tmp"
+	$TERMINAL --app-id="floating" --title="Wallpaper select" -e yazi "$HOME/Pictures/Wallpapers/" --chooser-file "$tmp" \
+    || $TERMINAL -e yazi "$HOME/Pictures/Wallpapers/" --chooser-file "$tmp"
 fi
 
 # Last selected file is stored in a variable

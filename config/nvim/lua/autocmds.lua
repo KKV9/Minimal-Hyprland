@@ -8,9 +8,9 @@ autocmd({ "BufWritePost", "BufReadPost", "InsertLeave" }, {
   end,
 })
 
-autocmd("BufWritePre", {
-  pattern = "*",
-  callback = function(args)
-    require("conform").format { bufnr = args.buf }
-  end,
-})
+-- autocmd("BufWritePre", {
+--   pattern = "*",
+--   callback = function(args)
+--     require("conform").format { bufnr = args.buf }
+--   end,
+-- })
