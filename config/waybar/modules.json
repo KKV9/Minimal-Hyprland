@@ -70,7 +70,7 @@
       ]
     },
     "scroll-step": 5.0,
-    "on-click": "pavucontrol",
+    "on-click": "foot --app-id floating pulsemixer",
     "on-click-right": "$HOME/.config/hypr/scripts/Volume.sh --toggle",
     "on-scroll-up": "$HOME/.config/hypr/scripts/Volume.sh --inc",
     "on-scroll-down": "$HOME/.config/hypr/scripts/Volume.sh --dec",
@@ -81,7 +81,7 @@
     "format": "{format_source}",
     "format-source": "🎙️ {volume}%",
     "format-source-muted": " ",
-    "on-click": "pavucontrol",
+    "on-click": "foot --app-id floating pulsemixer",
     "on-click-right": "$HOME/.config/hypr/scripts/Volume.sh --toggle-mic",
     "on-scroll-up": "$HOME/.config/hypr/scripts/Volume.sh --inc-mic",
     "on-scroll-down": "$HOME/.config/hypr/scripts/Volume.sh --dec-mic",
