@@ -17,6 +17,7 @@ fi
 mkdir -p "$HOME"/.config
 mkdir -p "$HOME"/.config/bat
 mkdir -p "$HOME"/.config/qutebrowser/permissions
+mkdir -p "$HOME"/.config/qutebrowser/startpage
 mkdir -p "$HOME"/.local/bin
 mkdir -p "$HOME"/.local/share/dots
 cp -f config/user-dirs.dirs "$HOME"/.config/
@@ -103,12 +104,11 @@ if [ ! -f "$HOME/.config/bat/config" ]; then
 	echo '--map-syntax "*.conf:INI"' >"$HOME/.config/bat/config"
 fi
 
-# Surpress errors by creating overrides if it doesn't exist
-if [ ! -f "$HOME/.config/qutebrowser/overrides.py" ]; then
-	touch "$HOME/.config/qutebrowser/overrides.py"
-	touch "$HOME/.config/qutebrowser/permissions/cookies"
-	touch "$HOME/.config/qutebrowser/permissions/clipboard"
-fi
+# Generate qutebrowser confrig files
+touch "$HOME/.config/qutebrowser/overrides.py"
+touch "$HOME/.config/qutebrowser/permissions/cookies"
+touch "$HOME/.config/qutebrowser/permissions/clipboard"
+touch "$HOME/.config/qutebrowser/startpage/index.html"
 
 # Ensure scripts are executable
 chmod +x "$HOME"/.local/bin/*

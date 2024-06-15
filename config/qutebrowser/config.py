@@ -52,8 +52,8 @@ config.bind(
 #######
 
 # Search ##
-c.url.default_page = "https://search.brave.com"
-c.url.start_pages = "https://search.brave.com"
+c.url.default_page = f"file://{HOME}/.config/qutebrowser/startpage/index.html"
+c.url.start_pages = f"file://{HOME}/.config/qutebrowser/startpage/index.html"
 c.url.searchengines = {
     "DEFAULT": "https://search.brave.com/search?q={}",
     "!aw": "https://wiki.archlinux.org/index.php?search={}",
