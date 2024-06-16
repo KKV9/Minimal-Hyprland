@@ -15,7 +15,7 @@ HOME = str(os.environ["HOME"])
 # Appearance ##
 pywalQute.draw.color(c, {"spacing": {"vertical": 6, "horizontal": 8}})
 c.colors.webpage.preferred_color_scheme = "dark"
-c.colors.webpage.darkmode.enabled = True
+c.colors.webpage.darkmode.enabled = False
 c.fonts.default_family = "JetBrainsMonoNerdFont"
 c.tabs.show = "switching"
 c.scrolling.bar = "never"
@@ -47,6 +47,12 @@ with open(f"{HOME}/.config/qutebrowser/permissions/clipboard") as f:
 # Binds ##
 config.bind(",m", "spawn mpv {url}")  # Open mpv
 config.bind(
+    ",c", "spawn --userscript permissions.sh {url:host} cookies"
+)  # allow cookies for current url
+config.bind(
+    ",v", "spawn --userscript permissions.sh {url:host} clipboard"
+)  # allow clipboard access for current url
+config.bind(
     ",t", "open -t https://translate.google.com/translate?sl=auto&tl=en&u={url}"
 )  # Translate page to english (google)
 #######
@@ -59,11 +65,8 @@ c.url.searchengines = {
     "!aw": "https://wiki.archlinux.org/index.php?search={}",
     "!gh": "https://github.com/search?o=desc&q={}&s=stars",
     "!gist": "https://gist.github.com/search?q={}",
-    "!gi": "https://www.google.com/search?tbm=isch&q={}&tbs=imgo:1",
-    "!m": "https://www.google.com/maps/search/{}",
-    "!t": "https://www.thesaurus.com/browse/{}",
     "!w": "https://en.wikipedia.org/wiki/{}",
-    "!yt": "https://www.youtube.com/results?search_query={}",
+    "!yt": "https://invidious.fdn.fr/search?q={}",
 }
 #######
 
@@ -71,8 +74,6 @@ c.url.searchengines = {
 file_select = [os.environ["TERMINAL"], "-e", "yazi", "--chooser-file={}"]
 folder_select = [os.environ["TERMINAL"], "-e", "yazi", "--cwd-file={}"]
 editor_cmd = [
-    os.environ["EDITOR"],
-    "||",
     os.environ["TERMINAL"],
     "-e",
     os.environ["EDITOR"],

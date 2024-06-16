@@ -47,10 +47,6 @@ if [ ! -f "$USER_CONFIG" ]; then
 	# Download pywal extention
 	git clone https://github.com/makman12/pywalQute.git config/qutebrowser/pywalQute
 
-	# Install greasemonkey extentions
-	mkdir -p config/qutebrowser/greasemonkey
-	wget https://update.greasyfork.org/scripts/32626/Disable%20YouTube%20Video%20Ads.user.js -O config/qutebrowser/greasemonkey/yt-skip-ads.js
-
 	# Download gtk theme
 	git clone https://github.com/deviantfero/wpgtk-templates
 
@@ -100,11 +96,12 @@ if [ ! -f "$HOME/.config/satty/config.toml" ]; then
 	echo 'output-filename = "Pictures/Screenshots/satty-%Y-%m-%d_%H:%M:%S.png"' >>"$HOME/.config/satty/config.toml"
 fi
 
+# Add syntax highlighting to bat
 if [ ! -f "$HOME/.config/bat/config" ]; then
 	echo '--map-syntax "*.conf:INI"' >"$HOME/.config/bat/config"
 fi
 
-# Generate qutebrowser confrig files
+# Generate qutebrowser config files
 touch "$HOME/.config/qutebrowser/overrides.py"
 touch "$HOME/.config/qutebrowser/permissions/cookies"
 touch "$HOME/.config/qutebrowser/permissions/clipboard"
@@ -112,6 +109,7 @@ touch "$HOME/.config/qutebrowser/startpage/index.html"
 
 # Ensure scripts are executable
 chmod +x "$HOME"/.local/bin/*
+chmod +x "$HOME/.config/qutebrowser/userscripts/permissions.sh"
 
 # Run pywal
 echo "Creating color pallette..."
