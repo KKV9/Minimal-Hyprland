@@ -10,8 +10,9 @@
     ]
   },
   "clock": {
-    "format": "{:%a %d | %H:%M}",
-    "format-alt": "{:%A, %d %B, %Y (%R)}"
+    "format": " {:%R}",
+    "tooltip-format": "{calendar}",
+    "format-alt": " {:%A, %d %B, %R}"
   },
   "hyprland/window": {
     "format": "{}",
@@ -28,7 +29,7 @@
       "Catfish": " ",
       "Bluetooth Devices": " ",
       "Network Connections": " ",
-      "nmtui": " ",
+      "nmtui(.*)": " ",
       "Volume Control": " ",
       "ROG Control Center": "󰌢 ",
       "Audacity": "󰋌 ",
@@ -42,7 +43,7 @@
       "vim": "",
       "vi (.*)": "  $1",
       "vi": " ",
-      "cava": " ",
+      "cava(.*)": " ",
       "nwg-look": " ",
       "Kvantum Manager": " ",
       "Customize Look and Feel": " ",
@@ -50,8 +51,8 @@
       "Qt6 Configuration Tool": " ",
       "Virtual Machine Manager": " ",
       "MySQL Workbench": " ",
-      "htop": " ",
-      "btop": " ",
+      "htop(.*)": " ",
+      "btop(.*)": " ",
       "~(.*)": " ",
       "/(.*)": " ",
       "yazi(.*)": "󰉋 $1",
@@ -61,7 +62,7 @@
   },
   "pulseaudio": {
     "format": "{icon} {volume}% ",
-    "format-muted": "🔇 ",
+    "format-muted": "  ",
     "format-icons": {
       "default": [
         "🔈",
@@ -108,6 +109,15 @@
       "critical": 10
     }
   },
+  "network": {
+    "format": "{ifname}",
+    "format-wifi": "{essid}({frequency} GHz) ({signalStrength}%)  ",
+    "format-ethernet": "{ifname} 🌐",
+    "format-disconnected": "",
+    "tooltip-format": "{ipaddr}/{cidr}\n{ifname} via {gwaddr}",
+    "on-click": "$TERMINAL --app-id floating -e nmtui || $TERMINAL -e nmtui",
+    "max-length": 50
+},
   "custom/separator": {
     "format": " | ",
     "interval": "once",

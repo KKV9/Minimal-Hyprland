@@ -11,7 +11,7 @@
   "margin-right": 5,
   "margin-top": 0,
 
-  "modules-left": ["clock", "tray", "hyprland/window"],
+  "modules-left": ["clock", "custom/separator", "tray", "custom/separator", "hyprland/window"],
   "modules-center": ["hyprland/workspaces"],
-  "modules-right": ["group/audio", "custom/separator", "battery"]
+  "modules-right": ["network", "custom/separator", "group/audio", "custom/separator", "battery"]
 }

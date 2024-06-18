@@ -58,12 +58,16 @@ window#waybar {
   color: @color6;
 }
 
+#network {
+  color: @color6;
+}
+
 #pulseaudio {
   color: @color6;
 }
 
 #window {
-  color: @color3;
+  color: @color6;
 }
 
 #battery {
@@ -71,5 +75,5 @@ window#waybar {
 }
 
 #custom-separator {
-  color: @color6;
+  color: @color3;
 }
