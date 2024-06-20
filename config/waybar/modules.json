@@ -106,6 +106,7 @@
     "format-not-charging": "⚡ {capacity}% ",
     "tooltip": "{time}",
     "interval": 30,
+    "on-click-right": "actions.sh power",
     "states": {
       "warning": 30,
       "critical": 10
