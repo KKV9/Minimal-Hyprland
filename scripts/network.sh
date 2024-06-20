@@ -6,6 +6,6 @@
 if which bluetuith; then
   actions.sh network
 else
-  $TERMINAL --app-id=floating --title="nmtui" -e nmtui ||
+  $TERMINAL --app-id=floating --title=nmtui -e nmtui ||
     $TERMINAL -e nmtui
 fi

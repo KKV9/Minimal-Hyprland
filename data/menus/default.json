@@ -22,7 +22,7 @@
     "commands": [
       "$TERMINAL -e yazi \"$HOME/.config/hypr/user_configs/\"",
       "networkmanager_dmenu -w 35",
-      "$TERMINAL --app-id floating -e pulsemixer || $TERMINAL -e pulsemixer",
+      "$TERMINAL --app-id=floating -e pulsemixer || $TERMINAL -e pulsemixer",
       "wallpaper.sh",
       "fuzzel -d --width=65 --lines=15 <\"$HOME/.cache/dots/keybinds.txt\"",
       "refresh.sh",

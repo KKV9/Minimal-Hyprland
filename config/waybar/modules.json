@@ -30,6 +30,7 @@
       "Bluetooth Devices": " ",
       "Network Connections": " ",
       "nmtui(.*)": " ",
+      "pulsemixer": " ",
       "Volume Control": " ",
       "ROG Control Center": "󰌢 ",
       "Audacity": "󰋌 ",
@@ -56,7 +57,8 @@
       "~(.*)": " ",
       "/(.*)": " ",
       "yazi(.*)": "󰉋 $1",
-      "(.*)Steam": "󰓓 "
+      "(.*)Steam": "󰓓 ",
+      "bluetuith": " "
     },
     "max-length": 50
   },
@@ -115,7 +117,7 @@
     "format-ethernet": "{ifname} 🌐",
     "format-disconnected": "",
     "tooltip-format": "{ipaddr}/{cidr}\n{ifname} via {gwaddr}",
-    "on-click": "$TERMINAL --app-id floating -e nmtui || $TERMINAL -e nmtui",
+    "on-click": "$TERMINAL --app-id=floating --title=nmtui -e nmtui || $TERMINAL -e nmtui",
     "on-click-right": "networkmanager_dmenu -w 35",
     "max-length": 50
 },
