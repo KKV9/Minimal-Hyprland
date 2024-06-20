@@ -126,23 +126,16 @@ reload_gtk_theme
 
 if [ "$XDG_SESSION_DESKTOP" = "Hyprland" ]; then
 	keybinds.sh # Generate keybinds
-	hyprcolors.sh
+	hyprcolors.sh # Load hyprland color variables
 fi
-if which qutebrowser; then
-	reload_qutebrowser
-fi
-if which mako; then
-	reload_mako
-fi
-if which foot; then
-	reload_f "foot"
-fi
-if which fuzzel; then
-	reload_f "fuzzel"
-fi
-if which yazi; then
-	reload_yazi
-fi
+
+# Check if each appliction is installed and reload it 
+which qutebrowser && reload_qutebrowser
+which mako && reload_mako
+which foot && reload_f "foot"
+which fuzzel && reload_f "fuzzel"
+which yazi && reload_yazi
+
 if which waybar; then
 	pkill waybar
 	sleep 0.3

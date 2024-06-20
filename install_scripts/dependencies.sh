@@ -57,14 +57,14 @@ for package in $install_list; do
 		echo "$package Package installation failed" && exit 1
 done
 
-if [ "$1" = True ]; then
+if [ "$1" = "true" ]; then
 	# Enable sddm service
 	sudo systemctl enable sddm
 	# Setup sddm theme
 	./install_scripts/sddm.sh
 fi
 
-if [ "$2" = True ]; then
+if [ "$2" = "true" ]; then
 	# Enable bluetooth service
 	sudo systemctl enable bluetooth
 fi

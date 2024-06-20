@@ -27,14 +27,14 @@ else
 	# Sddm install is optional
 	if ask_yn "Install dependencies?"; then
 		if ask_yn "Install sddm?"; then
-			sddm=True
+			sddm="true"
 		else
-			sddm=False
+			sddm="false"
 		fi
 		if ask_yn "Install Bluetooth?"; then
-			bt=True
+			bt="true"
 		else
-			bt=False
+			bt="false"
 		fi
 		./install_scripts/dependencies.sh $sddm $bt
 	else

@@ -12,8 +12,7 @@ cd "$HOME/Pictures/Wallpapers/" || exit 1
 if [ "$TERMINAL" = "foot" ]; then
 	$TERMINAL --app-id="floating" --title="Wallpaper select" -e fzf.sh "$tmp"
 else
-	$TERMINAL --app-id="floating" --title="Wallpaper select" -e yazi "$HOME/Pictures/Wallpapers/" --chooser-file "$tmp" \
-    || $TERMINAL -e yazi "$HOME/Pictures/Wallpapers/" --chooser-file "$tmp"
+	$TERMINAL --app-id="floating" --title="Wallpaper select" -e yazi "$HOME/Pictures/Wallpapers/" --chooser-file "$tmp" || $TERMINAL -e yazi "$HOME/Pictures/Wallpapers/" --chooser-file "$tmp"
 fi
 
 # Last selected file is stored in a variable
