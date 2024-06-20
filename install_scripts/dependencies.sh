@@ -10,17 +10,15 @@ sddm="sddm qt6-svg qt6-declarative layer-shell-qt layer-shell-qt5"
 # List of bluetooth packages
 bluetooth="bluez bluez-utils bluetuith"
 # List of packages installed with aur helper
-packages="hyprlock imagemagick foot pulsemixer lxqt-policykit qutebrowser qt5-styleplugins qt6gtk2 qt6-wayland qt5-wayland fuzzel mako wbg python-pywal waybar wl-clipboard cliphist xdg-user-dirs xdg-utils mpv-mpris neovim yazi-git noto-fonts-emoji ttf-font-awesome ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols unzip nodejs gtk-engine-murrine hyprland hyprcursor hyprpicker hyprlang wireplumber pipewire-audio pipewire-alsa pipewire-pulse ffmpegthumbnailer xdg-desktop-portal-hyprland fish tela-icon-theme-bin python-adblock gsettings-desktop-schemas unarchiver zoxide grimblast-git satty-bin libnotify pkgfile npm brightnessctl ripgrep fd bat less networkmanager-dmenu-git"
+packages="hyprlock imagemagick foot pulsemixer lxqt-policykit qutebrowser qt6-wayland qt5-wayland fuzzel mako wbg python-pywal waybar wl-clipboard cliphist xdg-user-dirs xdg-utils mpv-mpris neovim yazi-git noto-fonts-emoji ttf-font-awesome ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols unzip nodejs gtk-engine-murrine hyprland hyprcursor hyprpicker hyprlang wireplumber pipewire-audio pipewire-alsa pipewire-pulse ffmpegthumbnailer xdg-desktop-portal-hyprland fish tela-icon-theme-bin python-adblock gsettings-desktop-schemas unarchiver zoxide grimblast-git satty-bin libnotify pkgfile npm brightnessctl ripgrep fd bat less networkmanager-dmenu-git"
 
 # Setup pacman
 pacman_config
 
 # Install base packages
 for pkg in $base; do
-	if ! sudo pacman -S "$pkg" --needed --noconfirm; then
-		echo "$package Package installation failed"
-		exit 1
-	fi
+	sudo pacman -S "$pkg" --needed --noconfirm ||
+		echo "$package Package installation failed" && exit 1
 done
 
 # Setup rustup
@@ -52,36 +50,33 @@ fi
 
 # Install all dependencies using aur helper
 for package in $packages; do
-	if ! "$aurHelper" -S "$package" --needed --noconfirm; then
-		echo "$package Package installation failed"
-		exit 1
-	fi
+	"$aurHelper" -S "$package" --needed --noconfirm ||
+		echo "$package Package installation failed" && exit 1
 done
 
 # Install sddm using aur helper if chosen
 if [ "$1" = True ]; then
 	for package in $sddm; do
-		if ! "$aurHelper" -S "$package" --needed --noconfirm; then
-			echo "$package Package installation failed"
-			exit 1
-		fi
+		"$aurHelper" -S "$package" --needed --noconfirm ||
+			echo "$package Package installation failed" && exit 1
 	done
+	# Enable sddm service
 	sudo systemctl enable sddm
+	# Setup sddm theme
 	./install_scripts/sddm.sh
 fi
 
-# Install sddm using aur helper if chosen
+# Install bluetooth using aur helper if chosen
 if [ "$2" = True ]; then
 	for package in $bluetooth; do
-		if ! "$aurHelper" -S "$package" --needed --noconfirm; then
-			echo "$package Package installation failed"
-			exit 1
-		fi
+		"$aurHelper" -S "$package" --needed --noconfirm ||
+			echo "$package Package installation failed" && exit 1
 	done
+	# Enable bluetooth service
 	sudo systemctl enable bluetooth
 fi
 
 echo "Activating pipewire services..."
-systemctl --user enable pipewire.socket pipewire-pulse.socket wireplumber.service
-systemctl --user enable pipewire.service
+sudo systemctl enable pipewire.socket pipewire-pulse.socket wireplumber.service
+sudo systemctl enable pipewire.service
 sudo pkgfile --update
