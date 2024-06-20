@@ -14,30 +14,18 @@ fi
 . install_scripts/functions.sh
 
 # Generate home folders
-mkdir -p "$HOME"/.config
-mkdir -p "$HOME"/.config/bat
-mkdir -p "$HOME"/.config/qutebrowser/permissions
-mkdir -p "$HOME"/.config/qutebrowser/startpage
-mkdir -p "$HOME"/.local/bin
-mkdir -p "$HOME"/.local/share/dots
+mkdir -p "$HOME"/.config "$HOME"/.config/bat "$HOME"/.config/qutebrowser/permissions \
+	"$HOME"/.config/qutebrowser/startpage "$HOME"/.local/bin "$HOME"/.local/share/dots
 cp -f config/user-dirs.dirs "$HOME"/.config/
-rm -rf "$HOME"/go/
 
 # If user is installing from scratch
 if [ ! -f "$USER_CONFIG" ]; then
-	# Copy the overrides configuration
-	mkdir -p "$USER_CONFIGS"
-	cp -f user_configs/* "$USER_CONFIGS/"
-	mkdir -p "$HOME"/.local/share/themes
-	mkdir -p "$HOME"/.local/share/applications
-	mkdir -p "$HOME"/.themes
-	mkdir -p "$HOME"/Pictures/Wallpapers
-	mkdir -p "$HOME"/Pictures/Screenshots
+	mkdir -p "$HOME"/.local/share/themes "$HOME"/.local/share/applications "$HOME"/.themes \
+		"$HOME"/Pictures/Wallpapers "$HOME"/Pictures/Screenshots "$USER_CONFIGS" \
+		icons wallpapers themes # Make folders to store downloaded themes and wallpapers
 
-	# Make folders to store downloaded themes and wallpapers
-	mkdir -p icons
-	mkdir -p wallpapers
-	mkdir -p themes
+	# Copy the overrides configuration
+	cp -f user_configs/* "$USER_CONFIGS/"
 
 	# Download wallpapers
 	echo "Downloading wallpapers..."
@@ -102,14 +90,11 @@ if [ ! -f "$HOME/.config/bat/config" ]; then
 fi
 
 # Generate qutebrowser config files
-touch "$HOME/.config/qutebrowser/overrides.py"
-touch "$HOME/.config/qutebrowser/permissions/cookies"
-touch "$HOME/.config/qutebrowser/permissions/clipboard"
-touch "$HOME/.config/qutebrowser/startpage/index.html"
+touch "$HOME/.config/qutebrowser/overrides.py" "$HOME/.config/qutebrowser/permissions/cookies" \
+	"$HOME/.config/qutebrowser/permissions/clipboard" "$HOME/.config/qutebrowser/startpage/index.html"
 
 # Ensure scripts are executable
-chmod +x "$HOME"/.local/bin/*
-chmod +x "$HOME/.config/qutebrowser/userscripts/permissions.sh"
+chmod +x "$HOME/.config/qutebrowser/userscripts/permissions.sh" "$HOME"/.local/bin/*
 
 # Run pywal
 echo "Creating color pallette..."

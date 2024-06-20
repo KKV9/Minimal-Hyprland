@@ -22,5 +22,4 @@ sudo mkdir -p /etc/sddm.conf.d
 sudo cp -rf sddm/* "/etc/sddm.conf.d/"
 
 # clean up
-rm "catppuccin-mocha.zip"
-rm -r "catppuccin-mocha/"
+rm -r "catppuccin-mocha.zip" "catppuccin-mocha/"
