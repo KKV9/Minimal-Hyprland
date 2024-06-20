@@ -72,9 +72,9 @@
     },
     "scroll-step": 5.0,
     "on-click": "$TERMINAL --app-id floating -e pulsemixer || $TERMINAL -e pulsemixer",
-    "on-click-right": "$HOME/.config/hypr/scripts/Volume.sh --toggle",
-    "on-scroll-up": "$HOME/.config/hypr/scripts/Volume.sh --inc",
-    "on-scroll-down": "$HOME/.config/hypr/scripts/Volume.sh --dec",
+    "on-click-right": "volume.sh --toggle",
+    "on-scroll-up": "volume.sh --inc",
+    "on-scroll-down": "volume.sh --dec",
     "tooltip-format": "{icon} {desc} | {volume}% ",
     "smooth-scrolling-threshold": 1
   },
@@ -83,9 +83,9 @@
     "format-source": "🎙️ {volume}%",
     "format-source-muted": " ",
     "on-click": "$TERMINAL --app-id floating -e pulsemixer || $TERMINAL -e pulsemixer",
-    "on-click-right": "$HOME/.config/hypr/scripts/Volume.sh --toggle-mic",
-    "on-scroll-up": "$HOME/.config/hypr/scripts/Volume.sh --inc-mic",
-    "on-scroll-down": "$HOME/.config/hypr/scripts/Volume.sh --dec-mic",
+    "on-click-right": "volume.sh --toggle-mic",
+    "on-scroll-up": "volume.sh --inc-mic",
+    "on-scroll-down": "volume.sh --dec-mic",
     "tooltip": false,
     "smooth-scrolling-threshold": 1
   },
@@ -116,6 +116,7 @@
     "format-disconnected": "",
     "tooltip-format": "{ipaddr}/{cidr}\n{ifname} via {gwaddr}",
     "on-click": "$TERMINAL --app-id floating -e nmtui || $TERMINAL -e nmtui",
+    "on-click-right": "networkmanager_dmenu -w 35",
     "max-length": 50
 },
   "custom/separator": {

@@ -1,0 +1,17 @@
+{
+  "network": {
+    "prompt": "🛜: ",
+    "opts": [
+      "Nmtui",
+      "Bluetooth"
+    ],
+    "icons": [
+      "network-modem",
+      "bluetooth"
+    ],
+    "commands": [
+      "$TERMINAL --app-id=floating -e nmtui || $TERMINAL -e nmtui",
+      "$TERMINAL --app-id=floating -e bluetuith || $TERMINAL -e bluetuith"
+    ]
+  }
+}
