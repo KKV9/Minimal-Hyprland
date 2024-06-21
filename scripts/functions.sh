@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 ## Functions ❓ ##
 
 # Extra functions for actions.sh script
