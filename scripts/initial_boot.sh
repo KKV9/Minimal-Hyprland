@@ -49,14 +49,6 @@ device {
 	fi
 }
 
-apply_scaling() {
-	if hyprctl monitors | grep "1920x1200@"; then
-		echo "env = QT_SCALE_FACTOR,1.25" >>"$OVERRIDES_USR"
-    gsettings set org.gnome.desktop.interface text-scaling-factor 1.25
-		notify-send -u critical -i "monitor" "Initial Boot" "Hidpi monitor detected. Please log out and log back in to see scaling changes!"
-	fi
-}
-
 # Look for INITIAL_BOOT file created by the installer
 if [ -f "$HOME/.config/INITIAL_BOOT" ]; then
 	# Create common folders in the home directory
@@ -85,10 +77,6 @@ if [ -f "$HOME/.config/INITIAL_BOOT" ]; then
 
 	# First refresh to generate cache
 	refresh.sh
-
-	# Detect monitor and apply scaling
-	# Work in progress...
-	apply_scaling
 
 	# Remove the file so this script is not run again
 	rm "$HOME"/.config/INITIAL_BOOT
