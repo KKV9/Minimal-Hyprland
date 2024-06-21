@@ -66,7 +66,6 @@ c.url.searchengines = {
     "!gh": "https://github.com/search?o=desc&q={}&s=stars",
     "!gist": "https://gist.github.com/search?q={}",
     "!w": "https://en.wikipedia.org/wiki/{}",
-    "!yt": "https://invidious.fdn.fr/search?q={}",
 }
 #######
 

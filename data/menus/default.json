@@ -18,7 +18,7 @@
     "commands": [
       "actions.sh settings",
       "wallpaper.sh",
-      "fuzzel -d --width=65 --lines=15 <\"$HOME/.cache/dots/keybinds.txt\"",
+      "fuzzel -d --width=65 --lines=25 <\"$HOME/.cache/dots/keybinds.txt\"",
       "refresh.sh",
       "actions.sh power"
     ]
