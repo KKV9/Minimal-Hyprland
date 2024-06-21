@@ -9,7 +9,7 @@
     "icons": [
       "regedit",
       "network-wired",
-      "audio-headphones"
+      "gnome-volume-control"
     ],
     "commands": [
       "$TERMINAL -e yazi \"$HOME/.config/hypr/user_configs/\"",

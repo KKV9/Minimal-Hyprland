@@ -2,16 +2,16 @@
   "projector": {
     "prompt": "🖥️ : ",
     "opts": [
-      "Main Screen Only",
-      "Duplicate",
-      "Extend",
-      "Second Screen Only"
+      "✅ ❌ Main Screen Only",
+      "✅ ✅ Duplicate",
+      "✅ ☑️ Extend",
+      "❌ ☑️ Second Screen Only"
     ],
     "icons": [
-      "computer-laptop",
-      "computer",
-      "video-display",
-      "video-television"
+      " ",
+      " ",
+      " ",
+      " "
     ],
     "commands": [
       "hyprctl keyword monitor \"$(get_monitor_settings 'eDP-1')\" && hyprctl keyword monitor HDMI-A-1,disable",

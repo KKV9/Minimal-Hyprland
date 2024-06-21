@@ -6,7 +6,7 @@
       "Logout",
       "Suspend",
       "Reboot",
-      "UEFI_Reboot",
+      "Reboot to UEFI",
       "Shutdown"
     ],
     "icons": [
@@ -14,7 +14,7 @@
       "system-log-out",
       "system-suspend-hibernate",
       "system-reboot",
-      "computer",
+      "application-x-firmware",
       "system-shutdown"
     ],
     "commands": [
