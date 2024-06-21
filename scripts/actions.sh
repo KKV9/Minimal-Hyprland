@@ -34,7 +34,7 @@ EOF2
 load_from_json "$1"
 
 # Menu prompt
-selection=$(printf "%b" "$combined_string" | $MENU -d --index --width 45 --lines 18 -p "$prompt")
+selection=$(printf "%b" "$combined_string" | $MENU -d --index --width 45 --lines 20 -p "$prompt")
 
 # Check if something was selected
 if [ -n "$selection" ]; then
