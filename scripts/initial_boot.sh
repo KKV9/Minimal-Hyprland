@@ -52,6 +52,7 @@ device {
 apply_scaling() {
 	if hyprctl monitors | grep "1920x1200@"; then
 		echo "env = QT_SCALE_FACTOR,1.25" >>"$OVERRIDES_USR"
+    gsettings set org.gnome.desktop.interface text-scaling-factor 1.25
 		notify-send -u critical -i "monitor" "Initial Boot" "Hidpi monitor detected. Please log out and log back in to see scaling changes!"
 	fi
 }

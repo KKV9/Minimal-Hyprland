@@ -19,13 +19,12 @@ pacman_config
 
 # Install base packages
 for pkg in $base; do
-	sudo pacman -S "$pkg" --needed --noconfirm ||
-		echo "$package Package installation failed" && exit 1
+	sudo pacman -S "$pkg" --needed --noconfirm
 done
 
 # Setup rustup
 echo "Setting up rust..."
-rustup default stable || echo "Failed to install rustup toolchain" && exit 1
+rustup default stable
 
 # Find aur helper
 aurHelper=$(command -v yay || command -v paru)
@@ -34,12 +33,12 @@ if [ -n "$aurHelper" ]; then
 	echo "AUR helper already installed."
 else
 	# Install paru if no aur helper is found
-	install_paru && aurHelper=$(command -v paru) || exit 1
+	install_paru && aurHelper=$(command -v paru)
 fi
 
 # Update system before proceeding
 echo "Performing a full system update to avoid issues...."
-$aurHelper -Syu --noconfirm || echo "Failed to update system" && exit 1
+$aurHelper -Syu --noconfirm
 
 # Add sddm dependencies to install_list
 if [ "$1" = "true" ]; then
@@ -53,8 +52,7 @@ fi
 
 # Install all dependencies using aur helper
 for package in $install_list; do
-	"$aurHelper" -S "$package" --needed --noconfirm ||
-		echo "$package Package installation failed" && exit 1
+	"$aurHelper" -S "$package" --needed --noconfirm
 done
 
 if [ "$1" = "true" ]; then
