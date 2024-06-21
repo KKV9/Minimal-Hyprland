@@ -1,2 +1,4 @@
 #!/bin/sh
+# Shadow xdg-open with handlr-regex
+# A better alternative to xdg-utils
 handlr open "$@"

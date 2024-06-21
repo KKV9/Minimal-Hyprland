@@ -4,17 +4,20 @@
     "opts": [
       "Configuration",
       "Network",
-      "Audio"
+      "Audio",
+      "System"
     ],
     "icons": [
       "regedit",
       "network-wired",
-      "gnome-volume-control"
+      "gnome-volume-control",
+      "gnome-system-monitor"
     ],
     "commands": [
       "$TERMINAL -e yazi \"$HOME/.config/hypr/user_configs/\"",
       "networkmanager_dmenu -w 35",
-      "$TERMINAL --app-id=floating -e pulsemixer || $TERMINAL -e pulsemixer"
+      "$TERMINAL --app-id=floating -e pulsemixer || $TERMINAL -e pulsemixer",
+      "$TERMINAL --app-id=floating --title=btop -e btop || $TERMINAL -e btop"
     ]
   }
 }
