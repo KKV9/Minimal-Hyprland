@@ -42,12 +42,12 @@ echo "Performing a full system update to avoid issues...."
 $aurHelper -Syu --noconfirm || echo "Failed to update system" && exit 1
 
 # Add sddm dependencies to install_list
-if [ "$1" = True ]; then
+if [ "$1" = "true" ]; then
 	install_list=$install_list" "$sddm
 fi
 
 # Add bluetooth dependencies to install_list
-if [ "$2" = True ]; then
+if [ "$2" = "true" ]; then
 	install_list=$install_list" "$bluetooth
 fi
 

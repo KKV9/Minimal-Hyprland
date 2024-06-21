@@ -1,28 +1,22 @@
 {
   "default": {
-    "prompt": "❗: ",
+    "prompt": "❗ : ",
     "opts": [
       "Settings",
-      "Network",
-      "Audio",
       "Wallpaper",
       "Keybinds",
       "Refresh",
       "Power"
     ],
     "icons": [
-      "regedit",
-      "network-wired",
-      "audio-headphones",
+      "gnome-settings-default-applications",
       "wallpaper",
       "keyboard",
       "reload",
       "system-switch-user"
     ],
     "commands": [
-      "$TERMINAL -e yazi \"$HOME/.config/hypr/user_configs/\"",
-      "networkmanager_dmenu -w 35",
-      "$TERMINAL --app-id=floating -e pulsemixer || $TERMINAL -e pulsemixer",
+      "actions.sh settings",
       "wallpaper.sh",
       "fuzzel -d --width=65 --lines=15 <\"$HOME/.cache/dots/keybinds.txt\"",
       "refresh.sh",

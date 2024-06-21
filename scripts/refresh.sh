@@ -125,11 +125,11 @@ wal -i "$HOME/.cache/current_wallpaper.png" -s -t -n -e --saturate 0.5 >/dev/nul
 reload_gtk_theme
 
 if [ "$XDG_SESSION_DESKTOP" = "Hyprland" ]; then
-	keybinds.sh # Generate keybinds
+	keybinds.sh   # Generate keybinds
 	hyprcolors.sh # Load hyprland color variables
 fi
 
-# Check if each appliction is installed and reload it 
+# Check if each appliction is installed and reload it
 which qutebrowser && reload_qutebrowser
 which mako && reload_mako
 which foot && reload_f "foot"

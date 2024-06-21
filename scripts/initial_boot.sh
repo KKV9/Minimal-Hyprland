@@ -32,7 +32,7 @@ device {
   sensitivity = 0.0
 }"
 
-	if ! test -f "$DEVICE_CONFIG_USR"; then
+	if ! [ -f "$DEVICE_CONFIG_USR" ]; then
 		# Write device string into user config file
 		echo "$device_config" >"$DEVICE_CONFIG_USR"
 
@@ -51,14 +51,13 @@ device {
 
 apply_scaling() {
 	if hyprctl monitors | grep "1920x1200@"; then
-		gsettings set org.gnome.desktop.interface text-scaling-factor 1.25
 		echo "env = QT_SCALE_FACTOR,1.25" >>"$OVERRIDES_USR"
 		notify-send -u critical -i "monitor" "Initial Boot" "Hidpi monitor detected. Please log out and log back in to see scaling changes!"
 	fi
 }
 
 # Look for INITIAL_BOOT file created by the installer
-if test -f "$HOME/.config/INITIAL_BOOT"; then
+if [ -f "$HOME/.config/INITIAL_BOOT" ]; then
 	# Create common folders in the home directory
 	chown "$USER" "$HOME/.config/user-dirs.dirs"
 	xdg-user-dirs-update --force

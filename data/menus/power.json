@@ -1,6 +1,6 @@
 {
   "power": {
-    "prompt": "⚡: ",
+    "prompt": "⚡ : ",
     "opts": [
       "Lock",
       "Logout",

@@ -1,0 +1,20 @@
+{
+  "settings": {
+    "prompt": "⚙️ : ",
+    "opts": [
+      "Configuration",
+      "Network",
+      "Audio"
+    ],
+    "icons": [
+      "regedit",
+      "network-wired",
+      "audio-headphones"
+    ],
+    "commands": [
+      "$TERMINAL -e yazi \"$HOME/.config/hypr/user_configs/\"",
+      "networkmanager_dmenu -w 35",
+      "$TERMINAL --app-id=floating -e pulsemixer || $TERMINAL -e pulsemixer"
+    ]
+  }
+}

@@ -114,18 +114,26 @@ toggle_mic() {
 }
 
 # Execute accordingly
-if [ "$1" = "--inc" ]; then
+case "$1" in
+"--inc")
 	inc_volume
-elif [ "$1" = "--dec" ]; then
+	;;
+"--dec")
 	dec_volume
-elif [ "$1" = "--toggle" ]; then
+	;;
+"--toggle")
 	toggle_mute
-elif [ "$1" = "--toggle-mic" ]; then
+	;;
+"--toggle-mic")
 	toggle_mic
-elif [ "$1" = "--inc-mic" ]; then
+	;;
+"--inc-mic")
 	inc_mic_volume
-elif [ "$1" = "--dec-mic" ]; then
+	;;
+"--dec-mic")
 	dec_mic_volume
-else
+	;;
+*)
 	get_volume
-fi
+	;;
+esac

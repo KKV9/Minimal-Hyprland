@@ -1,6 +1,6 @@
 {
   "network": {
-    "prompt": "🛜: ",
+    "prompt": "🛜 : ",
     "opts": [
       "Nmtui",
       "Bluetooth"

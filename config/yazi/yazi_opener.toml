@@ -7,4 +7,3 @@ reveal = [
   { run = 'mkdir -p .temp_zip && cd .temp_zip && cp -rt . "$@" && zip -r "$1.zip" . || tar -czf "$1.tar.gz" . ; cd ../ ; rm -rf .temp_zip', block = false, desc = "Zip" },
 ]
 
-
