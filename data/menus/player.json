@@ -1,0 +1,35 @@
+{
+  "player": {
+    "prompt": "🎵 : ",
+    "opts": [
+      "⏯️ Play/pause",
+      "⏭️ Next track",
+      "⏮️ Previous track",
+      "🔁 Loop",
+      "🔀 Shuffle",
+      "⏹️ Stop",
+      "➡️ Shift source forward",
+      "⬅️ Shift source backward"
+    ],
+    "icons": [
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " ",
+      " "
+    ],
+    "commands": [
+      "playerctl play-pause && actions.sh player",
+      "playerctl next && sleep 1 && actions.sh player",
+      "playerctl previous && sleep 1 && actions.sh player",
+      "toggle_loop && actions.sh player --no-notify",
+      "toggle_shuffle && actions.sh player --no-notify",
+      "playerctl stop",
+      "playerctld shift ; actions.sh player",
+      "playerctld unshift ; actions.sh player"
+    ]
+  }
+}
