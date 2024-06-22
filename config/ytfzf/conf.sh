@@ -5,3 +5,6 @@ external_menu() {
 video_player() {
 	setsid -f mpv "$@" >/dev/null 2>&1
 }
+audio_player() {
+	setsid -f mpv --no-video "$@" >/dev/null 2>&1
+}
