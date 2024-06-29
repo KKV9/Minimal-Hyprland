@@ -138,13 +138,13 @@ prepend_exts = [
 ]
 prepend_conds = [
 	# Special files
-	{ cond = "orphan", text = "", fg_light = "#E2D61D", fg_dark = "#E2D61D" },
-	{ cond = "link"  , text = "", fg_light = "#00AEFF", fg_dark = "#00AEFF" },
+	{ if = "orphan", text = "", fg_light = "#E2D61D", fg_dark = "#E2D61D" },
+	{ if = "link"  , text = "", fg_light = "#00AEFF", fg_dark = "#00AEFF" },
 
-	# Fallback
-	{ cond = "dir",  text = "", fg_light = "#3d41b9", fg_dark = "#3d41b9" },
-	{ cond = "exec", text = "", fg_light = "#89E051", fg_dark = "#89E051" },
-	{ cond = "!dir", text = "", fg_light = "#FFFFFF", fg_dark = "#FFFFFF" },
+	# ifback
+	{ if = "dir",  text = "", fg_light = "#3d41b9", fg_dark = "#3d41b9" },
+	{ if = "exec", text = "", fg_light = "#89E051", fg_dark = "#89E051" },
+	{ if = "!dir", text = "", fg_light = "#FFFFFF", fg_dark = "#FFFFFF" },
 ]
 
 [filetype]

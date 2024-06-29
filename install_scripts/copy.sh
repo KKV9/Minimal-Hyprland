@@ -35,6 +35,9 @@ if [ ! -f "$USER_CONFIG" ]; then
 	# Download pywal extention
 	git clone https://github.com/makman12/pywalQute.git config/qutebrowser/pywalQute
 
+  # Download yazi extentions
+  git clone https://github.com/ndtoan96/ouch.yazi.git "$HOME"/.config/yazi/plugins/ouch.yazi
+
 	# Download gtk theme
 	git clone https://github.com/deviantfero/wpgtk-templates
 

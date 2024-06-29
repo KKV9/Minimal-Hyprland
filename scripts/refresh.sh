@@ -76,10 +76,10 @@ handle_yazi_overrides() {
 	default_file="$3"
 	target_file="$4"
 
-	if grep -q "[$section]" "$override_file"; then
-		cat "$override_file" "$default_file" >"$target_file"
-	else
+	if grep -q "\[$section\]" "$override_file"; then
 		cp -f "$override_file" "$target_file"
+	else
+		cat "$override_file" "$default_file" >>"$target_file"
 	fi
 }
 
@@ -103,6 +103,8 @@ reload_yazi() {
 
 	## Overrides ##
 	# Temporary file for intermediate stage
+	rm "$yazi_config_dir"/yazi.toml "$yazi_config_dir"/theme.toml "$yazi_config_dir"/keymap.toml
+
 	stage1=$(mktemp)
 	# Call the overrides function with appropriate parameters
 	handle_yazi_overrides "manager" "$yazi_config_dir/keymap_overrides.toml" "$yazi_config_dir/keymap_defaults.toml" "$yazi_config_dir/keymap.toml"

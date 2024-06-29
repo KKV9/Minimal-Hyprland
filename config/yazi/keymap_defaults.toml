@@ -1,5 +1,24 @@
 [manager]
 prepend_keymap = [
-  { on  = [ "<C-s>" ], run  = 'shell $SHELL --block --confirm', desc = "Drop to shell" },
-  { on  = [ "<C-;>" ], run = 'shell $TERMINAL --confirm --orphan' , desc = "Open terminal here" },
+  { on = [
+    "<C-s>",
+  ], run = 'shell $SHELL --block --confirm', desc = "Drop to shell" },
+  { on = [
+    "<C-;>",
+  ], run = 'shell $TERMINAL --confirm --orphan', desc = "Open terminal here" },
+  { on = [
+    "<C-y>",
+  ], run = 'unyank', desc = "Unyank" },
+  { on = [
+    "u",
+    "y",
+  ], run = 'unyank', desc = "Unyank" },
+  { on = [
+    "u",
+    "s",
+  ], run = 'select_all --state=false', desc = "Unselect" },
+  { on = [
+    "c",
+    "m",
+  ], run = "plugin chmod", desc = "Chmod on selected files" },
 ]
