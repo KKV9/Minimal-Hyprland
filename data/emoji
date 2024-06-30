@@ -4247,13 +4247,10 @@
 💼 briefcase
 📁 folder | file | folder
 📂 file folder | file | folder | open
-🗂️ index dividers | 
 🗂 index dividers | card | dividers | index
 📅 calendar | date
 📆 calendar | calendar | tear-off calendar
-🗒️ notepad | 
 🗒 notepad | note | pad | spiral | spiral notepad
-🗓️ calendar | 
 🗓 calendar | calendar | pad | spiral
 📇 index | card | index | rolodex
 📈 increasing | chart | chart increasing | graph | growth | trend | upward | graph increasing
@@ -4263,17 +4260,13 @@
 📌 pin | pushpin | drawing-pin
 📍 pushpin | pin | pushpin | round pushpin | round drawing-pin
 📎 paperclip
-🖇️ paperclips | 
 🖇 paperclips | link | linked paperclips | paperclip
 📏 ruler | ruler | straight edge | straight ruler
 📐 ruler | ruler | set | triangle | triangular ruler | set square
 ✂️  scissors
 ✂ cutting | scissors | tool
-🗃️ file box | 
 🗃 file box | box | card | file
-🗄️ cabinet | 
 🗄 cabinet | cabinet | file | filing
-🗑️ wastebasket | rubbish bin | trash | waste paper basket
 🗑 wastebasket | rubbish bin | trash | waste paper basket
 🔒 closed | locked | padlock
 🔓 lock | open | unlock | unlocked | padlock
@@ -4310,10 +4303,8 @@
 ⚖️ scale | 
 ⚖ scale | balance | justice | Libra | scale | zodiac
 🦯 cane | accessibility | blind | white cane | guide cane | long mobility cane
-🔗 link
-⛓️‍💥 chain | 
+🔗 link | chain
 ⛓‍💥 chain | break | breaking | broken chain | chain | cuffs | freedom
-⛓️ 
 ⛓ chain | chains
 🪝 catch | crook | curve | ensnare | hook | selling point | fishing
 🧰 chest | mechanic | tool | toolbox
@@ -4474,29 +4465,27 @@
 🔀 tracks button | arrow | crossed | shuffle tracks button
 🔁 button | arrow | clockwise | repeat | repeat button
 🔂 single button | arrow | clockwise | once | repeat single button
-▶️ button | 
+▶️ button | arrow | play | play button | right | triangle
 ▶ button | arrow | play | play button | right | triangle
 ⏩ button | arrow | double | fast | fast-forward button | forward | fast forward button
-⏭️ track button | 
+⏭️ track button | arrow | next scene | next track | next track button | triangle
 ⏭ track button | arrow | next scene | next track | next track button | triangle
-⏯️ or pause button | 
 ⏯ or pause button | arrow | pause | play | play or pause button | right | triangle
-◀️ button | 
+◀️ button | arrow | left | reverse | reverse button | triangle
 ◀ button | arrow | left | reverse | reverse button | triangle
 ⏪ reverse button | arrow | double | fast reverse button | rewind
-⏮️ track button | 
+⏮️ track button | arrow | last track button | previous scene | previous track | triangle
 ⏮ track button | arrow | last track button | previous scene | previous track | triangle
 🔼 button | arrow | button | upwards button | red | upward button
 ⏫ up button | arrow | double | fast up button
 🔽 button | arrow | button | down | downwards button | downward button | red
 ⏬ down button | arrow | double | down | fast down button
-⏸️ button | 
+⏸️ button | bar | double | pause | pause button | vertical
 ⏸ button | bar | double | pause | pause button | vertical
-⏹️ button | 
+⏹️ button | square | stop | stop button
 ⏹ button | square | stop | stop button
-⏺️ button | 
 ⏺ button | circle | record | record button
-⏏️ button | 
+⏏️ button | eject | eject button
 ⏏ button | eject | eject button
 🎦 camera | cinema | film | movie
 🔅 button | brightness | dim | dim button | low
@@ -4505,12 +4494,12 @@
 🛜 computer | internet | network | wi-fi | wifi | wireless | Wi-Fi
 📳 mode | cell | mobile | mode | phone | telephone | vibration | vibrate
 📴 phone off | cell | mobile | off | phone | telephone
-♀️ sign | 
+♀️ sign | female sign | woman 
 ♀ sign | female sign | woman
-♂️ sign | 
+♂️ sign | male sign | man 
 ♂ sign | male sign | man
-⚧️ symbol | 
-⚧ symbol | transgender | transgender symbol | trans
+⚧️ symbol | transgender | transgender symbol | trans | multiple
+⚧ symbol | transgender | transgender symbol | trans | multiple
 ✖️ cancel | multiply
 ✖ × | cancel | multiplication | multiply | sign | x | heavy multiplication sign
 ➕ + | math | plus | sign | maths | add | addition
@@ -4527,7 +4516,6 @@
 ❔ question mark | ? | mark | outlined | punctuation | question | white question mark
 ❕ exclamation mark | ! | exclamation | mark | outlined | punctuation | white exclamation mark
 ❗ exclamation mark | ! | exclamation | mark | punctuation | red exclamation mark
-〰️ dash | 
 〰 dash | dash | punctuation | wavy
 💱 exchange | bank | currency | exchange | money
 💲 dollar sign | currency | dollar | heavy dollar sign | money
@@ -4554,9 +4542,9 @@
 〽 alternation mark | mark | part | part alternation mark
 ✳️ asterisk | 
 ✳ asterisk | * | asterisk | eight-spoked asterisk
-✴️ star | 
+✴️ star | * | eight-pointed star | star
 ✴ star | * | eight-pointed star | star
-❇️ sparkle
+❇️ sparkle | *
 ❇ * | sparkle
 ©️  copyright
 © C | copyright
@@ -4679,14 +4667,13 @@
 🚩 flag | post | triangular flag | red flag
 🎌 flags | celebration | cross | crossed | crossed flags | Japanese
 🏴 flag | black flag | waving
-🏳️ flag | 
 🏳 flag | waving | white flag | surrender
-🏳️‍🌈 flag | 
+🏳️‍🌈 flag | pride | rainbow | rainbow flag
 🏳‍🌈 flag | pride | rainbow | rainbow flag
-🏳️‍⚧️ flag | 
-🏳️‍⚧ flag | 
+🏳️‍⚧️  flag | light blue | pink | transgender | white | trans flag | lag | 
+🏳️‍⚧ flag | flag | light blue | pink | transgender | white | trans flag | 
 🏳‍⚧ flag | flag | light blue | pink | transgender | white | trans
-🏴‍☠️ flag | 
+🏴‍☠️ flag | Jolly Roger | pirate | pirate flag | plunder | treasure
 🏴‍☠ flag | Jolly Roger | pirate | pirate flag | plunder | treasure
 🇦🇨 Ascension Island | flag | flag Ascension Island
 🇦🇩 Andorra | flag | flag Andorra

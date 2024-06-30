@@ -37,6 +37,8 @@ if [ ! -f "$USER_CONFIG" ]; then
 
   # Download yazi extentions
   git clone https://github.com/ndtoan96/ouch.yazi.git "$HOME"/.config/yazi/plugins/ouch.yazi
+  git clone https://github.com/KKV9/cmd_prompt.yazi.git "$HOME"/.config/yazi/plugins/cmd_prompt.yazi
+  git clone https://github.com/KKV9/archive.yazi.git "$HOME"/.config/yazi/plugins/archive.yazi
 
 	# Download gtk theme
 	git clone https://github.com/deviantfero/wpgtk-templates

@@ -16,9 +16,17 @@ prepend_keymap = [
   { on = [
     "u",
     "s",
-  ], run = 'select_all --state=false', desc = "Unselect" },
+  ], run = 'escape --select', desc = "Unselect" },
   { on = [
     "c",
     "m",
   ], run = "plugin chmod", desc = "Chmod on selected files" },
+  { on = [
+    "c",
+    "a",
+  ], run = "plugin archive", desc = "Archive selected files" },
+  { on = [
+    "c",
+    "p",
+  ], run = "plugin cmd_prompt", desc = "Yazi command prompt" },
 ]
