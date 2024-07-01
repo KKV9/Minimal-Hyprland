@@ -9,7 +9,13 @@ function M:peek()
 
 	local child = Command("bat")
 		:args({
-			"-ppf",
+			"-f",
+      "--style",
+      "numbers",
+      "--paging",
+      "never",
+      "--terminal-width",
+      tostring(self.area.w),
 			tostring(file_url),
 		})
 		:stdout(Command.PIPED)

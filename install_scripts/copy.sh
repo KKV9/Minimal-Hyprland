@@ -36,9 +36,10 @@ if [ ! -f "$USER_CONFIG" ]; then
 	git clone https://github.com/makman12/pywalQute.git config/qutebrowser/pywalQute
 
   # Download yazi extentions
-  git clone https://github.com/ndtoan96/ouch.yazi.git "$HOME"/.config/yazi/plugins/ouch.yazi
-  git clone https://github.com/KKV9/cmd_prompt.yazi.git "$HOME"/.config/yazi/plugins/cmd_prompt.yazi
-  git clone https://github.com/KKV9/archive.yazi.git "$HOME"/.config/yazi/plugins/archive.yazi
+  ya pack -a yazi-rs/plugins#chmod 
+  ya pack -a KKV9/archive 
+  ya pack -a KKV9/cmd_prompt 
+  ya pack -a ndtoan96/ouch
 
 	# Download gtk theme
 	git clone https://github.com/deviantfero/wpgtk-templates
@@ -93,6 +94,9 @@ fi
 if [ ! -f "$HOME/.config/bat/config" ]; then
 	echo '--map-syntax "*.conf:INI"' >"$HOME/.config/bat/config"
 fi
+
+# Update yazi plugins
+ya pack -u
 
 # Generate qutebrowser config files
 touch "$HOME/.config/qutebrowser/overrides.py" "$HOME/.config/qutebrowser/permissions/cookies" \
