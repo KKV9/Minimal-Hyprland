@@ -102,17 +102,12 @@ reload_yazi() {
 	sed -i "s/$old_color8/$color8/g" "$yazi_flavor"
 
 	## Overrides ##
-	# Temporary file for intermediate stage
 	rm "$yazi_config_dir"/yazi.toml "$yazi_config_dir"/theme.toml "$yazi_config_dir"/keymap.toml
 
-	stage1=$(mktemp)
 	# Call the overrides function with appropriate parameters
-	handle_yazi_overrides "manager" "$yazi_config_dir/keymap_overrides.toml" "$yazi_config_dir/keymap_defaults.toml" "$yazi_config_dir/keymap.toml"
+	handle_yazi_overrides "?" "$yazi_config_dir/keymap_overrides.toml" "$yazi_config_dir/keymap_defaults.toml" "$yazi_config_dir/keymap.toml"
 	handle_yazi_overrides "flavor" "$yazi_config_dir/theme_overrides.toml" "$yazi_config_dir/theme_defaults.toml" "$yazi_config_dir/theme.toml"
-	handle_yazi_overrides "opener" "$yazi_config_dir/yazi_overrides.toml" "$yazi_config_dir/yazi_opener.toml" "$stage1"
-	handle_yazi_overrides "plugin" "$stage1" "$yazi_config_dir/yazi_plugin.toml" "$yazi_config_dir/yazi.toml"
-	# Clean up the temporary file
-	rm "$stage1"
+	handle_yazi_overrides "?" "$yazi_config_dir/yazi_overrides.toml" "$yazi_config_dir/yazi_defaults.toml" "$yazi_config_dir/yazi.toml"
 }
 
 # Notify user
