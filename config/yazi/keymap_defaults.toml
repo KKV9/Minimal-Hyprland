@@ -28,5 +28,5 @@ run  = "plugin archive"
 desc = "Archive selected files"
 [[manager.prepend_keymap]]
 on   = [ "c", "p" ]
-run  = "plugin cmd_prompt"
+run  = "plugin command"
 desc = "Yazi command prompt"
