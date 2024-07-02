@@ -1,21 +1,18 @@
 local M = {}
 
 function M:peek()
-  local file_url = self.file.url
-  -- Display link instead of file
-  if self.file.link_to then
-    file_url = self.file.link_to
-  end
+
+	local file_url = self.file.url
+	if self.file.link_to then
+		file_url = self.file.link_to
+	end
 
 	local child = Command("bat")
 		:args({
-			"-f",
-      "--style",
-      "numbers",
-      "--paging",
-      "never",
-      "--terminal-width",
-      tostring(self.area.w),
+			"-ppnfr",
+			":50",
+			"--terminal-width",
+			tostring(self.area.w),
 			tostring(file_url),
 		})
 		:stdout(Command.PIPED)
@@ -44,10 +41,7 @@ function M:peek()
 
 	child:start_kill()
 	if self.skip > 0 and i < self.skip + limit then
-		ya.manager_emit(
-			"peek",
-			{ tostring(math.max(0, i - limit)), only_if = tostring(file_url), upper_bound = "" }
-		)
+		ya.manager_emit("peek", { tostring(math.max(0, i - limit)), only_if = tostring(file_url), upper_bound = "" })
 	else
 		lines = lines:gsub("\t", string.rep(" ", PREVIEW.tab_size))
 		ya.preview_widgets(self, { ui.Paragraph.parse(self.area, lines) })
