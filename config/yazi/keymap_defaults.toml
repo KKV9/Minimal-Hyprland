@@ -1,6 +1,6 @@
 [[manager.prepend_keymap]]
 on   = [ "<C-s>" ]
-run  = "shell \"fish -C \\\"set argv $*; set 0 $0; alias e=exit\\\"\" --block --confirm"
+run  = "shell \"fish -C \\\"set argv $*; set 0 $0\\\";exit 0\" --block --confirm"
 desc = "Drop to shell"
 [[manager.prepend_keymap]]
 on   = [ "<C-;>" ]
