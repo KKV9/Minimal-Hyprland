@@ -1,7 +1,6 @@
 local M = {}
 
 function M:peek()
-
 	local file_url = self.file.url
 	if self.file.link_to then
 		file_url = self.file.link_to
@@ -9,8 +8,7 @@ function M:peek()
 
 	local child = Command("bat")
 		:args({
-			"-ppnfr",
-			":50",
+			"-ppnf",
 			"--terminal-width",
 			tostring(self.area.w),
 			tostring(file_url),
@@ -41,7 +39,10 @@ function M:peek()
 
 	child:start_kill()
 	if self.skip > 0 and i < self.skip + limit then
-		ya.manager_emit("peek", { tostring(math.max(0, i - limit)), only_if = tostring(file_url), upper_bound = "" })
+		ya.manager_emit(
+			"peek",
+			{ tostring(math.max(0, i - limit)), only_if = tostring(self.file.url), upper_bound = "" }
+		)
 	else
 		lines = lines:gsub("\t", string.rep(" ", PREVIEW.tab_size))
 		ya.preview_widgets(self, { ui.Paragraph.parse(self.area, lines) })
@@ -50,11 +51,11 @@ end
 
 function M:seek(units)
 	local h = cx.active.current.hovered
-	if h and h.url == file_url then
+	if h and h.url == self.file.url then
 		local step = math.floor(units * self.area.h / 10)
 		ya.manager_emit("peek", {
 			tostring(math.max(0, cx.active.preview.skip + step)),
-			only_if = tostring(file_url),
+			only_if = tostring(self.file.url),
 		})
 	end
 end
@@ -62,7 +63,7 @@ end
 function M:fallback_to_builtin()
 	local _, bound = ya.preview_code(self)
 	if bound then
-		ya.manager_emit("peek", { tostring(bound), only_if = tostring(file_url), upper_bound = "" })
+		ya.manager_emit("peek", { tostring(bound), only_if = tostring(self.file.url), upper_bound = "" })
 	end
 end
 
