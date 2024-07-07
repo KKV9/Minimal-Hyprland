@@ -1,5 +1,5 @@
 [opener]
-extract = [{ run = 'ouch decompress "$@"', block = false }]
+extract = [{ run = 'ouch decompress "$@"', desc= 'Extract', block = false }]
 [[plugin.prepend_previewers]]
 mime = "application/{,g}zip"
 run = "ouch"
