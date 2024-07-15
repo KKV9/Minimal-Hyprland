@@ -37,7 +37,7 @@ if [ ! -f "$USER_CONFIG" ]; then
 
   # Download yazi extentions
   ya pack -a yazi-rs/plugins#chmod 
-  ya pack -a KKV9/archive 
+  ya pack -a KKV9/compress 
   ya pack -a KKV9/cmd_prompt 
   ya pack -a ndtoan96/ouch
 
