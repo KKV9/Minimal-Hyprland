@@ -102,6 +102,7 @@ prepend_dirs  = [
 	{ name = "Music",       text = "", fg_light = "#FF008F", fg_dark = "#FF008F" },
 	{ name = "Pictures",    text = "", fg_light = "#A074C4", fg_dark = "#A074C4" },
 	{ name = "Public",      text = "", fg_light = "#00AEFF", fg_dark = "#00AEFF" },
+	{ name = "Notes",       text = "󰠮", fg_light = "#89E051", fg_dark = "#89E051" },
 ]
 
 prepend_files = [
@@ -119,6 +120,8 @@ prepend_exts = [
   { name = "tar", text =  "",  fg_light = "#185ABD", fg_dark = "#185ABD" },
   { name = "xz",  text =  "",  fg_light = "#185ABD", fg_dark = "#185ABD" },
   { name = "zip", text =  "",  fg_light = "#185ABD", fg_dark = "#185ABD" },
+  { name = "lz4", text =  "",  fg_light = "#185ABD", fg_dark = "#185ABD" },
+  { name = "zst", text =  "",  fg_light = "#185ABD", fg_dark = "#185ABD" },
 
   # Movies
   { name = "avi",  text = "",  fg_light = "#9D6462", fg_dark = "#9D6462" },

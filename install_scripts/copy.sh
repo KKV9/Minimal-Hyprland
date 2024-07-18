@@ -39,6 +39,8 @@ if [ ! -f "$USER_CONFIG" ]; then
   ya pack -a yazi-rs/plugins#chmod 
   ya pack -a KKV9/compress 
   ya pack -a KKV9/cmd_prompt 
+  ya pack -a KKV9/shell
+  ya pack -a KKV9/bat
   ya pack -a ndtoan96/ouch
 
 	# Download gtk theme

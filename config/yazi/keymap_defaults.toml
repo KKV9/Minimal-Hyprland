@@ -1,6 +1,14 @@
 [[manager.prepend_keymap]]
+on = [ ";" ]
+run = "plugin shell"
+desc = "Default shell"
+[[manager.prepend_keymap]]
+on = [ ":" ]
+run = "plugin shell --args='auto --block'"
+desc = "Default shell with blocking"
+[[manager.prepend_keymap]]
 on   = [ "<C-s>" ]
-run  = "shell \"fish -C \\\"set argv $*; set 0 $0\\\";exit 0\" --block --confirm"
+run  = "plugin shell --args='fish --drop'"
 desc = "Drop to shell"
 [[manager.prepend_keymap]]
 on   = [ "<C-;>" ]
@@ -24,7 +32,7 @@ run  = "plugin chmod"
 desc = "Chmod on selected files"
 [[manager.prepend_keymap]]
 on   = [ "c", "a" ]
-run  = "plugin archive"
+run  = "plugin compress"
 desc = "Archive selected files"
 [[manager.prepend_keymap]]
 on   = [ "c", "p" ]
