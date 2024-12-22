@@ -1,2 +1,3 @@
 [flavor]
-use = "dots"
+dark = "dots"
+light = "dots"

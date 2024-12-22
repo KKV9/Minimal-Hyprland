@@ -36,7 +36,8 @@ if [ ! -f "$USER_CONFIG" ]; then
 	git clone https://github.com/makman12/pywalQute.git config/qutebrowser/pywalQute
 
   # Download yazi extentions
-  ya pack -a yazi-rs/plugins#chmod 
+  rm -rf "$HOME"/.config/yazi/package.toml
+  ya pack -a yazi-rs/plugins:chmod
   ya pack -a KKV9/compress 
   ya pack -a KKV9/cmd_prompt 
   ya pack -a KKV9/shell
