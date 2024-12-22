@@ -10,7 +10,7 @@ sddm="sddm qt6-svg qt6-declarative layer-shell-qt layer-shell-qt5"
 # List of bluetooth packages
 bluetooth="bluez bluez-utils bluetuith"
 # List of packages installed with aur helper
-packages="hyprlock imagemagick foot pulsemixer lxqt-policykit qutebrowser qt6-wayland qt5-wayland fuzzel mako wbg python-pywal waybar wl-clipboard cliphist xdg-user-dirs xdg-utils mpv-mpris neovim yazi-git noto-fonts-emoji ttf-font-awesome ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols unzip nodejs gtk-engine-murrine hyprland hyprcursor hyprpicker hyprlang wireplumber pipewire-audio pipewire-alsa pipewire-pulse ffmpegthumbnailer xdg-desktop-portal-hyprland fish tela-icon-theme-bin python-adblock gsettings-desktop-schemas zoxide grimblast-git satty-bin libnotify pkgfile npm brightnessctl ripgrep fd bat less networkmanager-dmenu-git btop swayimg handlr-regex sound-theme-freedesktop ytfzf socat ouch"
+packages="hyprlock imagemagick foot pulsemixer lxqt-policykit qutebrowser qt6-wayland qt5-wayland fuzzel mako wbg python-pywal waybar wl-clipboard cliphist xdg-user-dirs xdg-utils mpv-mpris neovim yazi noto-fonts-emoji ttf-font-awesome ttf-jetbrains-mono-nerd ttf-nerd-fonts-symbols unzip nodejs gtk-engine-murrine hyprcursor hyprpicker hyprlang wireplumber pipewire-audio pipewire-alsa pipewire-pulse ffmpegthumbnailer xdg-desktop-portal-hyprland fish tela-icon-theme-bin python-adblock gsettings-desktop-schemas zoxide grimblast-git satty-bin libnotify pkgfile npm brightnessctl ripgrep fd bat less networkmanager-dmenu-git btop swayimg handlr-regex sound-theme-freedesktop ytfzf socat ouch hyprland"
 # Full package install list
 install_list="$packages"
 

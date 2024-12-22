@@ -38,3 +38,7 @@ desc = "Archive selected files"
 on   = [ "c", "p" ]
 run  = "plugin command"
 desc = "Yazi command prompt"
+[[manager.prepend_keymap]]
+on   = [ "g", "m" ]
+run  = "cd /run/media/$USER/"
+desc = "Goto media"
