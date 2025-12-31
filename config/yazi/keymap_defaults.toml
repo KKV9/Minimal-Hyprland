@@ -1,16 +1,4 @@
 [[manager.prepend_keymap]]
-on = [ ";" ]
-run = "plugin shell"
-desc = "Default shell"
-[[manager.prepend_keymap]]
-on = [ ":" ]
-run = "plugin shell --args='auto --block'"
-desc = "Default shell with blocking"
-[[manager.prepend_keymap]]
-on   = [ "<C-s>" ]
-run  = "plugin shell --args='fish --drop'"
-desc = "Drop to shell"
-[[manager.prepend_keymap]]
 on   = [ "<C-;>" ]
 run  = "shell $TERMINAL --confirm --orphan"
 desc = "Open terminal here"
@@ -34,10 +22,6 @@ desc = "Chmod on selected files"
 on   = [ "c", "a" ]
 run  = "plugin compress"
 desc = "Archive selected files"
-[[manager.prepend_keymap]]
-on   = [ "c", "p" ]
-run  = "plugin command"
-desc = "Yazi command prompt"
 [[manager.prepend_keymap]]
 on   = [ "g", "m" ]
 run  = "cd /run/media/$USER/"

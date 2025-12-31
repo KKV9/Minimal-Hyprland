@@ -39,23 +39,9 @@ if [ ! -f "$USER_CONFIG" ]; then
   rm -rf "$HOME"/.config/yazi/package.toml
   ya pack -a yazi-rs/plugins:chmod
   ya pack -a KKV9/compress 
-  ya pack -a KKV9/cmd_prompt 
-  ya pack -a KKV9/shell
-  ya pack -a KKV9/bat
-  ya pack -a ndtoan96/ouch
 
 	# Download gtk theme
 	git clone https://github.com/deviantfero/wpgtk-templates
-
-	# Download cursor theme
-	echo "Downloading icons..."
-	wget "https://github.com/ful1e5/Bibata_Cursor/releases/download/v2.0.6/Bibata-Modern-Classic.tar.xz"
-
-	# Extract cursors
-	echo "Extracting archives..."
-	tar -xf Bibata-Modern-Classic.tar.xz -C icons/
-	# Cleanup
-	rm Bibata-Modern-Classic.tar.xz
 
 	echo "Preparing themes..."
 	# Move downloaded wallpaper to wallpaper folder
@@ -71,7 +57,6 @@ if [ ! -f "$USER_CONFIG" ]; then
 	rm -rf wpgtk-templates/
 
 	echo "Installing themes..."
-	sudo cp -rf icons/* "/usr/share/icons/"
 	cp -rf themes/* "$HOME/.local/share/themes/"
 	cp -rf wallpapers/* "$HOME/Pictures/Wallpapers/"
 	cp -rf "wallpapers/wallpaper.png" "$HOME/.cache/current_wallpaper.png"
